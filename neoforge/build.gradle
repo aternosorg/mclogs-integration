@@ -3,6 +3,17 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
+dependencies {
+    jarJar(implementation("gs.mclo:api")) {
+        version {
+            strictly mclogs_api_version_range
+            prefer preferred_mclogs_api_version
+        }
+    }
+
+    additionalRuntimeClasspath "gs.mclo:api:${preferred_mclogs_api_version}"
+}
+
 neoForge {
     version = neoforge_version
     // Automatically enable neoforge AccessTransformers if the file exists

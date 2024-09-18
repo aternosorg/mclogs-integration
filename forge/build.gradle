@@ -2,6 +2,7 @@ plugins {
     id 'multiloader-loader'
     id 'net.minecraftforge.gradle' version '[6.0.24,6.2)'
 }
+
 base {
     archivesName = "${mod_name}-forge-${minecraft_version}"
 }
@@ -61,11 +62,21 @@ minecraft {
 
 sourceSets.main.resources.srcDir 'src/generated/resources'
 
+jarJar.enable()
+
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     // Forge's hack fix
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
+
+    jarJar(implementation("gs.mclo:api")) {
+        version {
+            strictly mclogs_api_version_range
+            prefer preferred_mclogs_api_version
+        }
+        transitive = false
+    }
 }
 
 publishing {
