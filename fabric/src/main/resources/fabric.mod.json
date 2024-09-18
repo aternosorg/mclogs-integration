@@ -1,0 +1,36 @@
+{
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "homepage": "${homepage_url}",
+        "sources": "${sources_url}",
+        "issues": "${issues_url}"
+    },
+    "license": "${license}",
+    "icon": "assets/${mod_id}/logo.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+          "gs.mclo.Mclogs"
+        ],
+        "server": [
+          "gs.mclo.Mclogs"
+        ],
+        "client": [
+          "gs.mclo.Mclogs"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=${fabric_loader_version}",
+        "fabric-api": "*",
+        "minecraft": "${minecraft_version}",
+        "java": ">=${java_version}"
+    }
+}
+  
