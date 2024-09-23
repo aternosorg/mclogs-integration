@@ -18,6 +18,13 @@ public interface IPlatformHelper {
     boolean isModLoaded(String modId);
 
     /**
+     * Get the version of the mclo.gs mod.
+     *
+     * @return The version of the mod.
+     */
+    String getModVersion();
+
+    /**
      * Check if the game is currently in a development environment.
      *
      * @return True if in a development environment, false otherwise.

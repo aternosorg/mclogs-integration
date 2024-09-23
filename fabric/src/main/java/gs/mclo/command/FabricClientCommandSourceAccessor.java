@@ -1,0 +1,40 @@
+package gs.mclo.command;
+
+import gs.mclo.commands.CommandSourceAccessor;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.minecraft.network.chat.Component;
+
+import java.nio.file.Path;
+
+public class FabricClientCommandSourceAccessor implements CommandSourceAccessor {
+    private final FabricClientCommandSource source;
+
+    public FabricClientCommandSourceAccessor(FabricClientCommandSource source) {
+        this.source = source;
+    }
+
+    @Override
+    public boolean hasPermission(int level) {
+        return source.hasPermission(level);
+    }
+
+    @Override
+    public String getMinecraftVersion() {
+        return source.getClient().getLaunchedVersion();
+    }
+
+    @Override
+    public Path getDirectory() {
+        return source.getClient().gameDirectory.toPath();
+    }
+
+    @Override
+    public void sendFailure(Component message) {
+        source.sendError(message);
+    }
+
+    @Override
+    public void sendSuccess(Component message, boolean allowLogging) {
+        source.sendFeedback(message);
+    }
+}

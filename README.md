@@ -47,3 +47,8 @@ Requires the permission `mclogs.list`
 Requires the permission `mclogs.share`
 
 On modded servers all commands require the permission level 2.
+
+### Building
+Run `./gradlew build`.
+For forge run the `jarJar` task and use the -all jar
+To setup Forge runs for intelliJ run `./gradlew genIntellijRuns`.
