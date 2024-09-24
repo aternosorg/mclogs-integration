@@ -1,0 +1,38 @@
+plugins {
+    id 'multiloader-common'
+    id 'net.neoforged.moddev'
+}
+
+dependencies {
+    implementation "gs.mclo:api:${preferred_mclogs_api_version}"
+}
+
+neoForge {
+    neoFormVersion = neo_form_version
+    // Automatically enable AccessTransformers if the file exists
+    def at = file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.add(at.absolutePath)
+    }
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+}
+
+configurations {
+    commonMcJava {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+    commonMcResources {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+}
+
+artifacts {
+    commonMcJava sourceSets.main.java.sourceDirectories.singleFile
+    commonMcResources sourceSets.main.resources.sourceDirectories.singleFile
+}
+

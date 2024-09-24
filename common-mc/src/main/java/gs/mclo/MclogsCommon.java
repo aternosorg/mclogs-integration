@@ -1,7 +1,6 @@
 package gs.mclo;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import gs.mclo.api.MclogsClient;
 import gs.mclo.commands.*;
 import gs.mclo.platform.Services;
@@ -9,7 +8,6 @@ import net.minecraft.commands.CommandSourceStack;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Function;
 
 public class MclogsCommon {
     public final MclogsClient client = new MclogsClient("mclogs-mc/" + Services.PLATFORM.getPlatformName(), Services.PLATFORM.getModVersion());
