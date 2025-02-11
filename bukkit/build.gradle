@@ -3,39 +3,11 @@ plugins {
     id "xyz.jpenilla.run-paper" version "2.3.1"
 }
 
-configurations {
-    // configuration that holds jars to include in the jar
-    includeLibrary
-}
-
-sourceCompatibility = java_version
-targetCompatibility = 11
-
 dependencies {
     implementation "org.spigotmc:spigot-api:${minecraft_version}-R0.1-SNAPSHOT"
     implementation "org.slf4j:slf4j-api:${slf4j_version}"
 
-    includeLibrary(implementation("gs.mclo:api")) {
-        version {
-            strictly mclogs_api_version_range
-            prefer preferred_mclogs_api_version
-        }
-        transitive = false
-    }
-}
-
-processResources {
-    inputs.property "version", project.version
-
-    filesMatching("plugin.yml") {
-        expand "version": project.version
-    }
-}
-
-jar {
-    from {
-        configurations.includeLibrary.collect { it.isDirectory() ? it : zipTree(it) }
-    }
+    includeLibrary(implementation("gs.mclo:api"))
 }
 
 tasks {

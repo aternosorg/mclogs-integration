@@ -67,15 +67,14 @@ repositories {
     }
 }
 
-sourcesJar {
-    from(rootProject.file('LICENSE')) {
-        rename { "${it}_${mod_name}" }
-    }
+configurations {
+    // This configuration is used to include libraries in the jar
+    includeLibrary
 }
 
 jar {
-    from(rootProject.file('LICENSE')) {
-        rename { "${it}_${mod_name}" }
+    from {
+        configurations.includeLibrary.collect { it.isDirectory() ? it : zipTree(it) }
     }
 
     manifest {
@@ -115,7 +114,7 @@ processResources {
             'issues_url'                    : issues_url,
     ]
 
-    filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml']) {
+    filesMatching(['pack.mcmeta', 'plugin.yml', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml']) {
         expand expandProps
     }
     inputs.properties(expandProps)
