@@ -1,0 +1,31 @@
+name: "${mod_name}"
+version: "${version}"
+description: "${description}"
+author: "${mod_author}"
+website: "${homepage_url}"
+
+main: gs.mclo.bukkit.MclogsPlugin
+api-version: 1.13
+folia-supported: true
+
+commands:
+  mclogs:
+    description: "Upload your logs to mclo.gs"
+    usage: "/mclogs <list|share> <filename>"
+
+permissions:
+  mclogs.*:
+    description: "Gives access to all mclogs commands"
+    children:
+      mclogs.upload: true
+      mclogs.list: true
+      mclogs.share: true
+  mclogs.upload:
+    description: "Allows uploading the current log file"
+    default: op
+  mclogs.list:
+    description: "Allows listing available log files"
+    default: op
+  mclogs.share:
+    description: "Allows sharing of specific log files"
+    default: op
