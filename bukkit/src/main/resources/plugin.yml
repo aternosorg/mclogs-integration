@@ -5,7 +5,7 @@ author: "${mod_author}"
 website: "${homepage_url}"
 
 main: gs.mclo.bukkit.MclogsPlugin
-api-version: 1.13
+api-version: "${minecraft_version}"
 folia-supported: true
 
 commands:
