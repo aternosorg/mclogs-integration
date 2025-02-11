@@ -70,13 +70,8 @@ dependencies {
     // Forge's hack fix
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
 
-    jarJar(implementation("gs.mclo:api")) {
-        version {
-            strictly mclogs_api_version_range
-            prefer mclogs_api_version
-        }
-        transitive = false
-    }
+    implementation(libs.mclogs.api)
+    jarJar(libs.mclogs.api)
 }
 
 publishing {

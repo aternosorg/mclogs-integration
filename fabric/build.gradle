@@ -12,18 +12,10 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
-    include(implementation("gs.mclo:api")) {
-        version {
-            strictly mclogs_api_version_range
-            prefer mclogs_api_version
-        }
-    }
-    include(implementation("com.electronwill.night-config:toml")) {
-        version {
-            strictly night_config_version_range
-            prefer night_config_version
-        }
-    }
+    implementation(libs.mclogs.api)
+    include(libs.mclogs.api)
+    implementation(libs.night.config.toml)
+    include(libs.night.config.toml)
 }
 
 loom {

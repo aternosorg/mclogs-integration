@@ -33,4 +33,3 @@
         "java": ">=${java_version}"
     }
 }
-  

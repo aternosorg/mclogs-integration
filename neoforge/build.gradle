@@ -4,21 +4,13 @@ plugins {
 }
 
 dependencies {
-    additionalRuntimeClasspath "gs.mclo:api:${mclogs_api_version}"
-    jarJar(implementation("gs.mclo:api")) {
-        version {
-            strictly mclogs_api_version_range
-            prefer mclogs_api_version
-        }
-    }
+    additionalRuntimeClasspath(libs.mclogs.api)
+    implementation(libs.mclogs.api)
+    jarJar(libs.mclogs.api)
 
-    additionalRuntimeClasspath "com.electronwill.night-config:toml:${night_config_version}"
-    jarJar(implementation("com.electronwill.night-config:toml")) {
-        version {
-            strictly night_config_version_range
-            prefer night_config_version
-        }
-    }
+    additionalRuntimeClasspath(libs.night.config.toml)
+    implementation(libs.night.config.toml)
+    jarJar(libs.night.config.toml)
 }
 
 neoForge {
