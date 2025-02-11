@@ -1,9 +1,0 @@
-// multiloader-common with java the java version needed for minecraft. Used for common-mc and multiloader-loader
-
-plugins {
-    id 'multiloader-common'
-}
-
-java {
-    toolchain.languageVersion = JavaLanguageVersion.of(minecraft_java_version)
-}

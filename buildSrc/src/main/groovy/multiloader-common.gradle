@@ -1,4 +1,4 @@
-// multiloader-base plus common sources. Used by bukkit and multiloader-mc
+// multiloader-base plus common sources. Used by bukkit and multiloader-loader
 
 plugins {
     id 'multiloader-base'

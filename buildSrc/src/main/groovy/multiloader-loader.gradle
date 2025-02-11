@@ -1,7 +1,7 @@
-// multiloader-mc plus common-mc sources. Used by mod loaders
+// multiloader-common plus common-mc sources. Used by mod loaders
 
 plugins {
-    id 'multiloader-mc'
+    id 'multiloader-common'
 }
 
 configurations {
