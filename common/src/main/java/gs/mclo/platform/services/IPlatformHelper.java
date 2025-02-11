@@ -13,14 +13,6 @@ public interface IPlatformHelper {
     String getPlatformName();
 
     /**
-     * Checks if a mod with the given id is loaded.
-     *
-     * @param modId The mod to check if it is loaded.
-     * @return True if the mod is loaded, false otherwise.
-     */
-    boolean isModLoaded(String modId);
-
-    /**
      * Get the version of the mclo.gs mod.
      *
      * @return The version of the mod.
@@ -33,15 +25,6 @@ public interface IPlatformHelper {
      * @return True if in a development environment, false otherwise.
      */
     boolean isDevelopmentEnvironment();
-
-    /**
-     * Gets the name of the environment type as a string.
-     *
-     * @return The name of the environment type.
-     */
-    default String getEnvironmentName() {
-        return isDevelopmentEnvironment() ? "development" : "production";
-    }
 
     /**
      * Gets the configuration file for the plugin/mod.

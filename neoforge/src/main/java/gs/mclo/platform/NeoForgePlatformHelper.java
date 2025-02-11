@@ -17,19 +17,12 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public boolean isModLoaded(String modId) {
-
-        return ModList.get().isLoaded(modId);
-    }
-
-    @Override
     public String getModVersion() {
         return ModList.get().getModFileById(Constants.MOD_ID).versionString();
     }
 
     @Override
     public boolean isDevelopmentEnvironment() {
-
         return !FMLLoader.isProduction();
     }
 

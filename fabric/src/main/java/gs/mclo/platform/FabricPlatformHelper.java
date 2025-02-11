@@ -2,7 +2,6 @@ package gs.mclo.platform;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
-import com.electronwill.nightconfig.core.file.FileNotFoundAction;
 import com.electronwill.nightconfig.core.file.GenericBuilder;
 import gs.mclo.Constants;
 import gs.mclo.platform.services.IPlatformHelper;
@@ -13,11 +12,6 @@ public class FabricPlatformHelper implements IPlatformHelper {
     @Override
     public String getPlatformName() {
         return "Fabric";
-    }
-
-    @Override
-    public boolean isModLoaded(String modId) {
-        return FabricLoader.getInstance().isModLoaded(modId);
     }
 
     @Override

@@ -3,33 +3,28 @@ package gs.mclo.platform;
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
 import com.electronwill.nightconfig.core.file.GenericBuilder;
-import gs.mclo.Constants;
+import gs.mclo.MclogsPlugin;
 import gs.mclo.platform.services.IPlatformHelper;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLLoader;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class ForgePlatformHelper implements IPlatformHelper {
-
+public class BukkitPlatformHelper implements IPlatformHelper {
     @Override
     public String getPlatformName() {
-        return "Forge";
+        return "Bukkit";
     }
 
     @Override
     public String getModVersion() {
-        return ModList.get().getModFileById(Constants.MOD_ID).versionString();
+        return JavaPlugin.getPlugin(MclogsPlugin.class).getDescription().getVersion();
     }
 
     @Override
     public boolean isDevelopmentEnvironment() {
-        return !FMLLoader.isProduction();
+        return false;
     }
 
     @Override
     public GenericBuilder<Config, FileConfig> getConfig() {
-        var configFile = FMLLoader.getGamePath().resolve("config")
-                .resolve(Constants.MOD_ID + ".toml");
-
-        return FileConfig.builder(configFile);
+        return FileConfig.builder("config.yml");
     }
 }

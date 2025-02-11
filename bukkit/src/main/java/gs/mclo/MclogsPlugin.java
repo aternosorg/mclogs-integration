@@ -1,12 +1,12 @@
-package gs.mclo.bukkit;
+package gs.mclo;
 
-import gs.mclo.Constants;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MclogsPlugin extends JavaPlugin {
+    protected MclogsCommon mclogsCommon = new MclogsCommon();
+
     @Override
     public void onEnable() {
-        Constants.LOG.info("Using SLF4J");
-        getLogger().info("Using bukkit logger");
+        mclogsCommon.init();
     }
 }
