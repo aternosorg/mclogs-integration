@@ -19,17 +19,26 @@ public class MclogsCommon {
                 .autosave()
                 .build();
         configFile.load();
+        migrateOldConfigFields();
         onConfigLoaded();
 
-        // TODO: Find a way to do this without causing an auto reload
         ObjectSerializer.standard().serializeFields(config, configFile);
         configFile.save();
+    }
+
+    protected void migrateOldConfigFields() {
+        if (configFile.get("viewLogsUrl") == null) {
+            configFile.set("viewLogsUrl", configFile.get("view-logs-url"));
+        }
+
+        if (configFile.get("apiBaseUrl") == null) {
+            configFile.set("apiBaseUrl", configFile.get("api-base-url"));
+        }
     }
 
     protected void onConfigLoaded() {
         ObjectDeserializer.standard().deserializeFields(configFile, config);
         var instance = new Instance(config.apiBaseUrl, config.viewLogsUrl);
         client.setInstance(instance);
-        // TODO: check if this is called twice during init
     }
 }
