@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     implementation "gs.mclo:api:${preferred_mclogs_api_version}"
+    implementation "org.slf4j:slf4j-api:${slf4j_version}"
 }
 
 configurations {
@@ -21,4 +22,3 @@ artifacts {
     commonJava sourceSets.main.java.sourceDirectories.singleFile
     commonResources sourceSets.main.resources.sourceDirectories.singleFile
 }
-
