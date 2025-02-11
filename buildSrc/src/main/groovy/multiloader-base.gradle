@@ -67,16 +67,7 @@ repositories {
     }
 }
 
-configurations {
-    // This configuration is used to include libraries in the jar
-    includeLibrary
-}
-
 jar {
-    from {
-        configurations.includeLibrary.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-
     manifest {
         attributes([
                 'Specification-Title'   : mod_name,
