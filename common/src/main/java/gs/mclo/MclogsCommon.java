@@ -20,7 +20,7 @@ public class MclogsCommon {
                 .build();
         configFile.load();
         migrateOldConfigFields();
-        onConfigLoaded();
+        onConfigLoaded(false);
 
         ObjectSerializer.standard().serializeFields(config, configFile);
         configFile.save();
@@ -37,8 +37,16 @@ public class MclogsCommon {
     }
 
     protected void onConfigLoaded() {
+        onConfigLoaded(true);
+    }
+
+    protected void onConfigLoaded(boolean log) {
         ObjectDeserializer.standard().deserializeFields(configFile, config);
         var instance = new Instance(config.apiBaseUrl, config.viewLogsUrl);
         client.setInstance(instance);
+
+        if (log) {
+            Constants.LOG.info("Reloaded configuration.");
+        }
     }
 }
