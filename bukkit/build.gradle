@@ -7,7 +7,7 @@ dependencies {
     implementation "org.spigotmc:spigot-api:${minecraft_version}-R0.1-SNAPSHOT"
     implementation "org.slf4j:slf4j-api:${slf4j_version}"
 
-    includeLibrary(implementation("gs.mclo:api"))
+    includeLibrary(implementation("gs.mclo:api:${preferred_mclogs_api_version}"))
 }
 
 tasks {
