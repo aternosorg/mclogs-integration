@@ -73,7 +73,7 @@ dependencies {
     jarJar(implementation("gs.mclo:api")) {
         version {
             strictly mclogs_api_version_range
-            prefer preferred_mclogs_api_version
+            prefer mclogs_api_version
         }
         transitive = false
     }

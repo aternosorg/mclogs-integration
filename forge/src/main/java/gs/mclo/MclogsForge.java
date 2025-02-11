@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod(Constants.MOD_ID)
-public class MclogsForge extends MclogsCommon {
+public class MclogsForge extends MclogsCommonMc {
 
     public MclogsForge() {
         this.init();

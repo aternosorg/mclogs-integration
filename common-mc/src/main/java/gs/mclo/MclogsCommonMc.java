@@ -1,24 +1,18 @@
 package gs.mclo;
 
 import com.mojang.brigadier.CommandDispatcher;
-import gs.mclo.api.MclogsClient;
 import gs.mclo.commands.*;
-import gs.mclo.platform.Services;
 import net.minecraft.commands.CommandSourceStack;
 
 import java.util.Collection;
 import java.util.List;
 
-public class MclogsCommon {
-    public final MclogsClient client = new MclogsClient("mclogs-mc/" + Services.PLATFORM.getPlatformName(), Services.PLATFORM.getModVersion());
+public class MclogsCommonMc extends MclogsCommon {
     protected final Collection<Command> commands = List.of(
             new MclogsCommand(this),
             new MclogsListCommand(this),
             new MclogsShareCommand(this)
     );
-
-    public void init() {
-    }
 
     protected <T> void registerCommands(
             CommandDispatcher<T> dispatcher,

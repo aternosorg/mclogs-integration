@@ -2,10 +2,10 @@ package gs.mclo.commands;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
-import gs.mclo.MclogsCommon;
+import gs.mclo.MclogsCommonMc;
 
 public class MclogsCommand extends Command {
-    public MclogsCommand(MclogsCommon mclogs) {
+    public MclogsCommand(MclogsCommonMc mclogs) {
         super(mclogs);
     }
 

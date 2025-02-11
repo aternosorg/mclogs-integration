@@ -6,14 +6,14 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import gs.mclo.Constants;
-import gs.mclo.MclogsCommon;
+import gs.mclo.MclogsCommonMc;
 
 import java.util.concurrent.CompletableFuture;
 
 public class MclogsShareCommand extends Command {
     private static final String ARGUMENT_NAME = "filename";
 
-    public MclogsShareCommand(MclogsCommon mclogs) {
+    public MclogsShareCommand(MclogsCommonMc mclogs) {
         super(mclogs);
     }
 

@@ -6,8 +6,10 @@ plugins {
 
 dependencies {
     compileOnly "org.spigotmc:spigot-api:${minecraft_version}-R0.1-SNAPSHOT"
+    implementation "gs.mclo:api:${mclogs_api_version}"
     implementation "org.slf4j:slf4j-api:${slf4j_version}"
     implementation "org.slf4j:slf4j-jdk14:${slf4j_version}"
+    implementation "com.electronwill.night-config:yaml:${night_config_version}"
 }
 
 tasks {

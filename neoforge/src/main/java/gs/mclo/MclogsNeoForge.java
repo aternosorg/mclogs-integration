@@ -11,7 +11,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 @Mod(Constants.MOD_ID)
-public class MclogsNeoForge extends MclogsCommon {
+public class MclogsNeoForge extends MclogsCommonMc {
 
     public MclogsNeoForge(IEventBus eventBus) {
         this.init();

@@ -15,7 +15,13 @@ dependencies {
     include(implementation("gs.mclo:api")) {
         version {
             strictly mclogs_api_version_range
-            prefer preferred_mclogs_api_version
+            prefer mclogs_api_version
+        }
+    }
+    include(implementation("com.electronwill.night-config:toml")) {
+        version {
+            strictly night_config_version_range
+            prefer night_config_version
         }
     }
 }

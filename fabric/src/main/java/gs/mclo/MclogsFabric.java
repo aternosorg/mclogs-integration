@@ -8,7 +8,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
-public class MclogsFabric extends MclogsCommon implements ModInitializer, DedicatedServerModInitializer, ClientModInitializer {
+public class MclogsFabric extends MclogsCommonMc implements ModInitializer, DedicatedServerModInitializer, ClientModInitializer {
     
     @Override
     public void onInitialize() {

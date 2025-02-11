@@ -3,7 +3,7 @@ package gs.mclo.commands;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
-import gs.mclo.MclogsCommon;
+import gs.mclo.MclogsCommonMc;
 import gs.mclo.api.Log;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.ClickEvent;
@@ -15,9 +15,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public abstract class Command {
-    protected final MclogsCommon mclogs;
+    protected final MclogsCommonMc mclogs;
 
-    public Command(MclogsCommon mclogs) {
+    public Command(MclogsCommonMc mclogs) {
         this.mclogs = mclogs;
     }
 

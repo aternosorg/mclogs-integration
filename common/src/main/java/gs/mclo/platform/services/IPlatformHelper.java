@@ -1,7 +1,10 @@
 package gs.mclo.platform.services;
 
-public interface IPlatformHelper {
+import com.electronwill.nightconfig.core.Config;
+import com.electronwill.nightconfig.core.file.FileConfig;
+import com.electronwill.nightconfig.core.file.GenericBuilder;
 
+public interface IPlatformHelper {
     /**
      * Gets the name of the current platform
      *
@@ -39,4 +42,11 @@ public interface IPlatformHelper {
     default String getEnvironmentName() {
         return isDevelopmentEnvironment() ? "development" : "production";
     }
+
+    /**
+     * Gets the configuration file for the plugin/mod.
+     *
+     * @return The configuration file.
+     */
+    GenericBuilder<Config, FileConfig> getConfig();
 }

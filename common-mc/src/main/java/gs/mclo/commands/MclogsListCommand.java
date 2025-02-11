@@ -3,7 +3,7 @@ package gs.mclo.commands;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
-import gs.mclo.MclogsCommon;
+import gs.mclo.MclogsCommonMc;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
@@ -11,7 +11,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 
 public class MclogsListCommand extends Command {
-    public MclogsListCommand(MclogsCommon mclogs) {
+    public MclogsListCommand(MclogsCommonMc mclogs) {
         super(mclogs);
     }
 

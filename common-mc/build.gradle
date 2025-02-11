@@ -4,7 +4,8 @@ plugins {
 }
 
 dependencies {
-    implementation "gs.mclo:api:${preferred_mclogs_api_version}"
+    implementation "gs.mclo:api:${mclogs_api_version}"
+    implementation "com.electronwill.night-config:core:${night_config_version}"
 }
 
 neoForge {
