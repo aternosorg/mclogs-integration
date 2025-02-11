@@ -1,3 +1,5 @@
+// Base plugin for all projects. Used by common and multiloader-common
+
 plugins {
     id 'java-library'
     id 'maven-publish'
@@ -38,9 +40,17 @@ repositories {
         )
         filter { includeGroup('org.parchmentmc.data') }
     }
-    maven {
-        name = 'BlameJared'
-        url = 'https://maven.blamejared.com'
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Spigot'
+                url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots/')
+            }
+        }
+        filter {
+            includeGroupAndSubgroups('org.bukkit')
+            includeGroupAndSubgroups('org.spigotmc')
+        }
     }
 }
 

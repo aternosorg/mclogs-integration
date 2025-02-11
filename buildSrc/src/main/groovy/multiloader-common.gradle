@@ -1,3 +1,5 @@
+// multiloader-base plus common sources. Used by bukkit and multiloader-mc
+
 plugins {
     id 'multiloader-base'
 }

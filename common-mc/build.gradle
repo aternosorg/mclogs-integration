@@ -1,5 +1,5 @@
 plugins {
-    id 'multiloader-common'
+    id 'multiloader-mc'
     id 'net.neoforged.moddev'
 }
 
@@ -35,4 +35,3 @@ artifacts {
     commonMcJava sourceSets.main.java.sourceDirectories.singleFile
     commonMcResources sourceSets.main.resources.sourceDirectories.singleFile
 }
-
