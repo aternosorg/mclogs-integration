@@ -1,12 +1,13 @@
 package gs.mclo.command;
 
-import gs.mclo.commands.CommandSourceAccessor;
+import gs.mclo.commands.ICommandSourceAccessor;
+import gs.mclo.components.MinecraftComponent;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.network.chat.Component;
 
 import java.nio.file.Path;
 
-public class FabricClientCommandSourceAccessor implements CommandSourceAccessor {
+public class FabricClientCommandSourceAccessor implements ICommandSourceAccessor<MinecraftComponent> {
     private final FabricClientCommandSource source;
 
     public FabricClientCommandSourceAccessor(FabricClientCommandSource source) {
@@ -29,12 +30,12 @@ public class FabricClientCommandSourceAccessor implements CommandSourceAccessor 
     }
 
     @Override
-    public void sendFailure(Component message) {
-        source.sendError(message);
+    public void sendFailure(MinecraftComponent message) {
+        source.sendError(message.getBoxed());
     }
 
     @Override
-    public void sendSuccess(Component message, boolean allowLogging) {
-        source.sendFeedback(message);
+    public void sendSuccess(MinecraftComponent message, boolean allowLogging) {
+        source.sendFeedback(message.getBoxed());
     }
 }

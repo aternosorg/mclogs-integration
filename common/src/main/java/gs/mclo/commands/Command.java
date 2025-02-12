@@ -3,22 +3,31 @@ package gs.mclo.commands;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
-import gs.mclo.MclogsCommonMc;
+import gs.mclo.MclogsCommon;
 import gs.mclo.api.Log;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
+import gs.mclo.components.ClickEventAction;
+import gs.mclo.components.IComponent;
+import gs.mclo.components.IComponentFactory;
+import gs.mclo.components.IStyle;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 
-public abstract class Command {
-    protected final MclogsCommonMc mclogs;
+public abstract class Command<
+        ComponentType extends IComponent<ComponentType, StyleType, ClickEventType>,
+        StyleType extends IStyle<StyleType, ClickEventType>,
+        ClickEventType
+        > {
+    protected final MclogsCommon mclogs;
+    protected final IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory;
 
-    public Command(MclogsCommonMc mclogs) {
+    public Command(
+            MclogsCommon mclogs,
+            IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
+    ) {
         this.mclogs = mclogs;
+        this.componentFactory = componentFactory;
     }
 
     /**
@@ -30,7 +39,7 @@ public abstract class Command {
      * @return the built command
      */
     public abstract <T> LiteralArgumentBuilder<T> build(
-            BuildContext<T> buildContext,
+            BuildContext<T, ComponentType> buildContext,
             LiteralArgumentBuilder<T> builder
     );
 
@@ -42,17 +51,17 @@ public abstract class Command {
      * @param <T>          the command source type
      * @return the result of the command
      */
-    public abstract <T> int execute(CommandContext<T> context, BuildContext<T> buildContext);
+    public abstract <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext);
 
-    public Path getLogsDirectory(CommandSourceAccessor source) {
+    public Path getLogsDirectory(ICommandSourceAccessor<?> source) {
         return source.getDirectory().resolve("logs");
     }
 
-    public Path getCrashReportsDirectory(CommandSourceAccessor source) {
+    public Path getCrashReportsDirectory(ICommandSourceAccessor<?> source) {
         return source.getDirectory().resolve("crash-reports");
     }
 
-    public <T> int share(CommandContext<T> context, BuildContext<T> buildContext, String filename) {
+    public <T> int share(CommandContext<T> context, BuildContext<T, ComponentType> buildContext, String filename) {
         var source = buildContext.mapSource(context.getSource());
 
         mclogs.client.setMinecraftVersion(source.getMinecraftVersion());
@@ -73,7 +82,7 @@ public abstract class Command {
         Log log;
         try {
             log = new Log(path);
-        } catch (FileNotFoundException|IllegalArgumentException e) {
+        } catch (FileNotFoundException | IllegalArgumentException e) {
             source.sendFailure(fileNotFoundMessage(filename, context));
             return -1;
         } catch (IOException e) {
@@ -86,8 +95,8 @@ public abstract class Command {
 
         mclogs.client.uploadLog(log).thenAccept(response -> {
             if (response.isSuccess()) {
-                var link = Component.literal(response.getUrl()).setStyle(openUrlStyle(response.getUrl()));
-                var message = Component.literal("Your log has been uploaded: ").append(link);
+                var link = componentFactory.literal(response.getUrl()).setStyle(openUrlStyle(response.getUrl()));
+                var message = componentFactory.literal("Your log has been uploaded: ").append(link);
                 source.sendSuccess(message, true);
             } else {
                 Constants.LOG.error("An error occurred when uploading your log: {}", response.getError());
@@ -111,32 +120,32 @@ public abstract class Command {
         return command.toString();
     }
 
-    protected Component fileNotFoundMessage(String filename, CommandContext<?> context) {
+    protected ComponentType fileNotFoundMessage(String filename, CommandContext<?> context) {
         var command = command(context, "list");
 
-        return Component.literal("There's no log or crash report with the name '" + filename + "'.")
+        return componentFactory.literal("There's no log or crash report with the name '" + filename + "'.")
                 .append("\n")
                 .append("Use ")
-                .append(Component.literal(command).setStyle(runCommandStyle(command)))
+                .append(componentFactory.literal(command).setStyle(runCommandStyle(command)))
                 .append(" to list all logs.");
     }
 
-    protected Component genericErrorMessage() {
-        return Component.literal("An error occurred. Check your log for more details");
+    protected ComponentType genericErrorMessage() {
+        return componentFactory.literal("An error occurred. Check your log for more details");
     }
 
-    protected Style runCommandStyle(String command) {
-        return clickableStyle(new ClickEvent(ClickEvent.Action.RUN_COMMAND, command));
+    protected StyleType runCommandStyle(String command) {
+        return clickableStyle(componentFactory.clickEvent(ClickEventAction.RUN_COMMAND, command));
     }
 
-    protected Style openUrlStyle(String url) {
-        return clickableStyle(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
+    protected StyleType openUrlStyle(String url) {
+        return clickableStyle(componentFactory.clickEvent(ClickEventAction.OPEN_URL, url));
     }
 
-    protected Style clickableStyle(ClickEvent event) {
-        return Style.EMPTY
-                .withClickEvent(event)
-                .applyFormat(ChatFormatting.UNDERLINE);
+    protected StyleType clickableStyle(ClickEventType event) {
+        return componentFactory.style()
+                .clickEvent(event)
+                .underlined();
     }
 
     private boolean isFileInAllowedDirectory(Path file, Path... directories) {

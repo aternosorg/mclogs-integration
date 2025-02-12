@@ -1,11 +1,10 @@
 package gs.mclo.commands;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
+import gs.mclo.components.IComponent;
 
 import java.nio.file.Path;
 
-public interface CommandSourceAccessor {
+public interface ICommandSourceAccessor<Component extends IComponent<Component, ?, ?>> {
     boolean hasPermission(int level);
 
     String getMinecraftVersion();

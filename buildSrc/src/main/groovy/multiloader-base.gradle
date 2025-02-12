@@ -52,6 +52,10 @@ repositories {
             includeGroupAndSubgroups('org.spigotmc')
         }
     }
+    maven {
+        name = "Minecraft Libraries"
+        url = uri("https://libraries.minecraft.net")
+    }
 }
 
 // Declare capabilities on the outgoing configurations.

@@ -5,17 +5,18 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import gs.mclo.commands.BuildContext;
 import gs.mclo.commands.CommandEnvironment;
-import gs.mclo.commands.CommandSourceAccessor;
+import gs.mclo.commands.ICommandSourceAccessor;
+import gs.mclo.components.MinecraftComponent;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 
-public class FabricClientCommandBuildContext extends BuildContext<FabricClientCommandSource> {
+public class FabricClientCommandBuildContext extends BuildContext<FabricClientCommandSource, MinecraftComponent> {
     public FabricClientCommandBuildContext() {
         super(CommandEnvironment.CLIENT);
     }
 
     @Override
-    public CommandSourceAccessor mapSource(FabricClientCommandSource source) {
+    public ICommandSourceAccessor<MinecraftComponent> mapSource(FabricClientCommandSource source) {
         return new FabricClientCommandSourceAccessor(source);
     }
 

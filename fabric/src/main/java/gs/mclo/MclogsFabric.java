@@ -1,7 +1,6 @@
 package gs.mclo;
 
 import gs.mclo.command.FabricClientCommandBuildContext;
-import gs.mclo.commands.CommandEnvironment;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.api.ModInitializer;
@@ -18,14 +17,14 @@ public class MclogsFabric extends MclogsCommonMc implements ModInitializer, Dedi
     @Override
     public void onInitializeClient() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
-            registerCommands(dispatcher, new FabricClientCommandBuildContext());
+            registerCommandsOnDedicatedServer(dispatcher, new FabricClientCommandBuildContext());
         });
     }
 
     @Override
     public void onInitializeServer() {
         CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) -> {
-            registerCommands(CommandEnvironment.DEDICATED_SERVER, dispatcher);
+            registerCommandsOnDedicatedServer(dispatcher);
         }));
     }
 }

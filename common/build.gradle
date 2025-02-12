@@ -6,7 +6,8 @@ dependencies {
     implementation(libs.mclogs.api)
     implementation(libs.gson)
     implementation(libs.slf4j.api)
-    implementation(libs.night.config.core)
+    implementation(libs.nightconfig.core)
+    implementation(libs.brigadier)
 }
 
 configurations {

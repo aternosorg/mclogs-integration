@@ -1,11 +1,12 @@
 package gs.mclo.commands;
 
+import gs.mclo.components.MinecraftComponent;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 
 import java.nio.file.Path;
 
-public class CommandSourceStackAccessor implements CommandSourceAccessor {
+public class CommandSourceStackAccessor implements ICommandSourceAccessor<MinecraftComponent> {
     private final CommandSourceStack source;
 
     public CommandSourceStackAccessor(CommandSourceStack source) {
@@ -28,12 +29,12 @@ public class CommandSourceStackAccessor implements CommandSourceAccessor {
     }
 
     @Override
-    public void sendFailure(Component message) {
-        source.sendFailure(message);
+    public void sendFailure(MinecraftComponent message) {
+        source.sendFailure(message.getBoxed());
     }
 
     @Override
-    public void sendSuccess(Component message, boolean allowLogging) {
-        source.sendSuccess(() -> message, allowLogging);
+    public void sendSuccess(MinecraftComponent message, boolean allowLogging) {
+        source.sendSuccess(message::getBoxed, allowLogging);
     }
 }

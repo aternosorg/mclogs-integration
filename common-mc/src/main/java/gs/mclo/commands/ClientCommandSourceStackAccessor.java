@@ -5,7 +5,7 @@ import net.minecraft.commands.CommandSourceStack;
 
 import java.nio.file.Path;
 
-public class ClientCommandSourceStackAccessor extends CommandSourceStackAccessor implements CommandSourceAccessor {
+public class ClientCommandSourceStackAccessor extends CommandSourceStackAccessor {
     public ClientCommandSourceStackAccessor(CommandSourceStack source) {
         super(source);
     }

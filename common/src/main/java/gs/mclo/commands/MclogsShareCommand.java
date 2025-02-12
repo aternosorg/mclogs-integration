@@ -6,20 +6,30 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import gs.mclo.Constants;
-import gs.mclo.MclogsCommonMc;
+import gs.mclo.MclogsCommon;
+import gs.mclo.components.IComponent;
+import gs.mclo.components.IComponentFactory;
+import gs.mclo.components.IStyle;
 
 import java.util.concurrent.CompletableFuture;
 
-public class MclogsShareCommand extends Command {
+public class MclogsShareCommand<
+        ComponentType extends IComponent<ComponentType, StyleType, ClickEventType>,
+        StyleType extends IStyle<StyleType, ClickEventType>,
+        ClickEventType
+        > extends Command<ComponentType, StyleType, ClickEventType> {
     private static final String ARGUMENT_NAME = "filename";
 
-    public MclogsShareCommand(MclogsCommonMc mclogs) {
-        super(mclogs);
+    public MclogsShareCommand(
+            MclogsCommon mclogs,
+            IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
+    ) {
+        super(mclogs, componentFactory);
     }
 
     @Override
     public <T> LiteralArgumentBuilder<T> build(
-            BuildContext<T> buildContext,
+            BuildContext<T, ComponentType> buildContext,
             LiteralArgumentBuilder<T> builder
     ) {
         var share = buildContext.literal("share");
@@ -35,7 +45,11 @@ public class MclogsShareCommand extends Command {
         return builder.then(share.then(argument));
     }
 
-    private <T> CompletableFuture<Suggestions> suggest(CommandContext<T> x, SuggestionsBuilder builder, BuildContext<T> buildContext) {
+    private <T> CompletableFuture<Suggestions> suggest(
+            CommandContext<T> x,
+            SuggestionsBuilder builder,
+            BuildContext<T, ComponentType> buildContext
+    ) {
         var source = buildContext.mapSource(x.getSource());
         var input = builder.getRemaining();
 
@@ -59,7 +73,7 @@ public class MclogsShareCommand extends Command {
     }
 
     @Override
-    public <T> int execute(CommandContext<T> context, BuildContext<T> buildContext) {
+    public <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext) {
         return share(context, buildContext, context.getArgument(ARGUMENT_NAME, String.class));
     }
 }

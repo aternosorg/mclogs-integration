@@ -9,7 +9,8 @@ dependencies {
     implementation(libs.mclogs.api)
     implementation(libs.slf4j.api)
     implementation(libs.slf4j.jdk14)
-    implementation(libs.night.config.yaml)
+    implementation(libs.nightconfig.yaml)
+    implementation(libs.brigadier)
 }
 
 tasks {
@@ -19,5 +20,7 @@ tasks {
 
     shadowJar {
         relocate("org.slf4j", "gs.mclo.slf4j")
+        relocate("com.electronwill.nightconfig", "gs.mclo.nightconfig")
+        relocate("com.mojang.brigadier", "gs.mclo.brigadier")
     }
 }

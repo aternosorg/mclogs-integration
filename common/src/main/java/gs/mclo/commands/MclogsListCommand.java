@@ -3,21 +3,27 @@ package gs.mclo.commands;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
-import gs.mclo.MclogsCommonMc;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
+import gs.mclo.MclogsCommon;
+import gs.mclo.components.ClickEventAction;
+import gs.mclo.components.IComponent;
+import gs.mclo.components.IComponentFactory;
+import gs.mclo.components.IStyle;
 
-public class MclogsListCommand extends Command {
-    public MclogsListCommand(MclogsCommonMc mclogs) {
-        super(mclogs);
+public class MclogsListCommand<
+        ComponentType extends IComponent<ComponentType, StyleType, ClickEventType>,
+        StyleType extends IStyle<StyleType, ClickEventType>,
+        ClickEventType
+        > extends Command<ComponentType, StyleType, ClickEventType> {
+    public MclogsListCommand(
+            MclogsCommon mclogs,
+            IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
+    ) {
+        super(mclogs, componentFactory);
     }
 
     @Override
     public <T> LiteralArgumentBuilder<T> build(
-            BuildContext<T> buildContext,
+            BuildContext<T, ComponentType> buildContext,
             LiteralArgumentBuilder<T> builder
     ) {
         var list = buildContext.literal("list");
@@ -32,12 +38,12 @@ public class MclogsListCommand extends Command {
     }
 
     @Override
-    public <T> int execute(CommandContext<T> context, BuildContext<T> buildContext) {
+    public <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext) {
         var source = buildContext.mapSource(context.getSource());
         try {
             var directory = buildContext.mapSource(context.getSource()).getDirectory();
             int total = 0;
-            var message = Component.empty();
+            var message = componentFactory.empty();
 
             var logs = mclogs.client.listLogsInDirectory(directory);
             total += list(message, logs, "Logs", context, buildContext);
@@ -45,7 +51,7 @@ public class MclogsListCommand extends Command {
             total += list(message, reports, "Crash Reports", context, buildContext);
 
             if (total == 0) {
-                message = Component.literal("No logs or crash reports found.");
+                message = componentFactory.literal("No logs or crash reports found.");
             }
 
             source.sendSuccess(message, false);
@@ -58,11 +64,11 @@ public class MclogsListCommand extends Command {
     }
 
     protected int list(
-            MutableComponent message,
+            ComponentType message,
             String[] items,
             String title,
             CommandContext<?> context,
-            BuildContext<?> buildContext
+            BuildContext<?, ComponentType> buildContext
     ) {
         if (items.length > 0) {
             message.append(title(title));
@@ -73,20 +79,23 @@ public class MclogsListCommand extends Command {
         return items.length;
     }
 
-    protected Component title(String title) {
-        return Component.literal(title).setStyle(Style.EMPTY.applyFormat(ChatFormatting.UNDERLINE));
+    protected ComponentType title(String title) {
+        return componentFactory.literal(title).setStyle(componentFactory.style().underlined());
     }
 
-    protected Component item(String filename, CommandContext<?> context, BuildContext<?> buildContext) {
+    protected ComponentType item(
+            String filename,
+            CommandContext<?> context,
+            BuildContext<?, ComponentType> buildContext
+    ) {
         var command = command(context, "share", filename);
         Constants.LOG.info("Command: {}", command);
 
-        var component = Component.literal("\n" + filename);
+        var component = componentFactory.literal("\n" + filename);
 
         if (buildContext.supportsClickEvents()) {
-            var clickEvent = new ClickEvent(ClickEvent.Action.RUN_COMMAND, command);
-
-            component.setStyle(Style.EMPTY.withClickEvent(clickEvent));
+            var clickEvent = componentFactory.clickEvent(ClickEventAction.RUN_COMMAND, command);
+            component.setStyle(componentFactory.style().clickEvent(clickEvent));
         }
 
         return component;

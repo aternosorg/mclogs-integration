@@ -2,34 +2,22 @@ package gs.mclo;
 
 import com.mojang.brigadier.CommandDispatcher;
 import gs.mclo.commands.*;
+import gs.mclo.components.MinecraftComponent;
+import gs.mclo.components.MinecraftComponentFactory;
 import net.minecraft.commands.CommandSourceStack;
 
-import java.util.Collection;
-import java.util.List;
-
 public class MclogsCommonMc extends MclogsCommon {
-    protected final Collection<Command> commands = List.of(
-            new MclogsCommand(this),
-            new MclogsListCommand(this),
-            new MclogsShareCommand(this)
-    );
-
-    protected <T> void registerCommands(
+    protected <T> void registerCommandsOnDedicatedServer(
             CommandDispatcher<T> dispatcher,
-            BuildContext<T> context
+            BuildContext<T, MinecraftComponent> context
     ) {
-        var builder = context.literal(context.environment.getCommandName());
-
-        for (var command : commands) {
-            dispatcher.register(command.build(context, builder));
-        }
+        registerCommands(dispatcher, context, new MinecraftComponentFactory());
     }
 
-    protected void registerCommands(
-            CommandEnvironment environment,
+    protected void registerCommandsOnDedicatedServer(
             CommandDispatcher<CommandSourceStack> dispatcher
     ) {
-        Constants.LOG.info("Registering command {}", environment.getCommandName());
-        registerCommands(dispatcher, new CommandSourceStackBuildContext(environment));
+        var context = new CommandSourceStackBuildContext(CommandEnvironment.DEDICATED_SERVER);
+        registerCommandsOnDedicatedServer(dispatcher, context);
     }
 }

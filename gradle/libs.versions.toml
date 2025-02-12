@@ -3,12 +3,14 @@ mclogs = { strictly = "[4.1,5.0)", prefer = "4.1.0" }
 gson = "2.12.1"
 slf4j = "2.0.16"
 night-config = { strictly = "[3.7,4.0)", prefer = "3.8.1" }
+brigadier = "1.0.18"
 
 [libraries]
 mclogs-api = { module = "gs.mclo:api", version.ref = "mclogs" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 slf4j-jdk14 = { module = "org.slf4j:slf4j-jdk14", version.ref = "slf4j" }
-night-config-core = { module = "com.electronwill.night-config:core", version.ref = "night-config" }
-night-config-yaml = { module = "com.electronwill.night-config:yaml", version.ref = "night-config" }
-night-config-toml = { module = "com.electronwill.night-config:toml", version.ref = "night-config" }
+nightconfig-core = { module = "com.electronwill.night-config:core", version.ref = "night-config" }
+nightconfig-yaml = { module = "com.electronwill.night-config:yaml", version.ref = "night-config" }
+nightconfig-toml = { module = "com.electronwill.night-config:toml", version.ref = "night-config" }
+brigadier = { module = "com.mojang:brigadier", version.ref = "brigadier" }

@@ -8,9 +8,9 @@ dependencies {
     implementation(libs.mclogs.api)
     jarJar(libs.mclogs.api)
 
-    additionalRuntimeClasspath(libs.night.config.toml)
-    implementation(libs.night.config.toml)
-    jarJar(libs.night.config.toml)
+    additionalRuntimeClasspath(libs.nightconfig.toml)
+    implementation(libs.nightconfig.toml)
+    jarJar(libs.nightconfig.toml)
 }
 
 neoForge {

@@ -1,5 +1,6 @@
 package gs.mclo.commands;
 
+import gs.mclo.components.MinecraftComponent;
 import net.minecraft.commands.CommandSourceStack;
 
 public class ClientCommandSourceStackBuildContext extends CommandSourceStackBuildContext {
@@ -8,7 +9,7 @@ public class ClientCommandSourceStackBuildContext extends CommandSourceStackBuil
     }
 
     @Override
-    public CommandSourceAccessor mapSource(CommandSourceStack source) {
+    public ICommandSourceAccessor<MinecraftComponent> mapSource(CommandSourceStack source) {
         return new ClientCommandSourceStackAccessor(source);
     }
 

@@ -2,7 +2,6 @@ package gs.mclo;
 
 
 import gs.mclo.commands.ClientCommandSourceStackBuildContext;
-import gs.mclo.commands.CommandEnvironment;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -20,11 +19,11 @@ public class MclogsNeoForge extends MclogsCommonMc {
 
     @SubscribeEvent
     public void registerClientCommands(RegisterClientCommandsEvent event) {
-        registerCommands(event.getDispatcher(), new ClientCommandSourceStackBuildContext());
+        registerCommandsOnDedicatedServer(event.getDispatcher(), new ClientCommandSourceStackBuildContext());
     }
 
     @SubscribeEvent
     public void registerCommands(RegisterCommandsEvent event) {
-        registerCommands(CommandEnvironment.DEDICATED_SERVER, event.getDispatcher());
+        registerCommandsOnDedicatedServer(event.getDispatcher());
     }
 }
