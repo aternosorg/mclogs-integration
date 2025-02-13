@@ -8,6 +8,8 @@ import gs.mclo.platform.services.IPlatformHelper;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class BukkitPlatformHelper implements IPlatformHelper {
+    protected final JavaPlugin plugin = JavaPlugin.getPlugin(MclogsPlugin.class);
+
     @Override
     public String getPlatformName() {
         return "Bukkit";
@@ -15,7 +17,7 @@ public class BukkitPlatformHelper implements IPlatformHelper {
 
     @Override
     public String getModVersion() {
-        return JavaPlugin.getPlugin(MclogsPlugin.class).getDescription().getVersion();
+        return plugin.getDescription().getVersion();
     }
 
     @Override
@@ -25,6 +27,9 @@ public class BukkitPlatformHelper implements IPlatformHelper {
 
     @Override
     public GenericBuilder<Config, FileConfig> getConfig() {
-        return FileConfig.builder("config.yml");
+        var dataFolder = plugin.getDataFolder();
+        //noinspection ResultOfMethodCallIgnored
+        dataFolder.mkdirs();
+        return FileConfig.builder(dataFolder.toPath().resolve("config.toml"));
     }
 }

@@ -16,7 +16,6 @@ gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
 mclogs-api = { module = "gs.mclo:api", version.ref = "mclogs" }
 nightconfig-core = { module = "com.electronwill.night-config:core", version.ref = "night-config" }
-nightconfig-yaml = { module = "com.electronwill.night-config:yaml", version.ref = "night-config" }
 nightconfig-toml = { module = "com.electronwill.night-config:toml", version.ref = "night-config" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 slf4j-jdk14 = { module = "org.slf4j:slf4j-jdk14", version.ref = "slf4j" }

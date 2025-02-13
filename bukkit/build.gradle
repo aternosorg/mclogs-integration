@@ -9,7 +9,7 @@ dependencies {
     implementation(libs.mclogs.api)
     implementation(libs.slf4j.api)
     implementation(libs.slf4j.jdk14)
-    implementation(libs.nightconfig.yaml)
+    implementation(libs.nightconfig.toml)
     implementation(libs.brigadier)
     implementation(libs.adventure.api)
     implementation(libs.adventure.bukkit)
