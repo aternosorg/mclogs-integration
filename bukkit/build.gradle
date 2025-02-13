@@ -23,5 +23,6 @@ tasks {
     shadowJar {
         relocate("org.slf4j", "gs.mclo.slf4j")
         relocate("com.electronwill.nightconfig", "gs.mclo.nightconfig")
+        dependsOn("javadocJar", "sourcesJar")
     }
 }

@@ -4,3 +4,28 @@ plugins {
     // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
     id 'net.neoforged.moddev' version '2.0.30-beta' apply false
 }
+
+def copyShadowJar = it -> {
+    it.include('*-all.jar', '*-javadoc.jar', '*-sources.jar')
+    it.rename { String fileName ->
+        fileName.replace('-all', '')
+    }
+}
+
+tasks.register('buildAll', Copy) {
+    dependsOn ':bukkit:shadowJar', ':forge:jarJar', ':fabric:build', ':neoforge:build'
+
+    from('fabric/build/libs', 'neoforge/build/libs')
+    from('bukkit/build/libs', copyShadowJar)
+    from('forge/build/libs', copyShadowJar)
+
+    it.rename { String fileName ->
+        fileName.replace(mod_name, mod_id)
+    }
+
+    into('result')
+}
+
+tasks.register('clean', Delete) {
+    delete 'result'
+}
