@@ -3,7 +3,6 @@ package gs.mclo.commands;
 import gs.mclo.MclogsPlugin;
 import gs.mclo.components.AdventureComponent;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import java.nio.file.Path;
@@ -33,11 +32,6 @@ public class CommandSenderAccessor implements ICommandSourceAccessor<AdventureCo
         }
 
         return commandSender.hasPermission(node.toString());
-    }
-
-    @Override
-    public String getMinecraftVersion() {
-        return Bukkit.getVersion();
     }
 
     @Override

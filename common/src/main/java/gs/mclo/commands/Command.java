@@ -68,10 +68,6 @@ public abstract class Command<
     public <T> int share(CommandContext<T> context, BuildContext<T, ComponentType> buildContext, String filename) {
         var source = buildContext.mapSource(context.getSource());
 
-        // TODO: Set this in client init
-        // TODO: Currently ignored as a custom user agent is already specified
-        apiClient.setMinecraftVersion(source.getMinecraftVersion());
-
         var logs = getLogsDirectory(source);
         var crashReports = getCrashReportsDirectory(source);
 

@@ -11,11 +11,6 @@ public class ClientCommandSourceStackAccessor extends CommandSourceStackAccessor
     }
 
     @Override
-    public String getMinecraftVersion() {
-        return Minecraft.getInstance().getLaunchedVersion();
-    }
-
-    @Override
     public Path getDirectory() {
         return Minecraft.getInstance().gameDirectory.toPath();
     }

@@ -4,7 +4,6 @@ import gs.mclo.commands.ICommandSourceAccessor;
 import gs.mclo.commands.Permission;
 import gs.mclo.components.MinecraftComponent;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.minecraft.network.chat.Component;
 
 import java.nio.file.Path;
 
@@ -18,11 +17,6 @@ public class FabricClientCommandSourceAccessor implements ICommandSourceAccessor
     @Override
     public boolean hasPermission(Permission permission) {
         return source.hasPermission(permission.level());
-    }
-
-    @Override
-    public String getMinecraftVersion() {
-        return source.getClient().getLaunchedVersion();
     }
 
     @Override

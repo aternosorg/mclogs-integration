@@ -15,10 +15,19 @@ public class FabricPlatformHelper implements IPlatformHelper {
     }
 
     @Override
+    public String getMinecraftVersion() {
+        return getModVersion("minecraft");
+    }
+
+    @Override
     public String getModVersion() {
+        return getModVersion(Constants.MOD_ID);
+    }
+
+    protected String getModVersion(String modId) {
         return FabricLoader
                 .getInstance()
-                .getModContainer(Constants.MOD_ID)
+                .getModContainer(modId)
                 .map(container -> container.getMetadata().getVersion().getFriendlyString())
                 .orElse("Unknown");
     }

@@ -13,6 +13,13 @@ public interface IPlatformHelper {
     String getPlatformName();
 
     /**
+     * Get the version of the Minecraft server.
+     *
+     * @return The version of the server.
+     */
+    String getMinecraftVersion();
+
+    /**
      * Get the version of the mclo.gs mod.
      *
      * @return The version of the mod.

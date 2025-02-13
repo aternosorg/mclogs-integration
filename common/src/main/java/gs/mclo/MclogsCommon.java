@@ -21,7 +21,11 @@ public class MclogsCommon {
     protected Configuration config = new Configuration();
 
     public void init() {
-        apiClient = new MclogsClient("mclogs-mc/" + Services.platform().getPlatformName(), Services.platform().getModVersion());
+        apiClient = new MclogsClient(
+                "mclogs-mc/" + Services.platform().getPlatformName(),
+                Services.platform().getModVersion()
+        );
+        apiClient.setMinecraftVersion(Services.platform().getMinecraftVersion());
         configFile = Services.platform().getConfig()
                 .autoreload()
                 .onAutoReload(this::onConfigLoaded)

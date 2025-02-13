@@ -2,7 +2,6 @@ package gs.mclo.commands;
 
 import gs.mclo.components.MinecraftComponent;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.network.chat.Component;
 
 import java.nio.file.Path;
 
@@ -16,11 +15,6 @@ public class CommandSourceStackAccessor implements ICommandSourceAccessor<Minecr
     @Override
     public boolean hasPermission(Permission permission) {
         return source.hasPermission(permission.level());
-    }
-
-    @Override
-    public String getMinecraftVersion() {
-        return source.getServer().getServerVersion();
     }
 
     @Override

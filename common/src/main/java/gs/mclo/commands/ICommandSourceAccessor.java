@@ -7,8 +7,6 @@ import java.nio.file.Path;
 public interface ICommandSourceAccessor<Component extends IComponent<Component, ?, ?>> {
     boolean hasPermission(Permission permission);
 
-    String getMinecraftVersion();
-
     Path getDirectory();
 
     void sendFailure(Component message);

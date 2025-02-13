@@ -12,8 +12,12 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public String getPlatformName() {
-
         return "NeoForge";
+    }
+
+    @Override
+    public String getMinecraftVersion() {
+        return FMLLoader.versionInfo().mcVersion();
     }
 
     @Override

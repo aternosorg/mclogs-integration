@@ -16,6 +16,11 @@ public class ForgePlatformHelper implements IPlatformHelper {
     }
 
     @Override
+    public String getMinecraftVersion() {
+        return FMLLoader.versionInfo().mcVersion();
+    }
+
+    @Override
     public String getModVersion() {
         return ModList.get().getModFileById(Constants.MOD_ID).versionString();
     }
