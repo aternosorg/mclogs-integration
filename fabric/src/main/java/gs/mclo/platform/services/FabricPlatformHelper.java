@@ -1,10 +1,9 @@
-package gs.mclo.platform;
+package gs.mclo.platform.services;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
 import com.electronwill.nightconfig.core.file.GenericBuilder;
 import gs.mclo.Constants;
-import gs.mclo.platform.services.IPlatformHelper;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricPlatformHelper implements IPlatformHelper {

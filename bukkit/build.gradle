@@ -6,7 +6,9 @@ plugins {
 
 dependencies {
     compileOnly "org.spigotmc:spigot-api:${minecraft_version}-R0.1-SNAPSHOT"
-    implementation(libs.mclogs.api)
+    implementation(libs.mclogs.api) {
+        exclude group: 'com.google.code.gson', module: 'gson'
+    }
     implementation(libs.slf4j.api)
     implementation(libs.slf4j.jdk14)
     implementation(libs.nightconfig.toml)
