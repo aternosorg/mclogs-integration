@@ -2,7 +2,7 @@
     <a href="https://mclo.gs">
         <img src="https://mclo.gs/img/logo.png" alt="Logo" width="350" height="120">
     </a>
-    <h3>Server plugin</h3>
+    <h3>Server Plugin/Mod</h3>
     <p>
         Upload your logs to <a href="https://mclo.gs" target="_blank">mclo.gs</a> with a single command to analyze or share them.
         <br />
@@ -25,30 +25,75 @@
 ## About mclo.gs
 
 <a href="https://mclo.gs" target="_blank">mclo.gs</a> allows you to quickly share and analyze logs for Minecraft servers and clients. It highlights different log levels, removes sensitive information like IP-Addresses and detects common problems as well as version information.
-## Plugin features
 
-```
-/mclogs
-```
-Requires the permission `mclogs`
+## Commands
 
-**List server logs and crash reports**
+The Plugin/Mod contains the following commands:
 
-```
-/mclogs list
-```
-Requires the permission `mclogs.list`
+| Command      | Arguments   | Description                          | Permission Level | Permission Node |
+|--------------|-------------|--------------------------------------|------------------|-----------------|
+| mclogs       |             | List server logs and crash reports   | 2                | mclogs          |
+| mclogs list  |             | List server logs and crash reports   | 2                | mclogs.list     |
+| mclogs share | <file-name> | Share a specific log or crash report | 2                | mclogs.share    |
 
-**Share a specific log or crash report**
+If the mod is installed on your client the commands `/mclogsc` will also be available for your client logs.
 
-```
-/mclogs share <file-name>
-```
-Requires the permission `mclogs.share`
+### Permissions
 
-On modded servers all commands require the permission level 2.
+Commands are not available to players by default. You can give players access to the commands by giving them the required permissions.
+Plugin servers permissions use permission nodes for fine-grained access control.
+Modded servers use the Vanilla permission level system instead.
+
+## Configuration
+If you use a self-hosted instance of mclo.gs or want to use an alternative front-end, you can configure the plugin/mod to use your instance.
+The config file is located in `plugins/mclogs/config.toml` for plugin servers and `config/mclogs.toml` for modded servers.
+
+### Default configuration
+```toml
+# Base URL for the API used to upload logs
+apiBaseUrl = "https://api.mclo.gs"
+# URL to view logs on the web
+# A trailing slash and the log ID will be appended to this URL
+viewLogsUrl = "https://mclo.gs"
+```
+
+## Contributing
+This project is licenses as MIT. Contributions are welcome but if you plan some larger changes please
+create an issue for discussion first, to avoid wasting time on something that might not be merged.
+
+### Setting up the Development Environment
+1. Clone the repository
+2. Import the project in your IDE (IntelliJ IDEA is recommended)
+3. Run `./gradlew genIntellijRuns` to generate the Forge runs
+
+### Modules
+
+| Module    | Description                                                                    | Parent Module |
+|-----------|--------------------------------------------------------------------------------|---------------|
+| common    | Code shared between all platforms                                              |               |
+| common-mc | Code shared between all platforms that provide access to the Minecraft classes | common        |
+| bukkit    | Bukkit plugin implementation                                                   | common        |
+| forge     | Forge mod implementation                                                       | common-mc     |
+| fabric    | Fabric mod implementation                                                      | common-mc     |
+| neoforge  | NeoForge mod implementation                                                    | common-mc     |
 
 ### Building
-Run `./gradlew build`.
-For forge run the `jarJar` task and use the -all jar
-To setup Forge runs for intelliJ run `./gradlew genIntellijRuns`.
+To build all modules run `./gradlew buildAll`. Unless specified below all other modules use the `build` task.
+
+Modules with special build task:
+
+| Module | Task        |
+|--------|-------------|
+| bukkit | `shadowJar` |
+| forge  | `jarJar`    |
+
+### Running in development environments
+If you're using IntelliJ IDEA you should already see run configurations for most platforms.
+For other platforms or other IDEs run their respective gradle tasks:
+
+| Platform | Client Task                     | Server Task                     |
+|----------|---------------------------------|---------------------------------|
+| Bukkit   |                                 | `./gradlew :bukkit:runServer`   |
+| Forge    | `./gradlew :forge:Client`       | `./gradlew :forge:Server`       |
+| Fabric   | `./gradlew :fabric:runClient`   | `./gradlew :fabric:runServer`   |
+| NeoForge | `./gradlew :neoforge:runClient` | `./gradlew :neoforge:runServer` |
