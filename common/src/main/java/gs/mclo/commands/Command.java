@@ -3,7 +3,6 @@ package gs.mclo.commands;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
-import gs.mclo.MclogsCommon;
 import gs.mclo.api.Log;
 import gs.mclo.api.MclogsClient;
 import gs.mclo.components.ClickEventAction;
@@ -15,22 +14,36 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 
+/**
+ * A platform-agnostic command
+ * @param <ComponentType> The type of components used on the platform
+ * @param <StyleType> The type of styles used on the platform
+ * @param <ClickEventType> The type of click events used on the platform
+ */
 public abstract class Command<
         ComponentType extends IComponent<ComponentType, StyleType, ClickEventType>,
         StyleType extends IStyle<StyleType, ClickEventType>,
         ClickEventType
         > {
+    /**
+     * The Mclogs API client
+     */
     protected final MclogsClient apiClient;
-    protected final MclogsCommon mclogs;
+    /**
+     * A component factory
+     */
     protected final IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory;
 
+    /**
+     * Create a new command
+     * @param apiClient The Mclogs API client
+     * @param componentFactory A component factory
+     */
     public Command(
             MclogsClient apiClient,
-            MclogsCommon mclogs,
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
         this.apiClient = apiClient;
-        this.mclogs = mclogs;
         this.componentFactory = componentFactory;
     }
 
@@ -57,14 +70,32 @@ public abstract class Command<
      */
     public abstract <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext);
 
+    /**
+     * Get the logs directory
+     * @param source The command source
+     * @return The logs directory
+     */
     public Path getLogsDirectory(ICommandSourceAccessor<?> source) {
         return source.getDirectory().resolve("logs");
     }
 
+    /**
+     * Get the crash reports directory
+     * @param source The command source
+     * @return The crash reports directory
+     */
     public Path getCrashReportsDirectory(ICommandSourceAccessor<?> source) {
         return source.getDirectory().resolve("crash-reports");
     }
 
+    /**
+     * Share a log or crash report
+     * @param context The command context
+     * @param buildContext The build context
+     * @param filename The filename of the log or crash report
+     * @return -1 if the input was invalid or an error occurred, 1 if the log was shared
+     * @param <T> The command source type
+     */
     public <T> int share(CommandContext<T> context, BuildContext<T, ComponentType> buildContext, String filename) {
         var source = buildContext.mapSource(context.getSource());
 
@@ -112,6 +143,13 @@ public abstract class Command<
         return 1;
     }
 
+    /**
+     * Build a command string the user would input.
+     * Uses the same root command that was used when executing the command.
+     * @param context The command context
+     * @param args The arguments to append to the command
+     * @return The command string
+     */
     protected String command(CommandContext<?> context, String... args) {
         StringBuilder command = new StringBuilder("/" + context.getNodes().getFirst().getNode().getName());
 
@@ -122,6 +160,12 @@ public abstract class Command<
         return command.toString();
     }
 
+    /**
+     * Create a message for when a file is not found
+     * @param filename The filename that was not found
+     * @param context The command context
+     * @return A component with the error message
+     */
     protected ComponentType fileNotFoundMessage(String filename, CommandContext<?> context) {
         var command = command(context, "list");
 
@@ -132,18 +176,37 @@ public abstract class Command<
                 .append(" to list all logs.");
     }
 
+    /**
+     * Create a generic error message
+     * @return A component with a generic error message
+     */
     protected ComponentType genericErrorMessage() {
         return componentFactory.literal("An error occurred. Check your log for more details");
     }
 
+    /**
+     * Create a clickable style for running a command
+     * @param command The command to run
+     * @return The style
+     */
     protected StyleType runCommandStyle(String command) {
         return clickableStyle(componentFactory.clickEvent(ClickEventAction.RUN_COMMAND, command));
     }
 
+    /**
+     * Create a clickable style for opening a URL
+     * @param url The URL to open
+     * @return The style
+     */
     protected StyleType openUrlStyle(String url) {
         return clickableStyle(componentFactory.clickEvent(ClickEventAction.OPEN_URL, url));
     }
 
+    /**
+     * Create style with a click event
+     * @param event The click event
+     * @return The style
+     */
     protected StyleType clickableStyle(ClickEventType event) {
         return componentFactory.style()
                 .clickEvent(event)

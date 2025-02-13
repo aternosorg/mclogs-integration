@@ -71,9 +71,9 @@ public class MclogsCommon {
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
         return List.of(
-                new MclogsCommand<>(apiClient, this, componentFactory),
-                new MclogsListCommand<>(apiClient, this, componentFactory),
-                new MclogsShareCommand<>(apiClient, this, componentFactory)
+                new MclogsCommand<>(apiClient, componentFactory),
+                new MclogsListCommand<>(apiClient, componentFactory),
+                new MclogsShareCommand<>(apiClient, componentFactory)
         );
     }
 

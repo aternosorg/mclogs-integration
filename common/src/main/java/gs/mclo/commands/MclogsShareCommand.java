@@ -6,7 +6,6 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import gs.mclo.Constants;
-import gs.mclo.MclogsCommon;
 import gs.mclo.api.MclogsClient;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
@@ -23,10 +22,9 @@ public class MclogsShareCommand<
 
     public MclogsShareCommand(
             MclogsClient apiClient,
-            MclogsCommon mclogs,
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
-        super(apiClient, mclogs, componentFactory);
+        super(apiClient, componentFactory);
     }
 
     @Override

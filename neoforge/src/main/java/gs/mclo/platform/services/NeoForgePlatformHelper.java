@@ -25,11 +25,6 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public boolean isDevelopmentEnvironment() {
-        return !FMLLoader.isProduction();
-    }
-
-    @Override
     public GenericBuilder<Config, FileConfig> getConfig() {
         var configFile = FMLLoader.getGamePath().resolve("config")
                 .resolve(Constants.MOD_ID + ".toml");

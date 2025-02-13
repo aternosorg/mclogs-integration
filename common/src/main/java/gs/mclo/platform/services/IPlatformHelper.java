@@ -4,6 +4,9 @@ import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
 import com.electronwill.nightconfig.core.file.GenericBuilder;
 
+/**
+ * A helper fetching information about the Platform.
+ */
 public interface IPlatformHelper {
     /**
      * Gets the name of the current platform
@@ -25,13 +28,6 @@ public interface IPlatformHelper {
      * @return The version of the mod.
      */
     String getModVersion();
-
-    /**
-     * Check if the game is currently in a development environment.
-     *
-     * @return True if in a development environment, false otherwise.
-     */
-    boolean isDevelopmentEnvironment();
 
     /**
      * Gets the configuration file for the plugin/mod.

@@ -37,11 +37,6 @@ public class BukkitPlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public boolean isDevelopmentEnvironment() {
-        return false;
-    }
-
-    @Override
     public GenericBuilder<Config, FileConfig> getConfig() {
         var dataFolder = plugin.getDataFolder();
         //noinspection ResultOfMethodCallIgnored

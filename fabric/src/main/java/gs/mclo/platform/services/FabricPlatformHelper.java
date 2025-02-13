@@ -32,11 +32,6 @@ public class FabricPlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public boolean isDevelopmentEnvironment() {
-        return FabricLoader.getInstance().isDevelopmentEnvironment();
-    }
-
-    @Override
     public GenericBuilder<Config, FileConfig> getConfig() {
         var configDir = FabricLoader.getInstance().getConfigDir();
         var configFile = configDir.resolve(Constants.MOD_ID + ".toml");

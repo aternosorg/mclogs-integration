@@ -3,7 +3,6 @@ package gs.mclo.commands;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
-import gs.mclo.MclogsCommon;
 import gs.mclo.api.MclogsClient;
 import gs.mclo.components.ClickEventAction;
 import gs.mclo.components.IComponent;
@@ -17,10 +16,9 @@ public class MclogsListCommand<
         > extends Command<ComponentType, StyleType, ClickEventType> {
     public MclogsListCommand(
             MclogsClient apiClient,
-            MclogsCommon mclogs,
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
-        super(apiClient, mclogs, componentFactory);
+        super(apiClient, componentFactory);
     }
 
     @Override
