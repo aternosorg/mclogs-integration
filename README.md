@@ -10,12 +10,14 @@
         <br />
         It's also possible to export old server log files, e.g. after a crash.
         <br />
-        <a href="https://modrinth.com/plugin/mclogs" target="_blank"><strong>Download on modrinth »</strong></a>
+        <a href="https://modrinth.com/plugin/mclogs" target="_blank"><strong>« Download Plugin/Mod on Modrinth »</strong></a>
         <br />
         <br />
         <a href="https://www.spigotmc.org/resources/mclo-gs.47502/" target="_blank">SpigotMC</a>
         ·
-        <a href="https://www.curseforge.com/minecraft/bukkit-plugins/mclo-gs" target="_blank">CurseForge</a>
+        <a href="https://www.curseforge.com/minecraft/bukkit-plugins/mclo-gs" target="_blank">CurseForge (Plugin)</a>
+        ·
+        <a href="https://www.curseforge.com/minecraft/mc-mods/mclo-gs" target="_blank">CurseForge (Mod)</a>
         ·
         <a href="https://hangar.papermc.io/Aternos/mclogs" target="_blank">Hangar</a>
     </p>
