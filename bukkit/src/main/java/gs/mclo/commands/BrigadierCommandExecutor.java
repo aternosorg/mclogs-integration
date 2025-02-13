@@ -36,7 +36,8 @@ public class BrigadierCommandExecutor implements CommandExecutor, TabCompleter {
                              @NotNull String[] args) {
         try {
             var parse = parse(command, args, sender);
-            return dispatcher.execute(parse) >= 0;
+            dispatcher.execute(parse);
+            return true;
         } catch (CommandSyntaxException e) {
             var audience = plugin.audience(sender);
 

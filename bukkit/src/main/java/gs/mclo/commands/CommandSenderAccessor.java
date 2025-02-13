@@ -2,7 +2,7 @@ package gs.mclo.commands;
 
 import gs.mclo.MclogsPlugin;
 import gs.mclo.components.AdventureComponent;
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.CommandSender;
 
 import java.nio.file.Path;
@@ -29,7 +29,8 @@ public class CommandSenderAccessor implements ICommandSourceAccessor<AdventureCo
 
     @Override
     public void sendFailure(AdventureComponent message) {
-        plugin.audience(commandSender).sendMessage(message.getBoxed());
+        plugin.audience(commandSender).sendMessage(message.getBoxed()
+                .color(NamedTextColor.RED));
     }
 
     @Override
