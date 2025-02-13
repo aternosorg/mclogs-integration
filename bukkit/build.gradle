@@ -11,6 +11,8 @@ dependencies {
     implementation(libs.slf4j.jdk14)
     implementation(libs.nightconfig.yaml)
     implementation(libs.brigadier)
+    implementation(libs.adventure.api)
+    implementation(libs.adventure.bukkit)
 }
 
 tasks {
@@ -22,5 +24,6 @@ tasks {
         relocate("org.slf4j", "gs.mclo.slf4j")
         relocate("com.electronwill.nightconfig", "gs.mclo.nightconfig")
         relocate("com.mojang.brigadier", "gs.mclo.brigadier")
+        relocate("net.kyori.adventure", "gs.mclo.adventure")
     }
 }
