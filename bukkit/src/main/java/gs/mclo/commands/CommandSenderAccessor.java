@@ -9,14 +9,11 @@ import java.nio.file.Path;
 
 public class CommandSenderAccessor implements ICommandSourceAccessor<AdventureComponent> {
     protected final MclogsPlugin plugin;
-    protected final BukkitAudiences adventure;
     protected final CommandSender commandSender;
 
     public CommandSenderAccessor(MclogsPlugin plugin,
-                                 BukkitAudiences adventure,
                                  CommandSender commandSender) {
         this.plugin = plugin;
-        this.adventure = adventure;
         this.commandSender = commandSender;
     }
 
@@ -32,11 +29,11 @@ public class CommandSenderAccessor implements ICommandSourceAccessor<AdventureCo
 
     @Override
     public void sendFailure(AdventureComponent message) {
-        adventure.sender(commandSender).sendMessage(message.getBoxed());
+        plugin.audience(commandSender).sendMessage(message.getBoxed());
     }
 
     @Override
     public void sendSuccess(AdventureComponent message, boolean allowLogging) {
-        adventure.sender(commandSender).sendMessage(message.getBoxed());
+        plugin.audience(commandSender).sendMessage(message.getBoxed());
     }
 }

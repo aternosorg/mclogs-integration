@@ -5,6 +5,10 @@ import com.mojang.brigadier.ParseResults;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import gs.mclo.Constants;
 import gs.mclo.MclogsPlugin;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.Style;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.command.*;
 import org.bukkit.command.Command;
 import org.jetbrains.annotations.NotNull;
@@ -15,6 +19,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class BrigadierCommandExecutor implements CommandExecutor, TabCompleter {
+    private static final Style.Builder ERROR_STYLE = Style.style().color(NamedTextColor.RED);
     private final MclogsPlugin plugin;
     private final CommandDispatcher<CommandSender> dispatcher;
 
@@ -34,8 +39,35 @@ public class BrigadierCommandExecutor implements CommandExecutor, TabCompleter {
             var parse = parse(command, args, sender);
             return dispatcher.execute(parse) >= 0;
         } catch (CommandSyntaxException e) {
-            return false;
+            var audience = plugin.audience(sender);
+
+            var context = Component.text(exceptionContext(e))
+                    .style(ERROR_STYLE)
+                    .decorate(TextDecoration.UNDERLINED);
+            var error = Component
+                    .text(e.getType().toString())
+                    .style(ERROR_STYLE)
+                    .appendNewline()
+                    .append(context)
+                    .append(Component.text("<--[HERE]").color(NamedTextColor.RED));
+
+            audience.sendMessage(error);
+            return true;
         }
+    }
+
+    protected String exceptionContext(CommandSyntaxException exception) {
+        final String input = exception.getInput();
+        final StringBuilder builder = new StringBuilder();
+        final int cursor = Math.min(input.length(), exception.getCursor());
+
+        if (cursor > CommandSyntaxException.CONTEXT_AMOUNT) {
+            builder.append("...");
+        }
+
+        builder.append(input, Math.max(0, cursor - CommandSyntaxException.CONTEXT_AMOUNT), cursor);
+
+        return builder.toString();
     }
 
     @Override

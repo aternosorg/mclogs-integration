@@ -5,22 +5,19 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import gs.mclo.MclogsPlugin;
 import gs.mclo.components.AdventureComponent;
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.command.CommandSender;
 
 public class BukkitBuildContext extends BuildContext<CommandSender, AdventureComponent> {
     protected final MclogsPlugin plugin;
-    protected final BukkitAudiences adventure;
 
-    public BukkitBuildContext(MclogsPlugin plugin, BukkitAudiences adventure) {
+    public BukkitBuildContext(MclogsPlugin plugin) {
         super(CommandEnvironment.DEDICATED_SERVER);
         this.plugin = plugin;
-        this.adventure = adventure;
     }
 
     @Override
     public ICommandSourceAccessor<AdventureComponent> mapSource(CommandSender source) {
-        return new CommandSenderAccessor(plugin, adventure, source);
+        return new CommandSenderAccessor(plugin, source);
     }
 
     @Override
