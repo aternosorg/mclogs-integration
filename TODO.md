@@ -1,11 +1,14 @@
 # TODO
 
-## Commands for Bukkit
-Goal: Have bukkit commands working from same sources as brigadier ones
+## Additional Platforms
+- [ ] Velocity
+- [ ] BungeeCord
 
-Problems:
-- Brigadier commands use Minecraft classes for components
-  - Check if I can get adventure working on Forge
-  - Figure out a way to create an abstraction I can implement for adventure and vanilla
-- Implement Source interfaces for bukkit
-- Load brigadier commands in bukkit? https://github.com/lucko/commodore
+## CI/CD
+- [x] Automatically build on commit with GH actions
+- [ ] Automatically deploy on tag with GH actions
+  - [ ] Modrinth
+  - [ ] CurseForge (Mod)
+  - [ ] CurseForge (Plugin)
+  - [ ] GitHub Releases
+  - [ ] Hangar
