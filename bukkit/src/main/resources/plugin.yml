@@ -1,4 +1,4 @@
-name: "${mod_name}"
+name: "${mod_id}"
 version: "${version}"
 description: "${description}"
 author: "${mod_author}"
