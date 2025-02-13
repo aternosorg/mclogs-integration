@@ -35,7 +35,6 @@ public class BrigadierCommandExecutor implements CommandExecutor, TabCompleter {
                              @NotNull String label,
                              @NotNull String[] args) {
         try {
-            // TODO: better error if permissions are missing
             var parse = parse(command, args, sender);
             return dispatcher.execute(parse) >= 0;
         } catch (CommandSyntaxException e) {
