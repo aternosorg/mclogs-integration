@@ -27,7 +27,7 @@ public class MclogsCommand<
             LiteralArgumentBuilder<T> builder
     ) {
         if (buildContext.environment == CommandEnvironment.DEDICATED_SERVER) {
-            builder = builder.requires(source -> buildContext.mapSource(source).hasPermission(Permission.SHARE_CURRENT));
+            builder = builder.requires(source -> buildContext.mapSource(source).hasPermission(Permission.BASE));
         }
 
         return builder.executes(context -> execute(context, buildContext));

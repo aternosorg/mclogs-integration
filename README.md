@@ -40,8 +40,10 @@ If the mod is installed on your client the commands `/mclogsc` will also be avai
 
 ### Permissions
 
-Commands are not available to players by default. You can give players access to the commands by giving them the required permissions.
-Plugin servers permissions use permission nodes for fine-grained access control.
+Commands are not available to players by default. You can give players access to the commands by giving them the 
+required permissions. Plugin servers permissions use permission nodes for fine-grained access control. The `mclogs`
+permission node is required for all other commands as well.
+
 Modded servers use the Vanilla permission level system instead.
 
 ## Configuration

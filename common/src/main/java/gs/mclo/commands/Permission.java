@@ -1,17 +1,17 @@
 package gs.mclo.commands;
 
 public enum Permission {
-    SHARE_CURRENT(2, "mclogs"),
-    SHARE_SPECIFIC(2, "mclogs", "share"),
-    LIST(2, "mclogs", "list"),
+    BASE(2, "mclogs"),
+    SHARE_SPECIFIC(2, "mclogs.share"),
+    LIST(2, "mclogs.list"),
     ;
 
     private final int level;
-    private final String[] nodeParts;
+    private final String node;
 
-    Permission(int level, String... nodeParts) {
+    Permission(int level, String node) {
         this.level = level;
-        this.nodeParts = nodeParts;
+        this.node = node;
     }
 
     public int level() {
@@ -20,11 +20,10 @@ public enum Permission {
 
     /**
      * Returns the permission node for this permission.
-     * Join the parts with a dot to get the full permission node.
      *
-     * @return an array of permission node parts.
+     * @return permission node
      */
-    public String[] nodeParts() {
-        return nodeParts;
+    public String node() {
+        return node;
     }
 }

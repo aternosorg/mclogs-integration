@@ -22,16 +22,7 @@ public class CommandSenderAccessor implements ICommandSourceAccessor<AdventureCo
 
     @Override
     public boolean hasPermission(Permission permission) {
-        StringBuilder node = new StringBuilder();
-        for (String part : permission.nodeParts()) {
-            node.append(part);
-
-            if (commandSender.hasPermission(node + ".*")) {
-                return true;
-            }
-        }
-
-        return commandSender.hasPermission(node.toString());
+        return commandSender.hasPermission(permission.node());
     }
 
     @Override

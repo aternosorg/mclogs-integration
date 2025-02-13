@@ -12,16 +12,11 @@ commands:
   mclogs:
     description: "Upload your logs to mclo.gs"
     usage: "/mclogs <list|share> <filename>"
+    permission: "mclogs"
 
 permissions:
-  mclogs.*:
-    description: "Gives access to all mclogs commands"
-    children:
-      mclogs.upload: true
-      mclogs.list: true
-      mclogs.share: true
-  mclogs.upload:
-    description: "Allows uploading the current log file"
+  mclogs:
+    description: "Base permission required for all commands. Allows uploading the current log file"
     default: op
   mclogs.list:
     description: "Allows listing available log files"
@@ -29,3 +24,9 @@ permissions:
   mclogs.share:
     description: "Allows sharing of specific log files"
     default: op
+  mclogs.*:
+    description: "Gives access to all mclogs commands"
+    children:
+      mclogs: true
+      mclogs.list: true
+      mclogs.share: true
