@@ -5,7 +5,7 @@ import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
 
 public class AdventureStyle implements IStyle<AdventureStyle, ClickEvent> {
-    protected final Style boxed;
+    protected Style boxed;
 
     public AdventureStyle(Style boxed) {
         this.boxed = boxed;
@@ -17,13 +17,13 @@ public class AdventureStyle implements IStyle<AdventureStyle, ClickEvent> {
 
     @Override
     public AdventureStyle underlined() {
-        boxed.decorate(TextDecoration.UNDERLINED);
+        boxed = boxed.decorate(TextDecoration.UNDERLINED);
         return this;
     }
 
     @Override
     public AdventureStyle clickEvent(ClickEvent clickEvent) {
-        boxed.clickEvent(clickEvent);
+        boxed = boxed.clickEvent(clickEvent);
         return this;
     }
 }
