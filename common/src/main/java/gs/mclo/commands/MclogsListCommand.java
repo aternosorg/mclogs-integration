@@ -4,6 +4,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
 import gs.mclo.MclogsCommon;
+import gs.mclo.api.MclogsClient;
 import gs.mclo.components.ClickEventAction;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
@@ -15,10 +16,11 @@ public class MclogsListCommand<
         ClickEventType
         > extends Command<ComponentType, StyleType, ClickEventType> {
     public MclogsListCommand(
+            MclogsClient apiClient,
             MclogsCommon mclogs,
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
-        super(mclogs, componentFactory);
+        super(apiClient, mclogs, componentFactory);
     }
 
     @Override
@@ -45,9 +47,9 @@ public class MclogsListCommand<
             int total = 0;
             var message = componentFactory.empty();
 
-            var logs = mclogs.client.listLogsInDirectory(directory);
+            var logs = apiClient.listLogsInDirectory(directory);
             total += list(message, logs, "Logs", context, buildContext);
-            var reports = mclogs.client.listCrashReportsInDirectory(directory);
+            var reports = apiClient.listCrashReportsInDirectory(directory);
             total += list(message, reports, "Crash Reports", context, buildContext);
 
             if (total == 0) {

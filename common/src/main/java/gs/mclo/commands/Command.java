@@ -5,6 +5,7 @@ import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
 import gs.mclo.MclogsCommon;
 import gs.mclo.api.Log;
+import gs.mclo.api.MclogsClient;
 import gs.mclo.components.ClickEventAction;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
@@ -19,13 +20,16 @@ public abstract class Command<
         StyleType extends IStyle<StyleType, ClickEventType>,
         ClickEventType
         > {
+    protected final MclogsClient apiClient;
     protected final MclogsCommon mclogs;
     protected final IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory;
 
     public Command(
+            MclogsClient apiClient,
             MclogsCommon mclogs,
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
+        this.apiClient = apiClient;
         this.mclogs = mclogs;
         this.componentFactory = componentFactory;
     }
@@ -64,7 +68,9 @@ public abstract class Command<
     public <T> int share(CommandContext<T> context, BuildContext<T, ComponentType> buildContext, String filename) {
         var source = buildContext.mapSource(context.getSource());
 
-        mclogs.client.setMinecraftVersion(source.getMinecraftVersion());
+        // TODO: Set this in client init
+        // TODO: Currently ignored as a custom user agent is already specified
+        apiClient.setMinecraftVersion(source.getMinecraftVersion());
 
         var logs = getLogsDirectory(source);
         var crashReports = getCrashReportsDirectory(source);
@@ -93,7 +99,7 @@ public abstract class Command<
 
         Constants.LOG.info("Sharing {}", source.getDirectory().relativize(path));
 
-        mclogs.client.uploadLog(log).thenAccept(response -> {
+        apiClient.uploadLog(log).thenAccept(response -> {
             if (response.isSuccess()) {
                 var link = componentFactory.literal(response.getUrl()).setStyle(openUrlStyle(response.getUrl()));
                 var message = componentFactory.literal("Your log has been uploaded: ").append(link);

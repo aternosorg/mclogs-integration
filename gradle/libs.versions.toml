@@ -3,6 +3,7 @@ adventure-api = "4.18.0"
 adventure-bukkit = "4.3.4"
 brigadier = "1.0.18"
 gson = "2.12.1"
+jetbrains-annotations = "26.0.2"
 mclogs = { strictly = "[4.1,5.0)", prefer = "4.1.0" }
 night-config = { strictly = "[3.7,4.0)", prefer = "3.8.1" }
 slf4j = "2.0.16"
@@ -12,6 +13,7 @@ adventure-api = { module = "net.kyori:adventure-api", version.ref = "adventure-a
 adventure-bukkit = { module = "net.kyori:adventure-platform-bukkit", version.ref = "adventure-bukkit" }
 brigadier = { module = "com.mojang:brigadier", version.ref = "brigadier" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
 mclogs-api = { module = "gs.mclo:api", version.ref = "mclogs" }
 nightconfig-core = { module = "com.electronwill.night-config:core", version.ref = "night-config" }
 nightconfig-yaml = { module = "com.electronwill.night-config:yaml", version.ref = "night-config" }

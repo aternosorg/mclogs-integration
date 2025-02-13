@@ -8,6 +8,7 @@ dependencies {
     implementation(libs.slf4j.api)
     implementation(libs.nightconfig.core)
     implementation(libs.brigadier)
+    compileOnly(libs.jetbrains.annotations)
 }
 
 configurations {

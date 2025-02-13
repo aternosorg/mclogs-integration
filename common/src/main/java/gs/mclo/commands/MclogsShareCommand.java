@@ -7,6 +7,7 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import gs.mclo.Constants;
 import gs.mclo.MclogsCommon;
+import gs.mclo.api.MclogsClient;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
 import gs.mclo.components.IStyle;
@@ -21,10 +22,11 @@ public class MclogsShareCommand<
     private static final String ARGUMENT_NAME = "filename";
 
     public MclogsShareCommand(
+            MclogsClient apiClient,
             MclogsCommon mclogs,
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
-        super(mclogs, componentFactory);
+        super(apiClient, mclogs, componentFactory);
     }
 
     @Override
@@ -54,13 +56,13 @@ public class MclogsShareCommand<
         var input = builder.getRemaining();
 
         try {
-            for (String log : mclogs.client.listLogsInDirectory(source.getDirectory())) {
+            for (String log : apiClient.listLogsInDirectory(source.getDirectory())) {
                 if (log.startsWith(input)) {
                     builder.suggest(log);
                 }
             }
 
-            for (String report : mclogs.client.listCrashReportsInDirectory(source.getDirectory())) {
+            for (String report : apiClient.listCrashReportsInDirectory(source.getDirectory())) {
                 if (report.startsWith(input)) {
                     builder.suggest(report);
                 }

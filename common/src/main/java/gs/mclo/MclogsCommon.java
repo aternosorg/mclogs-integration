@@ -16,12 +16,13 @@ import java.util.Collection;
 import java.util.List;
 
 public class MclogsCommon {
-    public final MclogsClient client = new MclogsClient("mclogs-mc/" + Services.PLATFORM.getPlatformName(), Services.PLATFORM.getModVersion());
+    protected MclogsClient apiClient;
     protected FileConfig configFile;
     protected Configuration config = new Configuration();
 
     public void init() {
-        configFile = Services.PLATFORM.getConfig()
+        apiClient = new MclogsClient("mclogs-mc/" + Services.platform().getPlatformName(), Services.platform().getModVersion());
+        configFile = Services.platform().getConfig()
                 .autoreload()
                 .onAutoReload(this::onConfigLoaded)
                 .autosave()
@@ -51,7 +52,7 @@ public class MclogsCommon {
     protected void onConfigLoaded(boolean log) {
         ObjectDeserializer.standard().deserializeFields(configFile, config);
         var instance = new Instance(config.apiBaseUrl, config.viewLogsUrl);
-        client.setInstance(instance);
+        apiClient.setInstance(instance);
 
         if (log) {
             Constants.LOG.info("Reloaded configuration.");
@@ -66,9 +67,9 @@ public class MclogsCommon {
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
         return List.of(
-                new MclogsCommand<>(this, componentFactory),
-                new MclogsListCommand<>(this, componentFactory),
-                new MclogsShareCommand<>(this, componentFactory)
+                new MclogsCommand<>(apiClient, this, componentFactory),
+                new MclogsListCommand<>(apiClient, this, componentFactory),
+                new MclogsShareCommand<>(apiClient, this, componentFactory)
         );
     }
 
