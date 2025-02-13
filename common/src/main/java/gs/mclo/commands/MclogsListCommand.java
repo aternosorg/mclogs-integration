@@ -31,7 +31,7 @@ public class MclogsListCommand<
         var list = buildContext.literal("list");
 
         if (buildContext.environment == CommandEnvironment.DEDICATED_SERVER) {
-            list = list.requires(source -> buildContext.mapSource(source).hasPermission(2));
+            list = list.requires(source -> buildContext.mapSource(source).hasPermission(Permission.LIST));
         }
 
         list.executes(context -> execute(context, buildContext));

@@ -5,7 +5,7 @@ import gs.mclo.components.IComponent;
 import java.nio.file.Path;
 
 public interface ICommandSourceAccessor<Component extends IComponent<Component, ?, ?>> {
-    boolean hasPermission(int level);
+    boolean hasPermission(Permission permission);
 
     String getMinecraftVersion();
 

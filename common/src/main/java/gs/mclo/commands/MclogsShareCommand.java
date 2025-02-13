@@ -37,7 +37,7 @@ public class MclogsShareCommand<
         var share = buildContext.literal("share");
 
         if (buildContext.environment == CommandEnvironment.DEDICATED_SERVER) {
-            share = share.requires(source -> buildContext.mapSource(source).hasPermission(2));
+            share = share.requires(source -> buildContext.mapSource(source).hasPermission(Permission.SHARE_SPECIFIC));
         }
 
         var argument = buildContext.argument(ARGUMENT_NAME, StringArgumentType.greedyString())

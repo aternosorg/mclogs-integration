@@ -14,8 +14,8 @@ public class CommandSourceStackAccessor implements ICommandSourceAccessor<Minecr
     }
 
     @Override
-    public boolean hasPermission(int level) {
-        return source.hasPermission(level);
+    public boolean hasPermission(Permission permission) {
+        return source.hasPermission(permission.level());
     }
 
     @Override

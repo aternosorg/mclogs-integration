@@ -22,9 +22,17 @@ public class CommandSenderAccessor implements ICommandSourceAccessor<AdventureCo
     }
 
     @Override
-    public boolean hasPermission(int level) {
-        // TODO: Think about how I can implement this
-        return true;
+    public boolean hasPermission(Permission permission) {
+        StringBuilder node = new StringBuilder();
+        for (String part : permission.nodeParts()) {
+            node.append(part);
+
+            if (commandSender.hasPermission(node + ".*")) {
+                return true;
+            }
+        }
+
+        return commandSender.hasPermission(node.toString());
     }
 
     @Override
