@@ -42,16 +42,7 @@ public class MclogsPlugin extends JavaPlugin {
         var componentFactory = new AdventureComponentFactory();
 
         mclogsCommon.registerCommands(dispatcher, context, componentFactory);
-
-        for (var commandNode : dispatcher.getRoot().getChildren()) {
-            var command = getCommand(commandNode.getName());
-
-            if (command == null) {
-                Constants.LOG.warn("Command {} is missing from plugin.yml, skipping...", commandNode.getName());
-                continue;
-            }
-
-            command.setExecutor(new BrigadierCommandExecutor(dispatcher, commandNode));
-        }
+        var executor = new BrigadierCommandExecutor(this, dispatcher);
+        executor.register();
     }
 }
