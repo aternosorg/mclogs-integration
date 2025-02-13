@@ -49,7 +49,10 @@ public class BrigadierCommandExecutor implements CommandExecutor, TabCompleter {
                     .style(ERROR_STYLE)
                     .appendNewline()
                     .append(context)
-                    .append(Component.text("<--[HERE]").color(NamedTextColor.RED));
+                    .append(Component
+                            .text("<--[HERE]")
+                            .style(ERROR_STYLE).decorate(TextDecoration.ITALIC)
+                    );
 
             audience.sendMessage(error);
             return true;
