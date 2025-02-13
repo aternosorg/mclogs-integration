@@ -23,7 +23,5 @@ tasks {
     shadowJar {
         relocate("org.slf4j", "gs.mclo.slf4j")
         relocate("com.electronwill.nightconfig", "gs.mclo.nightconfig")
-        relocate("com.mojang.brigadier", "gs.mclo.brigadier")
-        relocate("net.kyori.adventure", "gs.mclo.adventure")
     }
 }
