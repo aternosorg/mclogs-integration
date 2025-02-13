@@ -48,9 +48,9 @@ public class MclogsListCommand<
             var message = componentFactory.empty();
 
             var logs = apiClient.listLogsInDirectory(directory);
-            total += list(message, logs, "Logs", context, buildContext);
+            total += list(message, logs, "Available Log Files:", context, buildContext);
             var reports = apiClient.listCrashReportsInDirectory(directory);
-            total += list(message, reports, "Crash Reports", context, buildContext);
+            total += list(message, reports, "Available Crash Reports:", context, buildContext);
 
             if (total == 0) {
                 message = componentFactory.literal("No logs or crash reports found.");
