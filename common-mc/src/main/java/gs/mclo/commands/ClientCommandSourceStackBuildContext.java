@@ -15,6 +15,7 @@ public class ClientCommandSourceStackBuildContext extends CommandSourceStackBuil
 
     @Override
     public boolean supportsClickEvents() {
+        // TODO: Test if this is still up-to-date
         return false;
     }
 }
