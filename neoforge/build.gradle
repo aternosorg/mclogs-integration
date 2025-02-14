@@ -44,10 +44,6 @@ dependencies {
     additionalRuntimeClasspath(libs.mclogs.api)
     implementation(libs.mclogs.api)
     jarJar(libs.mclogs.api)
-
-    additionalRuntimeClasspath(libs.nightconfig.toml)
-    implementation(libs.nightconfig.toml)
-    jarJar(libs.nightconfig.toml)
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
