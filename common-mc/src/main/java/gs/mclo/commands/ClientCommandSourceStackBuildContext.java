@@ -14,8 +14,11 @@ public class ClientCommandSourceStackBuildContext extends CommandSourceStackBuil
     }
 
     @Override
-    public boolean supportsClickEvents() {
+    public boolean supportsClientCommandClickEvents() {
         // TODO: Test if this is still up-to-date
-        return false;
+        // Forge 1.21(51.0.33): Still broken
+        // NeoForge 21.0.37-beta: Still broken
+        // NeoForge 21.0.167: Still broken
+        return true;
     }
 }

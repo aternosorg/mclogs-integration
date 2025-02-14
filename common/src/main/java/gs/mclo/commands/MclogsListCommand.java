@@ -46,9 +46,9 @@ public class MclogsListCommand<
             var message = componentFactory.empty();
 
             var logs = apiClient.listLogsInDirectory(directory);
-            total += list(message, logs, "Available Log Files:", context, buildContext);
+            total += list(message, logs, "Available Log Files:", context, buildContext, false);
             var reports = apiClient.listCrashReportsInDirectory(directory);
-            total += list(message, reports, "Available Crash Reports:", context, buildContext);
+            total += list(message, reports, "Available Crash Reports:", context, buildContext, true);
 
             if (total == 0) {
                 message = componentFactory.literal("No logs or crash reports found.");
@@ -68,9 +68,14 @@ public class MclogsListCommand<
             String[] items,
             String title,
             CommandContext<?> context,
-            BuildContext<?, ComponentType> buildContext
+            BuildContext<?, ComponentType> buildContext,
+            boolean addLeadingNewLine
     ) {
         if (items.length > 0) {
+            if (addLeadingNewLine) {
+                message.append("\n");
+            }
+
             message.append(title(title));
             for (String log : items) {
                 message.append(item(log, context, buildContext));
@@ -93,7 +98,7 @@ public class MclogsListCommand<
 
         var component = componentFactory.literal("\n" + filename);
 
-        if (buildContext.supportsClickEvents()) {
+        if (buildContext.supportsClientCommandClickEvents()) {
             var clickEvent = componentFactory.clickEvent(ClickEventAction.RUN_COMMAND, command);
             component.setStyle(componentFactory.style().clickEvent(clickEvent));
         }

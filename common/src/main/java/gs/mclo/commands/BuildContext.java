@@ -48,7 +48,12 @@ public abstract class BuildContext<T, ComponentType extends IComponent<Component
      */
     public abstract <V> RequiredArgumentBuilder<T, V> argument(String name, ArgumentType<V> type);
 
-    public boolean supportsClickEvents() {
+    /**
+     * Are click events with client commands supported in this context?
+     * Forge (and older NeoForge versions) do not support this.
+     * @return True if click events are supported, false otherwise.
+     */
+    public boolean supportsClientCommandClickEvents() {
         return true;
     }
 }
