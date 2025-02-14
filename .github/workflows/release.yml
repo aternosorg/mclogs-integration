@@ -1,0 +1,67 @@
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release'
+        required: true
+      changelog:
+        description: 'Changelog for this release'
+        required: true
+
+jobs:
+  release:
+    name: Publish release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+
+      - name: Checkout Sources
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Setup git
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+
+      - name: Update version in gradle.properties
+        run: |
+          sed -i "s/^version=.*$/version=${{ github.event.inputs.version }}/" gradle.properties
+
+      - name: Build with Gradle
+        run: ./gradlew buildAll
+
+      # TODO: Publish to Modrinth
+      # TODO: Publish to CurseForge (Mod, Plugin)
+      # TODO: Publish to Hangar
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./result/*.jar
+          body: ${{ github.event.inputs.changelog }}
+          name: v${{ github.event.inputs.version }}
+          tag_name: ${{ github.event.inputs.version }}
+
+      - name: Bump version in gradle.properties
+        run: |
+          IFS='.' read -r major minor patch <<< "${{ github.event.inputs.version }}"
+          next_patch=$((patch + 1))
+          next_version="${major}.${minor}.${next_patch}-SNAPSHOT"
+          sed -i "s/^version=.*$/version=$next_version/" gradle.properties
+
+      - name: Commit and push changes to gradle.properties
+        run: |
+          git add gradle.properties
+          git commit -m "Bump version to $next_version"
+          git push
