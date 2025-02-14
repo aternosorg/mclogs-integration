@@ -3,14 +3,14 @@ package gs.mclo.commands;
 import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
-import gs.mclo.MclogsPlugin;
+import gs.mclo.MclogsBukkitPlugin;
 import gs.mclo.components.AdventureComponent;
 import org.bukkit.command.CommandSender;
 
 public class BukkitBuildContext extends BuildContext<CommandSender, AdventureComponent> {
-    protected final MclogsPlugin plugin;
+    protected final MclogsBukkitPlugin plugin;
 
-    public BukkitBuildContext(MclogsPlugin plugin) {
+    public BukkitBuildContext(MclogsBukkitPlugin plugin) {
         super(CommandEnvironment.DEDICATED_SERVER);
         this.plugin = plugin;
     }

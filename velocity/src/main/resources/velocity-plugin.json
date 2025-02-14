@@ -1,0 +1,11 @@
+{
+  "id": "${mod_id}",
+  "name": "${mod_name}",
+  "version": "${version}",
+  "main": "gs.mclo.MclogsVelocityPlugin",
+  "description": "${description}",
+  "authors": [
+    "${mod_author}"
+  ],
+  "url": "${homepage_url}"
+}

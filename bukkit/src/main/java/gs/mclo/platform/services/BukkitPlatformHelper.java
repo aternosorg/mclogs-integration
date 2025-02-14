@@ -3,7 +3,7 @@ package gs.mclo.platform.services;
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.file.FileConfig;
 import com.electronwill.nightconfig.core.file.GenericBuilder;
-import gs.mclo.MclogsPlugin;
+import gs.mclo.MclogsBukkitPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class BukkitPlatformHelper implements IPlatformHelper {
     private static final Pattern BUKKIT_VERSION_PATTERN = Pattern.compile("(.*)-R\\d+\\.\\d+.*");
-    protected final JavaPlugin plugin = JavaPlugin.getPlugin(MclogsPlugin.class);
+    protected final JavaPlugin plugin = JavaPlugin.getPlugin(MclogsBukkitPlugin.class);
 
     @Override
     public String getPlatformName() {

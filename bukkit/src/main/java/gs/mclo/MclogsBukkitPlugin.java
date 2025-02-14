@@ -10,10 +10,10 @@ import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class MclogsPlugin extends JavaPlugin {
+public class MclogsBukkitPlugin extends JavaPlugin {
     static {
         // Bukkit uses a different class loader for plugins than the default thread context class loader.
-        Services.setClassLoader(MclogsPlugin.class.getClassLoader());
+        Services.setClassLoader(MclogsBukkitPlugin.class.getClassLoader());
     }
 
     protected MclogsCommon mclogsCommon = new MclogsCommon();

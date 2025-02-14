@@ -87,8 +87,8 @@ public class MclogsCommon {
             BuildContext<T, ComponentType> context,
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
-        Constants.LOG.info("Registering command {}", context.environment.getCommandName());
-        var builder = context.literal(context.environment.getCommandName());
+        Constants.LOG.info("Registering command {}", context.environment.commandName);
+        var builder = context.literal(context.environment.commandName);
 
         for (var command : getCommands(componentFactory)) {
             dispatcher.register(command.build(context, builder));

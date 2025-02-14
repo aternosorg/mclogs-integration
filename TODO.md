@@ -1,7 +1,7 @@
 # TODO
 
 ## Additional Platforms
-- [ ] Velocity
+- [x] Velocity
 - [ ] BungeeCord
 
 ## CI/CD

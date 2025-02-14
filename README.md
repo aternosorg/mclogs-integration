@@ -38,7 +38,12 @@ The Plugin/Mod contains the following commands:
 | mclogs list  |             | List server logs and crash reports   | 2                | mclogs.list     |
 | mclogs share | <file-name> | Share a specific log or crash report | 2                | mclogs.share    |
 
-If the mod is installed on your client the commands `/mclogsc` will also be available for your client logs.
+For special cases, the following commands are available:
+
+| Scenario                          | Command                   | Behavior           |
+|-----------------------------------|---------------------------|--------------------|
+| Mod installed client-side         | `/mclogsc`                | Handle client logs |
+| Mod installed on a velocity proxy | `/mclogsp` and `/mclogsv` | Handle proxy logs  |
 
 ### Permissions
 
@@ -78,6 +83,7 @@ create an issue for discussion first, to avoid wasting time on something that mi
 | common-mc | Code shared between all platforms that provide access to the Minecraft classes | common        |
 | adventure | Code shared between all platforms that use the adventure component library     | common        |
 | bukkit    | Bukkit plugin implementation                                                   | adventure     |
+| velocity  | Velocity plugin implementation                                                 | adventure     |
 | forge     | Forge mod implementation                                                       | common-mc     |
 | fabric    | Fabric mod implementation                                                      | common-mc     |
 | neoforge  | NeoForge mod implementation                                                    | common-mc     |
@@ -87,18 +93,20 @@ To build all modules run `./gradlew buildAll`. Unless specified below all other 
 
 Modules with special build task:
 
-| Module | Task        |
-|--------|-------------|
-| bukkit | `shadowJar` |
-| forge  | `jarJar`    |
+| Module   | Task        |
+|----------|-------------|
+| bukkit   | `shadowJar` |
+| velocity | `shadowJar` |
+| forge    | `jarJar`    |
 
 ### Running in development environments
 If you're using IntelliJ IDEA you should already see run configurations for most platforms.
 For other platforms or other IDEs run their respective gradle tasks:
 
-| Platform | Client Task                     | Server Task                     |
-|----------|---------------------------------|---------------------------------|
-| Bukkit   |                                 | `./gradlew :bukkit:runServer`   |
-| Forge    | `./gradlew :forge:Client`       | `./gradlew :forge:Server`       |
-| Fabric   | `./gradlew :fabric:runClient`   | `./gradlew :fabric:runServer`   |
-| NeoForge | `./gradlew :neoforge:runClient` | `./gradlew :neoforge:runServer` |
+| Platform | Client Task                     | Server Task                       |
+|----------|---------------------------------|-----------------------------------|
+| Bukkit   |                                 | `./gradlew :bukkit:runServer`     |
+| Velocity |                                 | `./gradlew :velocity:runVelocity` |
+| Forge    | `./gradlew :forge:Client`       | `./gradlew :forge:Server`         |
+| Fabric   | `./gradlew :fabric:runClient`   | `./gradlew :fabric:runServer`     |
+| NeoForge | `./gradlew :neoforge:runClient` | `./gradlew :neoforge:runServer`   |

@@ -24,7 +24,7 @@ public class MclogsCommand<
             BuildContext<T, ComponentType> buildContext,
             LiteralArgumentBuilder<T> builder
     ) {
-        if (buildContext.environment == CommandEnvironment.DEDICATED_SERVER) {
+        if (buildContext.environment.hasPermissions) {
             builder = builder.requires(source -> buildContext.mapSource(source).hasPermission(Permission.BASE));
         }
 

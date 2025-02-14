@@ -56,7 +56,7 @@ repositories {
         forRepository {
             maven {
                 name = 'Paper'
-                url = uri('https://papermc.io/repo/repository/maven-public/')
+                url = uri('https://repo.papermc.io/repository/maven-public/')
             }
         }
         filter {
@@ -120,7 +120,7 @@ processResources {
             'issues_url'                    : issues_url,
     ]
 
-    filesMatching(['pack.mcmeta', 'plugin.yml', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml']) {
+    filesMatching(['pack.mcmeta', 'plugin.yml', 'velocity-plugin.json', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml']) {
         expand expandProps
     }
     inputs.properties(expandProps)

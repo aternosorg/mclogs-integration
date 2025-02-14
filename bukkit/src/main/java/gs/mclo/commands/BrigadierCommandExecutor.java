@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.ParseResults;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import gs.mclo.Constants;
-import gs.mclo.MclogsPlugin;
+import gs.mclo.MclogsBukkitPlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.Style;
@@ -20,10 +20,10 @@ import java.util.concurrent.TimeUnit;
 
 public class BrigadierCommandExecutor implements CommandExecutor, TabCompleter {
     private static final Style.Builder ERROR_STYLE = Style.style().color(NamedTextColor.RED);
-    private final MclogsPlugin plugin;
+    private final MclogsBukkitPlugin plugin;
     private final CommandDispatcher<CommandSender> dispatcher;
 
-    public BrigadierCommandExecutor(@NotNull MclogsPlugin plugin,
+    public BrigadierCommandExecutor(@NotNull MclogsBukkitPlugin plugin,
                                     @NotNull CommandDispatcher<CommandSender> dispatcher) {
         this.plugin = plugin;
         this.dispatcher = dispatcher;

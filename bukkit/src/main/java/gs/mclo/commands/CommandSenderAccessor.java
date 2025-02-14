@@ -1,6 +1,6 @@
 package gs.mclo.commands;
 
-import gs.mclo.MclogsPlugin;
+import gs.mclo.MclogsBukkitPlugin;
 import gs.mclo.components.AdventureComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.CommandSender;
@@ -8,10 +8,10 @@ import org.bukkit.command.CommandSender;
 import java.nio.file.Path;
 
 public class CommandSenderAccessor implements ICommandSourceAccessor<AdventureComponent> {
-    protected final MclogsPlugin plugin;
+    protected final MclogsBukkitPlugin plugin;
     protected final CommandSender commandSender;
 
-    public CommandSenderAccessor(MclogsPlugin plugin,
+    public CommandSenderAccessor(MclogsBukkitPlugin plugin,
                                  CommandSender commandSender) {
         this.plugin = plugin;
         this.commandSender = commandSender;
