@@ -3,16 +3,6 @@ plugins {
     alias(libs.plugins.neoforge.moddev)
 }
 
-dependencies {
-    additionalRuntimeClasspath(libs.mclogs.api)
-    implementation(libs.mclogs.api)
-    jarJar(libs.mclogs.api)
-
-    additionalRuntimeClasspath(libs.nightconfig.toml)
-    implementation(libs.nightconfig.toml)
-    jarJar(libs.nightconfig.toml)
-}
-
 neoForge {
     version = neoforge_version
     // Automatically enable neoforge AccessTransformers if the file exists
@@ -47,6 +37,17 @@ neoForge {
             sourceSet sourceSets.main
         }
     }
+}
+
+
+dependencies {
+    additionalRuntimeClasspath(libs.mclogs.api)
+    implementation(libs.mclogs.api)
+    jarJar(libs.mclogs.api)
+
+    additionalRuntimeClasspath(libs.nightconfig.toml)
+    implementation(libs.nightconfig.toml)
+    jarJar(libs.nightconfig.toml)
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
