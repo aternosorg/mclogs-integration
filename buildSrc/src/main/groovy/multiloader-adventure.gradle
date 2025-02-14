@@ -1,0 +1,46 @@
+// multiloader-common plus adventure sources. Used by bukkit and velocity
+
+plugins {
+    id 'multiloader-common'
+}
+
+configurations {
+    adventureJava{
+        canBeResolved = true
+    }
+    adventureResources{
+        canBeResolved = true
+    }
+}
+
+dependencies {
+    compileOnly(project(':adventure')) {
+        capabilities {
+            requireCapability "$group:$mod_id-adventure"
+        }
+    }
+    adventureJava project(path: ':adventure', configuration: 'adventureJava')
+    adventureResources project(path: ':adventure', configuration: 'adventureResources')
+}
+
+tasks.named('compileJava', JavaCompile) {
+    dependsOn(configurations.adventureJava)
+    source(configurations.adventureJava)
+}
+
+processResources {
+    dependsOn(configurations.adventureResources)
+    from(configurations.adventureResources)
+}
+
+tasks.named('javadoc', Javadoc).configure {
+    dependsOn(configurations.adventureJava)
+    source(configurations.adventureJava)
+}
+
+tasks.named('sourcesJar', Jar) {
+    dependsOn(configurations.adventureJava)
+    from(configurations.adventureJava)
+    dependsOn(configurations.adventureResources)
+    from(configurations.adventureResources)
+}

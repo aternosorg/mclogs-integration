@@ -1,0 +1,27 @@
+plugins {
+    id 'multiloader-common'
+}
+
+dependencies {
+    implementation(libs.mclogs.api)
+    implementation(libs.adventure.api)
+    implementation(libs.nightconfig.core)
+    implementation(libs.slf4j.api)
+    implementation(libs.brigadier)
+}
+
+configurations {
+    adventureJava {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+    adventureResources {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+}
+
+artifacts {
+    adventureJava sourceSets.main.java.sourceDirectories.singleFile
+    adventureResources sourceSets.main.resources.sourceDirectories.singleFile
+}

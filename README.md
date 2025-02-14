@@ -76,7 +76,8 @@ create an issue for discussion first, to avoid wasting time on something that mi
 |-----------|--------------------------------------------------------------------------------|---------------|
 | common    | Code shared between all platforms                                              |               |
 | common-mc | Code shared between all platforms that provide access to the Minecraft classes | common        |
-| bukkit    | Bukkit plugin implementation                                                   | common        |
+| adventure | Code shared between all platforms that use the adventure component library     | common        |
+| bukkit    | Bukkit plugin implementation                                                   | adventure     |
 | forge     | Forge mod implementation                                                       | common-mc     |
 | fabric    | Fabric mod implementation                                                      | common-mc     |
 | neoforge  | NeoForge mod implementation                                                    | common-mc     |

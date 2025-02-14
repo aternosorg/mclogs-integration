@@ -52,6 +52,17 @@ repositories {
             includeGroupAndSubgroups('org.spigotmc')
         }
     }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Paper'
+                url = uri('https://papermc.io/repo/repository/maven-public/')
+            }
+        }
+        filter {
+            includeGroupAndSubgroups('com.velocitypowered')
+        }
+    }
     maven {
         name = "Minecraft Libraries"
         url = uri("https://libraries.minecraft.net")

@@ -6,7 +6,6 @@ import gs.mclo.components.AdventureComponentFactory;
 import gs.mclo.commands.BukkitBuildContext;
 import gs.mclo.platform.Services;
 import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.platform.AudienceProvider;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
