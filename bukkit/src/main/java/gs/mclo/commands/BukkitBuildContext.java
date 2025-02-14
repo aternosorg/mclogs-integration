@@ -29,9 +29,4 @@ public class BukkitBuildContext extends BuildContext<CommandSender, AdventureCom
     public <V> RequiredArgumentBuilder<CommandSender, V> argument(String name, ArgumentType<V> type) {
         return RequiredArgumentBuilder.argument(name, type);
     }
-
-    @Override
-    public boolean supportsClickEvents() {
-        return true;
-    }
 }

@@ -29,9 +29,4 @@ public class VelocityBuildContext extends BuildContext<CommandSource, AdventureC
     public <V> RequiredArgumentBuilder<CommandSource, V> argument(String name, ArgumentType<V> type) {
         return BrigadierCommand.requiredArgumentBuilder(name, type);
     }
-
-    @Override
-    public boolean supportsClickEvents() {
-        return true;
-    }
 }

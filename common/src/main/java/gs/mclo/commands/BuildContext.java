@@ -48,5 +48,7 @@ public abstract class BuildContext<T, ComponentType extends IComponent<Component
      */
     public abstract <V> RequiredArgumentBuilder<T, V> argument(String name, ArgumentType<V> type);
 
-    public abstract boolean supportsClickEvents();
+    public boolean supportsClickEvents() {
+        return true;
+    }
 }

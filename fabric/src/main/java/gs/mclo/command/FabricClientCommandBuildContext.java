@@ -29,9 +29,4 @@ public class FabricClientCommandBuildContext extends BuildContext<FabricClientCo
     public <V> RequiredArgumentBuilder<FabricClientCommandSource, V> argument(String name, ArgumentType<V> type) {
         return ClientCommandManager.argument(name, type);
     }
-
-    @Override
-    public boolean supportsClickEvents() {
-        return true;
-    }
 }

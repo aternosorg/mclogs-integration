@@ -25,9 +25,4 @@ public class CommandSourceStackBuildContext extends BuildContext<CommandSourceSt
     public <V> RequiredArgumentBuilder<CommandSourceStack, V> argument(String name, ArgumentType<V> type) {
         return RequiredArgumentBuilder.argument(name, type);
     }
-
-    @Override
-    public boolean supportsClickEvents() {
-        return true;
-    }
 }
