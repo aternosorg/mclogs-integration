@@ -22,7 +22,7 @@ public class MinecraftStyle implements IStyle<MinecraftStyle, ClickEvent> {
 
     @Override
     public MinecraftStyle clickEvent(ClickEvent clickEvent) {
-        boxed.withClickEvent(clickEvent);
-        return null;
+        boxed = boxed.withClickEvent(clickEvent);
+        return this;
     }
 }
