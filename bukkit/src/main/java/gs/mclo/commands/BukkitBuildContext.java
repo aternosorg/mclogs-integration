@@ -14,6 +14,6 @@ public class BukkitBuildContext extends BuildContext<CommandSender, AdventureCom
 
     @Override
     public ICommandSourceAccessor<AdventureComponent> mapSource(CommandSender source) {
-        return new CommandSenderAccessor(plugin, source);
+        return new BukkitCommandSenderAccessor(plugin, source);
     }
 }
