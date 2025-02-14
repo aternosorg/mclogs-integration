@@ -26,7 +26,7 @@ public class MclogsListCommand<
             BuildContext<T, ComponentType> buildContext,
             LiteralArgumentBuilder<T> builder
     ) {
-        var list = buildContext.literal("list");
+        var list = LiteralArgumentBuilder.<T>literal("list");
 
         if (buildContext.environment.hasPermissions) {
             list = list.requires(source -> buildContext.mapSource(source).hasPermission(Permission.LIST));

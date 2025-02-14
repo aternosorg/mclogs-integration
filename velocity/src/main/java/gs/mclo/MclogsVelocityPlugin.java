@@ -1,7 +1,9 @@
 package gs.mclo;
 
 import com.google.inject.Inject;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.velocitypowered.api.command.BrigadierCommand;
+import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
@@ -45,7 +47,7 @@ public class MclogsVelocityPlugin extends MclogsCommon {
                 .build();
 
         var context = new VelocityBuildContext();
-        var builder = context.literal(context.environment.commandName);
+        var builder = LiteralArgumentBuilder.<CommandSource>literal(context.environment.commandName);
 
         for (var command : getCommands(componentFactory)) {
             commandManager.register(commandMeta, new BrigadierCommand(command.build(context, builder)));

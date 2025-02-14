@@ -23,9 +23,7 @@ public class MclogsBukkitPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         mclogsCommon.init();
-
         adventure = BukkitAudiences.create(this);
-
         registerCommands();
     }
 

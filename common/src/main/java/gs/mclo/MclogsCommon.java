@@ -4,6 +4,7 @@ import com.electronwill.nightconfig.core.file.FileConfig;
 import com.electronwill.nightconfig.core.serde.ObjectDeserializer;
 import com.electronwill.nightconfig.core.serde.ObjectSerializer;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import gs.mclo.api.Instance;
 import gs.mclo.api.MclogsClient;
 import gs.mclo.commands.*;
@@ -88,7 +89,7 @@ public class MclogsCommon {
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
         Constants.LOG.info("Registering command {}", context.environment.commandName);
-        var builder = context.literal(context.environment.commandName);
+        var builder = LiteralArgumentBuilder.<T>literal(context.environment.commandName);
 
         for (var command : getCommands(componentFactory)) {
             dispatcher.register(command.build(context, builder));

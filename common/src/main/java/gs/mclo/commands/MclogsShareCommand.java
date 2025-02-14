@@ -2,6 +2,7 @@ package gs.mclo.commands;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
@@ -32,13 +33,13 @@ public class MclogsShareCommand<
             BuildContext<T, ComponentType> buildContext,
             LiteralArgumentBuilder<T> builder
     ) {
-        var share = buildContext.literal("share");
+        var share = LiteralArgumentBuilder.<T>literal("share");
 
         if (buildContext.environment.hasPermissions) {
             share = share.requires(source -> buildContext.mapSource(source).hasPermission(Permission.SHARE_SPECIFIC));
         }
 
-        var argument = buildContext.argument(ARGUMENT_NAME, StringArgumentType.greedyString())
+        var argument = RequiredArgumentBuilder.<T, String>argument(ARGUMENT_NAME, StringArgumentType.greedyString())
                 .suggests((x, y) -> this.suggest(x, y, buildContext))
                 .executes(context -> execute(context, buildContext));
 

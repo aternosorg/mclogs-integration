@@ -1,8 +1,5 @@
 package gs.mclo.commands;
 
-import com.mojang.brigadier.arguments.ArgumentType;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import gs.mclo.components.IComponent;
 
 /**
@@ -31,22 +28,6 @@ public abstract class BuildContext<T, ComponentType extends IComponent<Component
      * @return A command source accessor.
      */
     public abstract ICommandSourceAccessor<ComponentType> mapSource(T source);
-
-    /**
-     * Creates a new literal argument builder.
-     * @param name The name of the literal.
-     * @return A new literal argument builder.
-     */
-    public abstract LiteralArgumentBuilder<T> literal(String name);
-
-    /**
-     * Creates a new required argument builder.
-     * @param name The name of the argument.
-     * @param type The type of the argument.
-     * @return A new required argument builder.
-     * @param <V> The type of the argument value.
-     */
-    public abstract <V> RequiredArgumentBuilder<T, V> argument(String name, ArgumentType<V> type);
 
     /**
      * Are click events with client commands supported in this context?
