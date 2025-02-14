@@ -27,7 +27,7 @@ public class MinecraftComponent implements IComponent<MinecraftComponent, Minecr
     }
 
     @Override
-    public MinecraftComponent setStyle(MinecraftStyle style) {
+    public MinecraftComponent style(MinecraftStyle style) {
         boxed.setStyle(style.getBoxed());
         return this;
     }

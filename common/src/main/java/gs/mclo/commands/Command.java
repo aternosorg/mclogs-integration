@@ -128,7 +128,7 @@ public abstract class Command<
 
         apiClient.uploadLog(log).thenAccept(response -> {
             if (response.isSuccess()) {
-                var link = componentFactory.literal(response.getUrl()).setStyle(openUrlStyle(response.getUrl()));
+                var link = componentFactory.literal(response.getUrl()).style(openUrlStyle(response.getUrl()));
                 var message = componentFactory.literal("Your log has been uploaded: ").append(link);
                 source.sendSuccess(message, true);
             } else {
@@ -172,7 +172,7 @@ public abstract class Command<
         return componentFactory.literal("There's no log or crash report with the name '" + filename + "'.")
                 .append("\n")
                 .append("Use ")
-                .append(componentFactory.literal(command).setStyle(runCommandStyle(command)))
+                .append(componentFactory.literal(command).style(runCommandStyle(command)))
                 .append(" to list all logs.");
     }
 

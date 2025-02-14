@@ -77,36 +77,39 @@ create an issue for discussion first, to avoid wasting time on something that mi
 
 ### Modules
 
-| Module    | Description                                                                    | Parent Module |
-|-----------|--------------------------------------------------------------------------------|---------------|
-| common    | Code shared between all platforms                                              |               |
-| common-mc | Code shared between all platforms that provide access to the Minecraft classes | common        |
-| adventure | Code shared between all platforms that use the adventure component library     | common        |
-| bukkit    | Bukkit plugin implementation                                                   | adventure     |
-| velocity  | Velocity plugin implementation                                                 | adventure     |
-| forge     | Forge mod implementation                                                       | common-mc     |
-| fabric    | Fabric mod implementation                                                      | common-mc     |
-| neoforge  | NeoForge mod implementation                                                    | common-mc     |
+| Module     | Description                                                                    | Parent Module |
+|------------|--------------------------------------------------------------------------------|---------------|
+| common     | Code shared between all platforms                                              |               |
+| common-mc  | Code shared between all platforms that provide access to the Minecraft classes | common        |
+| adventure  | Code shared between all platforms that use the adventure component library     | common        |
+| bukkit     | Bukkit plugin implementation                                                   | adventure     |
+| bungeecord | BungeeCord plugin implementation                                               | adventure     |
+| velocity   | Velocity plugin implementation                                                 | adventure     |
+| forge      | Forge mod implementation                                                       | common-mc     |
+| fabric     | Fabric mod implementation                                                      | common-mc     |
+| neoforge   | NeoForge mod implementation                                                    | common-mc     |
 
 ### Building
 To build all modules run `./gradlew buildAll`. Unless specified below all other modules use the `build` task.
 
 Modules with special build task:
 
-| Module   | Task        |
-|----------|-------------|
-| bukkit   | `shadowJar` |
-| velocity | `shadowJar` |
-| forge    | `jarJar`    |
+| Module     | Task        |
+|------------|-------------|
+| bukkit     | `shadowJar` |
+| bungeecord | `shadowJar` |
+| velocity   | `shadowJar` |
+| forge      | `jarJar`    |
 
 ### Running in development environments
 If you're using IntelliJ IDEA you should already see run configurations for most platforms.
 For other platforms or other IDEs run their respective gradle tasks:
 
-| Platform | Client Task                     | Server Task                       |
-|----------|---------------------------------|-----------------------------------|
-| Bukkit   |                                 | `./gradlew :bukkit:runServer`     |
-| Velocity |                                 | `./gradlew :velocity:runVelocity` |
-| Forge    | `./gradlew :forge:Client`       | `./gradlew :forge:Server`         |
-| Fabric   | `./gradlew :fabric:runClient`   | `./gradlew :fabric:runServer`     |
-| NeoForge | `./gradlew :neoforge:runClient` | `./gradlew :neoforge:runServer`   |
+| Platform   | Client Task                     | Server Task                           |
+|------------|---------------------------------|---------------------------------------|
+| Bukkit     |                                 | `./gradlew :bukkit:runServer`         |
+| BungeeCord |                                 | `./gradlew :bungeecord:runBungeeCord` |
+| Velocity   |                                 | `./gradlew :velocity:runVelocity`     |
+| Forge      | `./gradlew :forge:Client`       | `./gradlew :forge:Server`             |
+| Fabric     | `./gradlew :fabric:runClient`   | `./gradlew :fabric:runServer`         |
+| NeoForge   | `./gradlew :neoforge:runClient` | `./gradlew :neoforge:runServer`       |

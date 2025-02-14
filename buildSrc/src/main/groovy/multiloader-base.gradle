@@ -64,6 +64,10 @@ repositories {
         }
     }
     maven {
+        name = 'Sonatype OSS Snapshots'
+        url = uri('https://oss.sonatype.org/content/repositories/snapshots/')
+    }
+    maven {
         name = "Minecraft Libraries"
         url = uri("https://libraries.minecraft.net")
     }
@@ -101,7 +105,9 @@ processResources {
             'version'                       : version,
             'group'                         : project.group, //Else we target the task's group.
             'minecraft_version'             : minecraft_version,
-            'minecraft_version_range'       : minecraft_version_range,
+            'min_minecraft_version'         : min_minecraft_version,
+            'max_minecraft_version'         : max_minecraft_version,
+            'minecraft_version_range'       : "[$min_minecraft_version, $max_minecraft_version)",
             'fabric_version'                : fabric_version,
             'fabric_loader_version'         : fabric_loader_version,
             'mod_name'                      : mod_name,

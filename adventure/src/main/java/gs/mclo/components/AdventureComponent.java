@@ -27,7 +27,7 @@ public class AdventureComponent implements IComponent<AdventureComponent, Advent
     }
 
     @Override
-    public AdventureComponent setStyle(AdventureStyle style) {
+    public AdventureComponent style(AdventureStyle style) {
         boxed = boxed.style(style.getBoxed());
         return this;
     }

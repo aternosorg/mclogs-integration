@@ -1,29 +1,29 @@
 package gs.mclo;
 
 import com.mojang.brigadier.CommandDispatcher;
-import gs.mclo.commands.BukkitBrigadierCommand;
+import gs.mclo.commands.BungeeBrigadierCommand;
+import gs.mclo.commands.BungeeBuildContext;
 import gs.mclo.components.AdventureComponentFactory;
-import gs.mclo.commands.BukkitBuildContext;
 import gs.mclo.platform.Services;
 import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
-import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
+import net.kyori.adventure.platform.bungeecord.BungeeAudiences;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.plugin.Plugin;
 
-public class MclogsBukkitPlugin extends JavaPlugin {
+public class MclogsBungeePlugin extends Plugin {
     static {
         // Bukkit uses a different class loader for plugins than the default thread context class loader.
-        Services.setClassLoader(MclogsBukkitPlugin.class.getClassLoader());
+        Services.setClassLoader(MclogsBungeePlugin.class.getClassLoader());
     }
 
     protected MclogsCommon mclogsCommon = new MclogsCommon();
-    protected BukkitAudiences adventure;
+    protected BungeeAudiences adventure;
     protected CommandDispatcher<CommandSender> dispatcher;
 
     @Override
     public void onEnable() {
         mclogsCommon.init();
-        adventure = BukkitAudiences.create(this);
+        adventure = BungeeAudiences.create(this);
         registerCommands();
     }
 
@@ -35,7 +35,7 @@ public class MclogsBukkitPlugin extends JavaPlugin {
         }
     }
 
-    private BukkitAudiences adventure() {
+    private BungeeAudiences adventure() {
         if (adventure == null) {
             throw new IllegalStateException("Adventure platform is not initialized");
         }
@@ -50,11 +50,12 @@ public class MclogsBukkitPlugin extends JavaPlugin {
 
     protected void registerCommands() {
         dispatcher = new CommandDispatcher<>();
-        var context = new BukkitBuildContext(this);
+        var context = new BungeeBuildContext(this);
         var componentFactory = new AdventureComponentFactory();
 
         mclogsCommon.registerCommands(dispatcher, context, componentFactory);
-        var executor = new BukkitBrigadierCommand(this, dispatcher, context, componentFactory);
-        executor.register();
+
+        var command = new BungeeBrigadierCommand(dispatcher, context, componentFactory);
+        this.getProxy().getPluginManager().registerCommand(this, command);
     }
 }

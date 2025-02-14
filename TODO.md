@@ -2,7 +2,9 @@
 
 ## Additional Platforms
 - [x] Velocity
-- [ ] BungeeCord
+- [x] BungeeCord
+  - [ ] Figure out why /mclogsp list causes a network protocol error
+- [ ] Quilt
 
 ## CI/CD
 - [x] Automatically build on commit with GH actions

@@ -12,14 +12,32 @@ public interface IStyle<
         ClickEventType
         > {
     /**
+     * Set the color of the text
+     * @return The current style
+     */
+    Self color(Color color);
+
+    /**
      * Make the text underlined
      * @return The current style
      */
     Self underlined();
 
     /**
+     * Make the text italic
+     * @return The current style
+     */
+    Self italic();
+
+    /**
      * Add a click event to the text
      * @return The current style
      */
     Self clickEvent(ClickEventType clickEvent);
+
+    /**
+     * Create a copy of the current style
+     * @return A new instance of the style with the same properties
+     */
+    Self copy();
 }

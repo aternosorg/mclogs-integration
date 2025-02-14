@@ -32,5 +32,5 @@ public interface IComponent<
      * @param style The style to apply to the text.
      * @return The current component.
      */
-    Self setStyle(StyleType style);
+    Self style(StyleType style);
 }

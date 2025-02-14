@@ -85,7 +85,7 @@ public class MclogsListCommand<
     }
 
     protected ComponentType title(String title) {
-        return componentFactory.literal(title).setStyle(componentFactory.style().underlined());
+        return componentFactory.literal(title).style(componentFactory.style().underlined());
     }
 
     protected ComponentType item(
@@ -100,7 +100,7 @@ public class MclogsListCommand<
 
         if (buildContext.supportsClientCommandClickEvents()) {
             var clickEvent = componentFactory.clickEvent(ClickEventAction.RUN_COMMAND, command);
-            component.setStyle(componentFactory.style().clickEvent(clickEvent));
+            component.style(componentFactory.style().clickEvent(clickEvent));
         }
 
         return component;

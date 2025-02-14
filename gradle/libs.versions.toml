@@ -1,6 +1,6 @@
 [versions]
 adventure-api = "4.18.0"
-adventure-bukkit = "4.3.4"
+adventure-platforms = "4.3.4"
 brigadier = "1.0.18"
 # see https://fabricmc.net/develop/ for new versions
 fabric-loom = "1.9-SNAPSHOT"
@@ -18,7 +18,8 @@ velocity-api = "3.4.0-SNAPSHOT"
 
 [libraries]
 adventure-api = { module = "net.kyori:adventure-api", version.ref = "adventure-api" }
-adventure-bukkit = { module = "net.kyori:adventure-platform-bukkit", version.ref = "adventure-bukkit" }
+adventure-bukkit = { module = "net.kyori:adventure-platform-bukkit", version.ref = "adventure-platforms" }
+adventure-bungeecord = { module = "net.kyori:adventure-platform-bungeecord", version.ref = "adventure-platforms" }
 brigadier = { module = "com.mojang:brigadier", version.ref = "brigadier" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }

@@ -4,9 +4,7 @@ description: "${description}"
 author: "${mod_author}"
 website: "${homepage_url}"
 
-main: gs.mclo.MclogsBukkitPlugin
-api-version: "${min_minecraft_version}"
-folia-supported: true
+main: gs.mclo.MclogsBungeePlugin
 
 commands:
   mclogs:
