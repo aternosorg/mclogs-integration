@@ -11,10 +11,11 @@ def copyShadowJar = it -> {
 }
 
 tasks.register('buildAll', Copy) {
-    dependsOn ':bukkit:shadowJar', ':velocity:shadowJar', ':forge:jarJar', ':fabric:build', ':neoforge:build'
+    dependsOn(':bukkit:shadowJar', ':velocity:shadowJar', ':forge:jarJar', ':fabric:build', ':neoforge:build')
 
     from('fabric/build/libs', 'neoforge/build/libs')
     from('bukkit/build/libs', copyShadowJar)
+    from('velocity/build/libs', copyShadowJar)
     from('forge/build/libs', copyShadowJar)
 
     it.rename { String fileName ->
