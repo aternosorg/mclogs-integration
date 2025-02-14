@@ -73,7 +73,7 @@ create an issue for discussion first, to avoid wasting time on something that mi
 ### Setting up the Development Environment
 1. Clone the repository
 2. Import the project in your IDE (IntelliJ IDEA is recommended)
-3. Run `./gradlew genIntellijRuns` to generate the Forge runs
+3. Run `./gradlew :forge:genIntellijRuns :neoforge:createLaunchScripts` to generate the Forge/NeoForge runs
 
 ### Modules
 
