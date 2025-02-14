@@ -1,7 +1,7 @@
 plugins {
     id 'multiloader-common'
-    id 'com.gradleup.shadow' version '9.0.0-beta8'
-    id "xyz.jpenilla.run-paper" version "2.3.1"
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.run.paper)
 }
 
 dependencies {
