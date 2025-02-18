@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.fabric.loom) apply false
     alias(libs.plugins.neoforge.moddev) apply false
+    alias(libs.plugins.hangar)
 }
 
 
@@ -36,4 +37,35 @@ tasks.register('buildAll', Copy) {
 
 tasks.register('clean', Delete) {
     delete 'result'
+}
+
+hangarPublish {
+    evaluationDependsOn(":bukkit")
+    evaluationDependsOn(":bungeecord")
+    evaluationDependsOn(":velocity")
+
+    publications.register('plugin') {
+        version = project.version
+        id = 'hangar-project'
+        channel = 'Release'
+        changelog = changelog
+
+        apiKey = System.getenv("HANGAR_API_KEY")
+
+        // register platforms
+        platforms {
+            paper {
+                jar = project(":bukkit").tasks.named("shadowJar").get().outputs.files.singleFile
+                platformVersions = minecraft_version_list
+            }
+            waterfall {
+                jar = project(":bungeecord").tasks.named("shadowJar").get().outputs.files.singleFile
+                platformVersions = minecraft_version_list
+            }
+            velocity {
+                jar = project(":velocity").tasks.named("shadowJar").get().outputs.files.singleFile
+                platformVersions = minecraft_version_list
+            }
+        }
+    }
 }
