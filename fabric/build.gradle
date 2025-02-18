@@ -1,7 +1,10 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
 plugins {
     id 'multiloader-loader'
     alias(libs.plugins.fabric.loom)
     alias(libs.plugins.minotaur)
+    alias(libs.plugins.curseforge.gradle)
 }
 
 dependencies {
@@ -49,5 +52,18 @@ modrinth {
     changelog = changelog
     dependencies {
         required.project "fabric-api"
+    }
+}
+
+tasks.register('curseForge', TaskPublishCurseForge) {
+    apiToken = System.getenv('CURSEFORGE_TOKEN')
+    projectId = curseforge_project_id_mod
+    def mainFile = upload(projectId, jar)
+    mainFile.changelog = changelog
+    mainFile.changelogType = "markdown"
+    mainFile.addRequirement("fabric-api")
+
+    for (String version in minecraft_version_list) {
+        mainFile.addGameVersion(version)
     }
 }

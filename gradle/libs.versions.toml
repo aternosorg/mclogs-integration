@@ -2,6 +2,7 @@
 adventure-api = "4.18.0"
 adventure-platforms = "4.3.4"
 brigadier = "1.0.18"
+curseforge-gradle = "1.1.15"
 # see https://fabricmc.net/develop/ for new versions
 fabric-loom = "1.9-SNAPSHOT"
 forge-gradle = "[6.0.24,6.2)"
@@ -32,6 +33,7 @@ slf4j-jdk14 = { module = "org.slf4j:slf4j-jdk14", version.ref = "slf4j" }
 velocity-api = { module = "com.velocitypowered:velocity-api", version.ref = "velocity-api" }
 
 [plugins]
+curseforge-gradle = { id = "net.darkhax.curseforgegradle", version.ref = "curseforge-gradle" }
 fabric-loom = { id = "fabric-loom", version.ref = "fabric-loom" }
 forge-gradle = { id = "net.minecraftforge.gradle", version.ref = "forge-gradle" }
 minotaur = { id = "com.modrinth.minotaur", version.ref = "minotaur" }

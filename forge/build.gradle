@@ -1,7 +1,10 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
 plugins {
     id 'multiloader-loader'
     alias(libs.plugins.forge.gradle)
     alias(libs.plugins.minotaur)
+    alias(libs.plugins.curseforge.gradle)
 }
 
 base {
@@ -88,4 +91,16 @@ modrinth {
     gameVersions = minecraft_version_list
     loaders = ["forge"]
     changelog = changelog
+}
+
+tasks.register('curseForge', TaskPublishCurseForge) {
+    apiToken = System.getenv('CURSEFORGE_TOKEN')
+    projectId = curseforge_project_id_mod
+    def mainFile = upload(projectId, jarJar)
+    mainFile.changelog = changelog
+    mainFile.changelogType = "markdown"
+
+    for (String version in minecraft_version_list) {
+        mainFile.addGameVersion(version)
+    }
 }
