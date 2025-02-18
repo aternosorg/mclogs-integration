@@ -3,6 +3,13 @@ plugins {
     alias(libs.plugins.neoforge.moddev) apply false
 }
 
+
+def changelogMd = file('CHANGELOG.md')
+ext {
+    changelog = changelogMd.exists() ? changelogMd.text : ''
+    minecraft_version_list = minecraft_versions.split(",").toList()
+}
+
 def copyShadowJar = it -> {
     it.include('*-all.jar', '*-javadoc.jar', '*-sources.jar')
     it.rename { String fileName ->

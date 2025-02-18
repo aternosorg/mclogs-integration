@@ -1,6 +1,7 @@
 plugins {
     id 'multiloader-loader'
     alias(libs.plugins.neoforge.moddev)
+    alias(libs.plugins.minotaur)
 }
 
 neoForge {
@@ -43,3 +44,12 @@ dependencies {
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = modrinth_project_id
+    uploadFile = jar
+    gameVersions = minecraft_version_list
+    loaders = ["neoforge"]
+    changelog = changelog
+}

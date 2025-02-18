@@ -1,6 +1,7 @@
 plugins {
     id 'multiloader-loader'
     alias(libs.plugins.forge.gradle)
+    alias(libs.plugins.minotaur)
 }
 
 base {
@@ -78,4 +79,13 @@ sourceSets.each {
     def dir = layout.buildDirectory.dir("sourcesSets/$it.name")
     it.output.resourcesDir = dir
     it.java.destinationDirectory = dir
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = modrinth_project_id
+    uploadFile = jarJar
+    gameVersions = minecraft_version_list
+    loaders = ["forge"]
+    changelog = changelog
 }
