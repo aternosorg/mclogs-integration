@@ -1,0 +1,22 @@
+name: 'Setup Build Environment'
+description: 'Setup Java, Gradle, and git for building and releasing'
+runs:
+  using: composite
+  steps:
+    - name: Checkout Sources
+      uses: actions/checkout@v4
+
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: 21
+
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+
+    - name: Setup git
+      run: |
+        git config user.email "action@github.com"
+        git config user.name "GitHub Action"
+      shell: bash

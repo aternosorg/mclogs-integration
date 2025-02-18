@@ -1,0 +1,24 @@
+name: 'Setup Build Environment for Release'
+description: 'Setup Java, Gradle, and git for releasing'
+inputs:
+  version:
+    description: 'Version to release'
+    required: true
+  changelog:
+    description: 'Changelog for this release'
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Setup Build Environment
+      uses: ./.github/actions/setup
+
+    - name: Update version in gradle.properties
+      run: |
+        sed -i "s/^version=.*$/version=${{ github.event.inputs.version }}/" gradle.properties
+      shell: bash
+
+    - name: Write Changelog
+      run: |
+        echo "${{ github.event.inputs.changelog }}" > CHANGELOG.md
+      shell: bash

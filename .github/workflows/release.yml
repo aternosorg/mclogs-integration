@@ -10,33 +10,17 @@ on:
 
 jobs:
   release:
-    name: Publish release
+    name: Create release
     runs-on: ubuntu-latest
     permissions:
       contents: write
 
     steps:
-
-      - name: Checkout Sources
-        uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
+      - name: Setup Build Environment
+        uses: ./.github/actions/setup-release
         with:
-          distribution: temurin
-          java-version: 21
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Setup git
-        run: |
-          git config user.email "action@github.com"
-          git config user.name "GitHub Action"
-
-      - name: Update version in gradle.properties
-        run: |
-          sed -i "s/^version=.*$/version=${{ github.event.inputs.version }}/" gradle.properties
+          version: ${{ github.event.inputs.version }}
+          changelog: ${{ github.event.inputs.changelog }}
 
       - name: Build with Gradle
         run: ./gradlew buildAll
@@ -60,7 +44,12 @@ jobs:
           next_version="${major}.${minor}.${next_patch}-SNAPSHOT"
           sed -i "s/^version=.*$/version=$next_version/" gradle.properties
 
+      - name: List changes to gradle.properties
+        run: git diff -- gradle.properties
+        id: diff
+
       - name: Commit and push changes to gradle.properties
+        if: steps.diff.outputs.stdout != ''
         run: |
           git add gradle.properties
           git commit -m "Bump version to $next_version"
