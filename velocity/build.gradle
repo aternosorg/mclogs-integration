@@ -2,6 +2,7 @@ plugins {
     id 'multiloader-adventure'
     alias(libs.plugins.shadow)
     alias(libs.plugins.run.velocity)
+    alias(libs.plugins.minotaur)
 }
 
 dependencies {
@@ -25,4 +26,12 @@ tasks {
         relocate("com.electronwill.nightconfig", "gs.mclo.nightconfig")
         dependsOn("javadocJar", "sourcesJar")
     }
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = modrinth_project_id
+    uploadFile = shadowJar
+    loaders = ["velocity"]
+    changelog = changelog
 }

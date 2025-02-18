@@ -1,13 +1,14 @@
 plugins {
     id 'multiloader-adventure'
     alias(libs.plugins.shadow)
+    alias(libs.plugins.minotaur)
 }
 
 dependencies {
     compileOnly "net.md-5:bungeecord-api:${minor_minecraft_version}-R0.1-SNAPSHOT"
     implementation(libs.mclogs.api) {
         exclude group: 'com.google.code.gson', module: 'gson'
-    } // TODO: check if gson is available
+    }
     implementation(libs.slf4j.api)
     implementation(libs.slf4j.jdk14)
     implementation(libs.nightconfig.toml)
@@ -47,4 +48,12 @@ tasks.register("runBungeeCord", JavaExec) {
 
     classpath = files(bungeeCordJar)
     workingDir(runDir)
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = modrinth_project_id
+    uploadFile = shadowJar
+    loaders = ["bungeecord", "waterfall"]
+    changelog = changelog
 }
