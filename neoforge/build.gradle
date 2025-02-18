@@ -49,7 +49,7 @@ dependencies {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 modrinth {
-    token = System.getenv("MODRINTH_TOKEN")
+    token = findProperty('modrinth_api_token') as String ?: ''
     projectId = modrinth_project_id
     uploadFile = jar
     gameVersions = minecraft_version_list
@@ -57,8 +57,8 @@ modrinth {
     changelog = changelog
 }
 
-tasks.register('curseForge', TaskPublishCurseForge) {
-    apiToken = System.getenv('CURSEFORGE_TOKEN')
+tasks.register('curseforge', TaskPublishCurseForge) {
+    apiToken = findProperty('curseforge_token') as String ?: ''
     projectId = curseforge_project_id_mod
     def mainFile = upload(projectId, jar)
     mainFile.changelog = changelog

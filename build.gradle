@@ -50,7 +50,7 @@ hangarPublish {
         channel = 'Release'
         changelog = changelog
 
-        apiKey = System.getenv("HANGAR_API_KEY")
+        apiKey = findProperty('hangar_api_key') as String ?: ''
 
         // register platforms
         platforms {

@@ -25,10 +25,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew buildAll
 
-      # TODO: Publish to Modrinth
-      # TODO: Publish to CurseForge (Mod, Plugin)
-      # TODO: Publish to Hangar
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -54,3 +50,34 @@ jobs:
           git add gradle.properties
           git commit -m "Bump version to $next_version"
           git push
+
+  publish-projects:
+    name: Publish ${{ matrix.project }} (${{ matrix.task }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        task: [curseforge, modrinth]
+        project: [fabric, forge, neoforge]
+        include:
+          - task: modrinth
+            project: bukkit # TODO: Move up when cf bukkit publishing works
+          - task: modrinth
+            project: bungee
+          - task: modrinth
+            project: velocity
+    steps:
+      - name: Setup Build Environment
+        uses: ./.github/actions/setup-release
+
+      - name: Publish ${{ matrix.project }} with ${{ matrix.task }}
+        run: ./gradlew ":${{ matrix.project }}:${{ matrix.task }}"
+
+  publish-hangar:
+    name: Publish plugins to hangar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Build Environment
+        uses: ./.github/actions/setup-release
+
+      - name: Publish to Hangar
+        run: ./gradlew publishAllPublicationsToHangar

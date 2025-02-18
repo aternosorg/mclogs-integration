@@ -29,7 +29,7 @@ tasks {
 }
 
 modrinth {
-    token = System.getenv("MODRINTH_TOKEN")
+    token = findProperty('modrinth_api_token') as String ?: ''
     projectId = modrinth_project_id
     uploadFile = shadowJar
     loaders = ["velocity"]
