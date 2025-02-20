@@ -4,6 +4,7 @@ import gs.mclo.components.MinecraftComponent;
 import net.minecraft.commands.CommandSourceStack;
 
 import java.nio.file.Path;
+import java.util.Collection;
 
 public class CommandSourceStackAccessor implements ICommandSourceAccessor<MinecraftComponent> {
     private final CommandSourceStack source;
@@ -18,8 +19,13 @@ public class CommandSourceStackAccessor implements ICommandSourceAccessor<Minecr
     }
 
     @Override
-    public Path getDirectory() {
+    public Path getRootDirectory() {
         return source.getServer().getServerDirectory();
+    }
+
+    @Override
+    public Collection<LogDirectory> getLogDirectories() {
+        return LogDirectory.getVanillaLogDirectories(getRootDirectory());
     }
 
     @Override

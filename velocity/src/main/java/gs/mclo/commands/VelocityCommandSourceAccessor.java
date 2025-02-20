@@ -5,6 +5,8 @@ import gs.mclo.components.AdventureComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 
 import java.nio.file.Path;
+import java.util.Collection;
+import java.util.List;
 
 public class VelocityCommandSourceAccessor implements ICommandSourceAccessor<AdventureComponent> {
     /**
@@ -27,8 +29,15 @@ public class VelocityCommandSourceAccessor implements ICommandSourceAccessor<Adv
     }
 
     @Override
-    public Path getDirectory() {
+    public Path getRootDirectory() {
         return Path.of(".");
+    }
+
+    @Override
+    public Collection<LogDirectory> getLogDirectories() {
+        return List.of(
+                new LogDirectory(getRootDirectory().resolve("logs"), LogType.LOG)
+        );
     }
 
     @Override

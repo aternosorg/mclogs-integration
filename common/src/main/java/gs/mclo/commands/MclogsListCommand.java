@@ -4,6 +4,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
 import gs.mclo.api.MclogsClient;
+import gs.mclo.api.Util;
 import gs.mclo.components.ClickEventAction;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
@@ -41,14 +42,27 @@ public class MclogsListCommand<
     public <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext) {
         var source = buildContext.mapSource(context.getSource());
         try {
-            var directory = buildContext.mapSource(context.getSource()).getDirectory();
             int total = 0;
             var message = componentFactory.empty();
 
-            var logs = apiClient.listLogsInDirectory(directory);
-            total += list(message, logs, "Available Log Files:", context, buildContext, false);
-            var reports = apiClient.listCrashReportsInDirectory(directory);
-            total += list(message, reports, "Available Crash Reports:", context, buildContext, true);
+            boolean first = true;
+            for (var logDir : source.getLogDirectories()) {
+                var files = Util.listFilesInDirectory(logDir.path());
+
+                if (files.length > 0) {
+                    if (!first) {
+                        message.append("\n");
+                    }
+
+                    message.append(title(logDir.title()));
+                    for (String log : files) {
+                        message.append(item(log, context, buildContext));
+                    }
+                }
+
+                total += files.length;
+                first = false;
+            }
 
             if (total == 0) {
                 message = componentFactory.literal("No logs or crash reports found.");
@@ -61,27 +75,6 @@ public class MclogsListCommand<
             source.sendFailure(genericErrorMessage());
             return -1;
         }
-    }
-
-    protected int list(
-            ComponentType message,
-            String[] items,
-            String title,
-            CommandContext<?> context,
-            BuildContext<?, ComponentType> buildContext,
-            boolean addLeadingNewLine
-    ) {
-        if (items.length > 0) {
-            if (addLeadingNewLine) {
-                message.append("\n");
-            }
-
-            message.append(title(title));
-            for (String log : items) {
-                message.append(item(log, context, buildContext));
-            }
-        }
-        return items.length;
     }
 
     protected ComponentType title(String title) {

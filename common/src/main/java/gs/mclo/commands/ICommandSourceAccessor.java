@@ -3,6 +3,7 @@ package gs.mclo.commands;
 import gs.mclo.components.IComponent;
 
 import java.nio.file.Path;
+import java.util.Collection;
 
 /**
  * An interface for platform-agnostic command source access.
@@ -17,11 +18,16 @@ public interface ICommandSourceAccessor<Component extends IComponent<Component, 
     boolean hasPermission(Permission permission);
 
     /**
-     * Gets the directory of the server/client.
-     * This should contain both the {@code logs} and {@code crash-report} directories.
-     * @return The directory of the server/client.
+     * Get the directory of the Minecraft server/client.
+     * @return the directory of the Minecraft server/client
      */
-    Path getDirectory();
+    Path getRootDirectory();
+
+    /**
+     * Get a collection of all log directories. These directories do not need to exist.
+     * @return a collection of all directories that may contain logs.
+     */
+    Collection<LogDirectory> getLogDirectories();
 
     /**
      * Sends an error message to the source.
@@ -36,4 +42,12 @@ public interface ICommandSourceAccessor<Component extends IComponent<Component, 
      * @param message The message to send.
      */
     void sendSuccess(Component message, boolean allowLogging);
+
+    /**
+     * Get the file name of the current log file
+     * @return the file name of the current log file
+     */
+    default String getCurrentLogFileName() {
+        return "latest.log";
+    }
 }

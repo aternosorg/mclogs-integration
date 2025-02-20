@@ -71,24 +71,6 @@ public abstract class Command<
     public abstract <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext);
 
     /**
-     * Get the logs directory
-     * @param source The command source
-     * @return The logs directory
-     */
-    public Path getLogsDirectory(ICommandSourceAccessor<?> source) {
-        return source.getDirectory().resolve("logs");
-    }
-
-    /**
-     * Get the crash reports directory
-     * @param source The command source
-     * @return The crash reports directory
-     */
-    public Path getCrashReportsDirectory(ICommandSourceAccessor<?> source) {
-        return source.getDirectory().resolve("crash-reports");
-    }
-
-    /**
      * Share a log or crash report
      * @param context The command context
      * @param buildContext The build context
@@ -99,15 +81,17 @@ public abstract class Command<
     public <T> int share(CommandContext<T> context, BuildContext<T, ComponentType> buildContext, String filename) {
         var source = buildContext.mapSource(context.getSource());
 
-        var logs = getLogsDirectory(source);
-        var crashReports = getCrashReportsDirectory(source);
+        var logDirectories = source.getLogDirectories().stream().map(LogDirectory::path).toArray(Path[]::new);
 
-        var path = logs.resolve(filename);
-        if (!path.toFile().exists()) {
-            path = crashReports.resolve(filename);
+        Path path = null;
+        for (var logDir : logDirectories) {
+            path = logDir.resolve(filename);
+            if (path.toFile().exists()) {
+                break;
+            }
         }
 
-        if (!path.toFile().exists() || !isFileInAllowedDirectory(path, logs, crashReports)) {
+        if (path == null || !path.toFile().exists() || !isFileInAllowedDirectory(path, logDirectories)) {
             source.sendFailure(fileNotFoundMessage(filename, context));
             return -1;
         }
@@ -124,7 +108,7 @@ public abstract class Command<
             return -1;
         }
 
-        Constants.LOG.info("Sharing {}", source.getDirectory().relativize(path));
+        Constants.LOG.info("Sharing {}", source.getRootDirectory().relativize(path));
 
         apiClient.uploadLog(log).thenAccept(response -> {
             if (response.isSuccess()) {
@@ -216,7 +200,7 @@ public abstract class Command<
     private boolean isFileInAllowedDirectory(Path file, Path... directories) {
         try {
             for (var directory : directories) {
-                if (file.toRealPath().startsWith(directory.toRealPath())) {
+                if (directory.toRealPath().equals(file.getParent().toRealPath())) {
                     return true;
                 }
             }

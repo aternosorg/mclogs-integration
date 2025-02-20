@@ -6,6 +6,7 @@ import net.kyori.adventure.audience.Audience;
 import org.bukkit.command.CommandSender;
 
 import java.nio.file.Path;
+import java.util.Collection;
 
 public class BukkitCommandSenderAccessor extends AdventureCommandSourceAccessor {
     protected final MclogsBukkitPlugin plugin;
@@ -23,8 +24,13 @@ public class BukkitCommandSenderAccessor extends AdventureCommandSourceAccessor 
     }
 
     @Override
-    public Path getDirectory() {
+    public Path getRootDirectory() {
         return Path.of(".");
+    }
+
+    @Override
+    public Collection<LogDirectory> getLogDirectories() {
+        return LogDirectory.getVanillaLogDirectories(getRootDirectory());
     }
 
     @Override

@@ -1,11 +1,13 @@
 package gs.mclo.command;
 
 import gs.mclo.commands.ICommandSourceAccessor;
+import gs.mclo.commands.LogDirectory;
 import gs.mclo.commands.Permission;
 import gs.mclo.components.MinecraftComponent;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 
 import java.nio.file.Path;
+import java.util.Collection;
 
 public class FabricClientCommandSourceAccessor implements ICommandSourceAccessor<MinecraftComponent> {
     private final FabricClientCommandSource source;
@@ -20,8 +22,13 @@ public class FabricClientCommandSourceAccessor implements ICommandSourceAccessor
     }
 
     @Override
-    public Path getDirectory() {
+    public Path getRootDirectory() {
         return source.getClient().gameDirectory.toPath();
+    }
+
+    @Override
+    public Collection<LogDirectory> getLogDirectories() {
+        return LogDirectory.getVanillaLogDirectories(getRootDirectory());
     }
 
     @Override

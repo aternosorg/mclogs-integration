@@ -11,7 +11,7 @@ public class ClientCommandSourceStackAccessor extends CommandSourceStackAccessor
     }
 
     @Override
-    public Path getDirectory() {
+    public Path getRootDirectory() {
         return Minecraft.getInstance().gameDirectory.toPath();
     }
 }

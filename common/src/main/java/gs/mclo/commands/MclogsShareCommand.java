@@ -8,6 +8,7 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import gs.mclo.Constants;
 import gs.mclo.api.MclogsClient;
+import gs.mclo.api.Util;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
 import gs.mclo.components.IStyle;
@@ -55,17 +56,14 @@ public class MclogsShareCommand<
         var input = builder.getRemaining();
 
         try {
-            for (String log : apiClient.listLogsInDirectory(source.getDirectory())) {
-                if (log.startsWith(input)) {
-                    builder.suggest(log);
+            for (LogDirectory dir : source.getLogDirectories()) {
+                for (String file : Util.listFilesInDirectory(dir.path())) {
+                    if (file.startsWith(input)) {
+                        builder.suggest(file);
+                    }
                 }
             }
 
-            for (String report : apiClient.listCrashReportsInDirectory(source.getDirectory())) {
-                if (report.startsWith(input)) {
-                    builder.suggest(report);
-                }
-            }
             return builder.buildFuture();
         } catch (Exception e) {
             Constants.LOG.error("An error occurred when listing your logs.", e);

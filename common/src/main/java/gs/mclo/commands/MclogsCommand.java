@@ -33,6 +33,7 @@ public class MclogsCommand<
 
     @Override
     public <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext) {
-        return share(context, buildContext, "latest.log");
+        ICommandSourceAccessor<?> source = buildContext.mapSource(context.getSource());
+        return share(context, buildContext, source.getCurrentLogFileName());
     }
 }
