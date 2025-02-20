@@ -9,6 +9,9 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
 
+/**
+ * A BungeeCord command implementation that uses Brigadier for command execution and completion.
+ */
 public class BungeeBrigadierCommand extends Command implements TabExecutor {
 
     private final BrigadierExecutor<CommandSender, AdventureComponent, AdventureStyle, ClickEvent> executor;

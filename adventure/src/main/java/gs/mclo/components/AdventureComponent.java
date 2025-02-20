@@ -4,13 +4,27 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.event.ClickEvent;
 
+/**
+ * Adventure Component implementation
+ */
 public class AdventureComponent implements IComponent<AdventureComponent, AdventureStyle, ClickEvent> {
+    /**
+     * The internal component
+     */
     protected TextComponent boxed;
 
+    /**
+     * Create a new AdventureComponent
+     * @param component The component to wrap
+     */
     public AdventureComponent(TextComponent component) {
         this.boxed = component;
     }
 
+    /**
+     * Get the internal component
+     * @return The internal component
+     */
     public TextComponent getBoxed() {
         return boxed;
     }

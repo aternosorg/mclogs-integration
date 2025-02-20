@@ -5,13 +5,27 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.Style;
 import net.kyori.adventure.text.format.TextDecoration;
 
+/**
+ * Adventure Style implementation
+ */
 public class AdventureStyle implements IStyle<AdventureStyle, ClickEvent> {
+    /**
+     * The internal style
+     */
     protected Style boxed;
 
+    /**
+     * Create a new AdventureStyle
+     * @param boxed The style to wrap
+     */
     public AdventureStyle(Style boxed) {
         this.boxed = boxed;
     }
 
+    /**
+     * Get the internal style
+     * @return The internal style
+     */
     public Style getBoxed() {
         return boxed;
     }

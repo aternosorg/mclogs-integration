@@ -5,6 +5,10 @@ import gs.mclo.components.AdventureComponent;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.format.NamedTextColor;
 
+/**
+ * Adventure implementation of {@link ICommandSourceAccessor}.
+ * Provides methods to send messages to the command source.
+ */
 public abstract class AdventureCommandSourceAccessor implements ICommandSourceAccessor<AdventureComponent> {
     @Override
     public final void sendFailure(AdventureComponent message) {

@@ -4,6 +4,9 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.Style;
 
+/**
+ * A IComponentFactory implementation for Adventure components
+ */
 public class AdventureComponentFactory implements IComponentFactory<
         AdventureComponent,
         AdventureStyle,

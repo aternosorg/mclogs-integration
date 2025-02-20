@@ -40,6 +40,7 @@ public interface ICommandSourceAccessor<Component extends IComponent<Component, 
      * Sends a success message to the source.
      * The color of these messages should not be modified.
      * @param message The message to send.
+     * @param allowLogging Whether the message should be broadcasted to other admin.
      */
     void sendSuccess(Component message, boolean allowLogging);
 

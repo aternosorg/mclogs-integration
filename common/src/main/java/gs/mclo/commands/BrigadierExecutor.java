@@ -109,6 +109,13 @@ public class BrigadierExecutor<
         }
     }
 
+    /**
+     * Parse the command
+     * @param command The command
+     * @param args The command arguments
+     * @param sender The command sender
+     * @return The parse results
+     */
     protected ParseResults<T> parse(String command, String[] args, T sender) {
         String input = command;
         if (args.length > 0) {
@@ -118,6 +125,11 @@ public class BrigadierExecutor<
         return dispatcher.parse(input, sender);
     }
 
+    /**
+     * A utility method to get the context of a command syntax exception
+     * @param exception The exception
+     * @return a string representing of the exception context for the chat
+     */
     protected String exceptionContext(CommandSyntaxException exception) {
         final String input = exception.getInput();
         final StringBuilder builder = new StringBuilder();

@@ -9,10 +9,18 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * A BungeeCord implementation of {@link ICommandSourceAccessor}.
+ */
 public class BungeeCommandSenderAccessor extends AdventureCommandSourceAccessor {
     private final MclogsBungeePlugin plugin;
     private final CommandSender sender;
 
+    /**
+     * Create a new BungeeCommandSenderAccessor
+     * @param plugin The plugin instance
+     * @param sender The command sender
+     */
     public BungeeCommandSenderAccessor(MclogsBungeePlugin plugin,
                                        CommandSender sender) {
         this.plugin = plugin;

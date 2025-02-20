@@ -13,6 +13,7 @@ public interface IStyle<
         > {
     /**
      * Set the color of the text
+     * @param color The color to set
      * @return The current style
      */
     Self color(Color color);
@@ -31,6 +32,7 @@ public interface IStyle<
 
     /**
      * Add a click event to the text
+     * @param clickEvent The click event to add
      * @return The current style
      */
     Self clickEvent(ClickEventType clickEvent);
