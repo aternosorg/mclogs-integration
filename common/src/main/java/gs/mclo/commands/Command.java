@@ -141,7 +141,7 @@ public abstract class Command<
     protected ComponentType fileNotFoundMessage(String filename, CommandContext<?> context) {
         var command = command(context, "list");
 
-        return componentFactory.literal("There's no log or crash report with the name '" + filename + "'.")
+        return componentFactory.literal("There's no log, crash- or network protocol error report with the name '" + filename + "'.")
                 .append("\n")
                 .append("Use ")
                 .append(componentFactory.literal(command).style(runCommandStyle(command)))

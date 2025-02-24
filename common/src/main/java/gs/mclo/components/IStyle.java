@@ -36,10 +36,4 @@ public interface IStyle<
      * @return The current style
      */
     Self clickEvent(ClickEventType clickEvent);
-
-    /**
-     * Create a copy of the current style
-     * @return A new instance of the style with the same properties
-     */
-    Self copy();
 }

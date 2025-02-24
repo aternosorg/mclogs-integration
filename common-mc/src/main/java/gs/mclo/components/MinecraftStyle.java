@@ -40,9 +40,4 @@ public class MinecraftStyle implements IStyle<MinecraftStyle, ClickEvent> {
         boxed = boxed.withClickEvent(clickEvent);
         return this;
     }
-
-    @Override
-    public MinecraftStyle copy() {
-        return new MinecraftStyle(boxed);
-    }
 }

@@ -66,17 +66,15 @@ public class BrigadierExecutor<
             var parse = parse(command, args, source);
             dispatcher.execute(parse);
         } catch (CommandSyntaxException e) {
-            var errorStyle = componentFactory.style().color(Color.RED);
             var contextMessage = componentFactory.literal(exceptionContext(e))
-                    .style(errorStyle.copy().underlined());
+                    .style(componentFactory.style().underlined());
             var error = componentFactory
                     .literal(e.getType().toString())
-                    .style(errorStyle)
                     .append("\n")
                     .append(contextMessage)
                     .append(componentFactory
                             .literal("<--[HERE]")
-                            .style(errorStyle.copy().italic())
+                            .style(componentFactory.style().italic())
                     );
 
             context.mapSource(source).sendFailure(error);

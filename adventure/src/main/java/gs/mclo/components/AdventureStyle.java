@@ -55,9 +55,4 @@ public class AdventureStyle implements IStyle<AdventureStyle, ClickEvent> {
         boxed = boxed.clickEvent(clickEvent);
         return this;
     }
-
-    @Override
-    public AdventureStyle copy() {
-        return new AdventureStyle(boxed);
-    }
 }
