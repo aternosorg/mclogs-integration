@@ -96,21 +96,9 @@ public abstract class Command<
             return -1;
         }
 
-        Log log;
-        try {
-            log = new Log(path);
-        } catch (FileNotFoundException | IllegalArgumentException e) {
-            source.sendFailure(fileNotFoundMessage(filename, context));
-            return -1;
-        } catch (IOException e) {
-            Constants.LOG.error("Failed to read log", e);
-            source.sendFailure(genericErrorMessage());
-            return -1;
-        }
-
         Constants.LOG.info("Sharing {}", source.getRootDirectory().relativize(path));
 
-        apiClient.uploadLog(log).thenAccept(response -> {
+        apiClient.uploadLog(path).thenAccept(response -> {
             if (response.isSuccess()) {
                 var link = componentFactory.literal(response.getUrl()).style(openUrlStyle(response.getUrl()));
                 var message = componentFactory.literal("Your log has been uploaded: ").append(link);

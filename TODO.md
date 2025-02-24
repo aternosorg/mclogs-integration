@@ -7,8 +7,8 @@
 ## CI/CD
 - [x] Automatically build on commit with GH actions
 - [x] Automatically deploy with GH actions
-  - [ ] Modrinth
-  - [ ] CurseForge (Mod)
+  - [x] Modrinth
+  - [x] CurseForge (Mod)
   - [ ] CurseForge (Plugin)
-  - [ ] Hangar
+  - [x] Hangar
   - [x] GitHub Releases
