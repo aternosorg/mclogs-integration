@@ -31,19 +31,21 @@ tasks.register("runBungeeCord", JavaExec) {
     def bungeeCordJar = file("$runDir/BungeeCord.jar")
     def bungeeCordUrl = 'https://ci.md-5.net/job/BungeeCord/lastSuccessfulBuild/artifact/bootstrap/target/BungeeCord.jar'
 
-    if (!bungeeCordJar.exists()) {
-        println "Downloading BungeeCord..."
-        runDir.mkdirs()
-        new URI(bungeeCordUrl).toURL().withInputStream { inputStream ->
-            bungeeCordJar.withOutputStream { outputStream ->
-                outputStream << inputStream
+    doFirst {
+        if (!bungeeCordJar.exists()) {
+            println "Downloading BungeeCord..."
+            runDir.mkdirs()
+            new URI(bungeeCordUrl).toURL().withInputStream { inputStream ->
+                bungeeCordJar.withOutputStream { outputStream ->
+                    outputStream << inputStream
+                }
             }
         }
-    }
 
-    copy {
-        from(shadowJar)
-        into("$runDir/plugins")
+        copy {
+            from(shadowJar)
+            into("$runDir/plugins")
+        }
     }
 
     classpath = files(bungeeCordJar)
