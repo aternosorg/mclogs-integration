@@ -37,5 +37,5 @@ modrinth {
     projectId = modrinth_project_id
     uploadFile = shadowJar
     loaders = ["velocity"]
-    changelog = changelog
+    changelog = rootProject.changelog
 }

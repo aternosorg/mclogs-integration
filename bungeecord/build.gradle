@@ -60,5 +60,5 @@ modrinth {
     projectId = modrinth_project_id
     uploadFile = shadowJar
     loaders = ["bungeecord", "waterfall"]
-    changelog = changelog
+    changelog = rootProject.changelog
 }

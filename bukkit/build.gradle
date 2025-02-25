@@ -36,5 +36,5 @@ modrinth {
     uploadFile = shadowJar
     gameVersions = minecraft_version_list
     loaders = ["spigot", "paper", "purpur"]
-    changelog = changelog
+    changelog = rootProject.changelog
 }

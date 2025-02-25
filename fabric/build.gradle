@@ -49,7 +49,7 @@ modrinth {
     uploadFile = remapJar
     gameVersions = minecraft_version_list
     loaders = ["fabric"]
-    changelog = changelog
+    changelog = rootProject.changelog
     dependencies {
         required.project "fabric-api"
     }

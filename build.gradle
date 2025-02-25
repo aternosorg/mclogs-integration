@@ -48,7 +48,7 @@ hangarPublish {
         version = project.version
         id = 'hangar-project'
         channel = 'Release'
-        changelog = changelog
+        changelog = rootProject.changelog
 
         apiKey = findProperty('hangar_api_key') as String ?: ''
 

@@ -58,7 +58,7 @@ modrinth {
     uploadFile = jar
     gameVersions = minecraft_version_list
     loaders = ["neoforge"]
-    changelog = changelog
+    changelog = rootProject.changelog
 }
 
 tasks.register('curseforge', TaskPublishCurseForge) {
