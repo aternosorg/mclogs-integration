@@ -23,7 +23,7 @@ public class MclogsCommon {
 
     public void init() {
         apiClient = new MclogsClient(
-                "mclogs-mc/" + Services.platform().getPlatformName(),
+                "mclogs-integration/" + Services.platform().getPlatformName(),
                 Services.platform().getModVersion()
         );
         apiClient.setMinecraftVersion(Services.platform().getMinecraftVersion());
