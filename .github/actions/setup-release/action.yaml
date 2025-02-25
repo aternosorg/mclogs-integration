@@ -4,8 +4,14 @@ inputs:
   version:
     description: 'Version to release'
     required: true
-  changelog:
-    description: 'Changelog for this release'
+  hangar_token:
+    description: 'Hangar API key/token'
+    required: true
+  modrinth_token:
+    description: 'Modrinth API token'
+    required: true
+  curseforge_token:
+    description: 'CurseForge API token'
     required: true
 runs:
   using: composite
@@ -21,7 +27,7 @@ runs:
     - name: Configure publishing secrets
       run: |
         mkdir -p "$USER_HOME/.gradle"
-        echo "hangar_api_key = ${{ secrets.HANGAR_TOKEN }}" >> "$USER_HOME/.gradle/gradle.properties"
-        echo "modrinth_api_token = ${{ secrets.MODRINTH_TOKEN }}" >> "$USER_HOME/.gradle/gradle.properties"
-        echo "curseforge_token = ${{ secrets.CURSEFORGE_TOKEN }}" >> "$USER_HOME/.gradle/gradle.properties"
+        echo "hangar_api_key = ${{ hangar_token }}" >> "$USER_HOME/.gradle/gradle.properties"
+        echo "modrinth_api_token = ${{ modrinth_token }}" >> "$USER_HOME/.gradle/gradle.properties"
+        echo "curseforge_token = ${{ curseforge_token }}" >> "$USER_HOME/.gradle/gradle.properties"
       shell: bash

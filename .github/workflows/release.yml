@@ -21,6 +21,9 @@ jobs:
         uses: ./.github/actions/setup-release
         with:
           version: ${{ github.event.inputs.version }}
+          hangar_token: ${{ secrets.HANGAR_TOKEN }}
+          modrinth_token: ${{ secrets.MODRINTH_TOKEN }}
+          curseforge_token: ${{ secrets.CURSEFORGE_TOKEN }}
 
       - name: Build with Gradle
         run: ./gradlew buildAll
@@ -73,6 +76,9 @@ jobs:
         uses: ./.github/actions/setup-release
         with:
           version: ${{ github.event.inputs.version }}
+          hangar_token: ${{ secrets.HANGAR_TOKEN }}
+          modrinth_token: ${{ secrets.MODRINTH_TOKEN }}
+          curseforge_token: ${{ secrets.CURSEFORGE_TOKEN }}
 
       - name: Publish ${{ matrix.project }} with ${{ matrix.task }}
         run: ./gradlew ":${{ matrix.project }}:${{ matrix.task }}"
@@ -88,6 +94,9 @@ jobs:
         uses: ./.github/actions/setup-release
         with:
           version: ${{ github.event.inputs.version }}
+          hangar_token: ${{ secrets.HANGAR_TOKEN }}
+          modrinth_token: ${{ secrets.MODRINTH_TOKEN }}
+          curseforge_token: ${{ secrets.CURSEFORGE_TOKEN }}
 
       - name: Publish to Hangar
         run: ./gradlew publishAllPublicationsToHangar
