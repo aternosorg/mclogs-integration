@@ -96,6 +96,7 @@ modrinth {
 tasks.register('curseforge', TaskPublishCurseForge) {
     apiToken = findProperty('curseforge_token') as String ?: ''
     def mainFile = upload(curseforge_project_id_mod, tasks.jarJar.archiveFile)
+    mainFile.releaseType = "release"
     mainFile.changelog = changelog
     mainFile.changelogType = "markdown"
 
