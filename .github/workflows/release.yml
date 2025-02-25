@@ -44,11 +44,11 @@ jobs:
           sed -i "s/^version=.*$/version=$next_version/" gradle.properties
 
       - name: List changes to gradle.properties
-        run: git diff -- gradle.properties
+        run: echo "changes=$(git diff -- gradle.properties)" | tee -a $GITHUB_OUTPUT
         id: diff
 
       - name: Commit and push changes to gradle.properties
-        if: steps.diff.outputs.stdout != ''
+        if: steps.diff.outputs.changes != ''
         run: |
           git add gradle.properties
           git commit -m "Bump version to $next_version"
