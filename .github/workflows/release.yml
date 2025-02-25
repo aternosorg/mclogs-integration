@@ -5,9 +5,6 @@ on:
       version:
         description: 'Version to release'
         required: true
-      changelog:
-        description: 'Changelog for this release'
-        required: true
 
 jobs:
   release:
@@ -24,7 +21,6 @@ jobs:
         uses: ./.github/actions/setup-release
         with:
           version: ${{ github.event.inputs.version }}
-          changelog: ${{ github.event.inputs.changelog }}
 
       - name: Build with Gradle
         run: ./gradlew buildAll
@@ -33,7 +29,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: ./result/*.jar
-          body: ${{ github.event.inputs.changelog }}
+          body_path: "${{ github.workspace }}/CHANGELOG.md"
           name: v${{ github.event.inputs.version }}
           tag_name: ${{ github.event.inputs.version }}
 
@@ -75,6 +71,8 @@ jobs:
 
       - name: Setup Build Environment
         uses: ./.github/actions/setup-release
+        with:
+          version: ${{ github.event.inputs.version }}
 
       - name: Publish ${{ matrix.project }} with ${{ matrix.task }}
         run: ./gradlew ":${{ matrix.project }}:${{ matrix.task }}"
@@ -88,6 +86,8 @@ jobs:
 
       - name: Setup Build Environment
         uses: ./.github/actions/setup-release
+        with:
+          version: ${{ github.event.inputs.version }}
 
       - name: Publish to Hangar
         run: ./gradlew publishAllPublicationsToHangar
