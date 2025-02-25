@@ -6,6 +6,7 @@ curseforge-gradle = "1.1.15"
 # see https://fabricmc.net/develop/ for new versions
 fabric-loom = "1.9-SNAPSHOT"
 forge-gradle = "[6.0.24,6.2)"
+gson = "2.12.1"
 hangar = "0.1.2"
 jetbrains-annotations = "26.0.2"
 mclogs = { strictly = "[5.0,6.0)", prefer = "5.0.0" }
@@ -23,6 +24,7 @@ adventure-api = { module = "net.kyori:adventure-api", version.ref = "adventure-a
 adventure-bukkit = { module = "net.kyori:adventure-platform-bukkit", version.ref = "adventure-platforms" }
 adventure-bungeecord = { module = "net.kyori:adventure-platform-bungeecord", version.ref = "adventure-platforms" }
 brigadier = { module = "com.mojang:brigadier", version.ref = "brigadier" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
 mclogs-api = { module = "gs.mclo:api", version.ref = "mclogs" }
 nightconfig-core = { module = "com.electronwill.night-config:core", version.ref = "night-config" }

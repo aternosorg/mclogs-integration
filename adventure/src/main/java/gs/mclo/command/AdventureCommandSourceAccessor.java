@@ -1,4 +1,4 @@
-package command;
+package gs.mclo.command;
 
 import gs.mclo.commands.ICommandSourceAccessor;
 import gs.mclo.components.AdventureComponent;

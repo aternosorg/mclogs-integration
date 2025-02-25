@@ -2,8 +2,12 @@ plugins {
     id 'multiloader-common'
 }
 
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
 dependencies {
     implementation(libs.mclogs.api)
+    implementation(libs.gson)
     implementation(libs.adventure.api)
     implementation(libs.nightconfig.core)
     implementation(libs.slf4j.api)

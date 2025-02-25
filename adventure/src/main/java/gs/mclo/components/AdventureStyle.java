@@ -32,9 +32,13 @@ public class AdventureStyle implements IStyle<AdventureStyle, ClickEvent> {
 
     @Override
     public AdventureStyle color(Color color) {
-        boxed = boxed.color(switch (color) {
-            case RED -> NamedTextColor.RED;
-        });
+        switch (color) {
+            case RED:
+                boxed = boxed.color(NamedTextColor.RED);
+                break;
+            default:
+                throw new UnsupportedOperationException("Unsupported color: " + color);
+        }
         return this;
     }
 

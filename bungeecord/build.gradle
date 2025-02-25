@@ -4,6 +4,9 @@ plugins {
     alias(libs.plugins.minotaur)
 }
 
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
 dependencies {
     compileOnly "net.md-5:bungeecord-api:${minor_minecraft_version}-R0.1-SNAPSHOT"
     implementation(libs.mclogs.api) {

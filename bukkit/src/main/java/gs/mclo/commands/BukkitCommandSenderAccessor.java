@@ -1,6 +1,6 @@
 package gs.mclo.commands;
 
-import command.AdventureCommandSourceAccessor;
+import gs.mclo.command.AdventureCommandSourceAccessor;
 import gs.mclo.MclogsBukkitPlugin;
 import net.kyori.adventure.audience.Audience;
 import org.bukkit.command.CommandSender;

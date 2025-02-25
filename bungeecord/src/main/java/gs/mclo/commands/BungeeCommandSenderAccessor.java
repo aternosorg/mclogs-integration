@@ -1,6 +1,6 @@
 package gs.mclo.commands;
 
-import command.AdventureCommandSourceAccessor;
+import gs.mclo.command.AdventureCommandSourceAccessor;
 import gs.mclo.MclogsBungeePlugin;
 import net.kyori.adventure.audience.Audience;
 import net.md_5.bungee.api.CommandSender;

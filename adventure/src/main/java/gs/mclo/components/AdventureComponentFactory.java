@@ -29,9 +29,13 @@ public class AdventureComponentFactory implements IComponentFactory<
 
     @Override
     public ClickEvent clickEvent(ClickEventAction action, String value) {
-        return switch (action) {
-            case OPEN_URL -> ClickEvent.openUrl(value);
-            case RUN_COMMAND -> ClickEvent.runCommand(value);
-        };
+        switch (action) {
+            case OPEN_URL:
+                return ClickEvent.openUrl(value);
+            case RUN_COMMAND:
+                return ClickEvent.runCommand(value);
+            default:
+                throw new UnsupportedOperationException("Unsupported click event: " + action);
+        }
     }
 }
