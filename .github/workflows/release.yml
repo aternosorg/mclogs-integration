@@ -44,7 +44,7 @@ jobs:
           sed -i "s/^version=.*$/version=$next_version/" gradle.properties
 
       - name: List changes to gradle.properties
-        run: echo "changes=$(git diff -- gradle.properties)" | tee -a $GITHUB_OUTPUT
+        run: echo "changes=$(git diff -- gradle.properties | xargs)" | tee -a $GITHUB_OUTPUT
         id: diff
 
       - name: Commit and push changes to gradle.properties
