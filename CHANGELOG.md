@@ -1,3 +1,6 @@
+## v3.0.1
+- Fix publishing
+
 ## v3.0.0
 ### New Features
 - Support NeoForge, Velocity and BungeeCord
