@@ -48,9 +48,9 @@ hangarPublish {
 
     publications.register('plugin') {
         version = project.version
-        id = 'hangar-project'
+        id = hangar_project_id
         channel = 'Release'
-        changelog = rootProject.changelog
+        changelog = project.changelog
 
         apiKey = findProperty('hangar_api_key') as String ?: ''
 
