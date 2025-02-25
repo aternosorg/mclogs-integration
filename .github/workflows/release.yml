@@ -16,6 +16,9 @@ jobs:
       contents: write
 
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v4
+
       - name: Setup Build Environment
         uses: ./.github/actions/setup-release
         with:
@@ -66,6 +69,9 @@ jobs:
           - task: modrinth
             project: velocity
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v4
+
       - name: Setup Build Environment
         uses: ./.github/actions/setup-release
 
@@ -76,6 +82,9 @@ jobs:
     name: Publish plugins to hangar
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v4
+
       - name: Setup Build Environment
         uses: ./.github/actions/setup-release
 
