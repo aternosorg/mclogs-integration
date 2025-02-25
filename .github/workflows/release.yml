@@ -59,6 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        fail-fast: false
         task: [curseforge, modrinth]
         project: [fabric, forge, neoforge]
         include:
