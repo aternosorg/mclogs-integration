@@ -1,3 +1,5 @@
+import io.papermc.hangarpublishplugin.HangarPublishTask
+
 plugins {
     alias(libs.plugins.fabric.loom) apply false
     alias(libs.plugins.neoforge.moddev) apply false
@@ -68,4 +70,8 @@ hangarPublish {
             }
         }
     }
+}
+
+tasks.withType(HangarPublishTask).configureEach {
+    dependsOn(':bukkit:shadowJar', ':velocity:shadowJar', ':bungeecord:shadowJar')
 }
