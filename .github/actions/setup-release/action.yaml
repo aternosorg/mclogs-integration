@@ -21,13 +21,13 @@ runs:
 
     - name: Update version in gradle.properties
       run: |
-        sed -i "s/^version=.*$/version=${{ github.event.inputs.version }}/" gradle.properties
+        sed -i "s/^version=.*$/version=${{ inputs.version }}/" gradle.properties
       shell: bash
 
     - name: Configure publishing secrets
       run: |
         mkdir -p "$HOME/.gradle"
-        echo "hangar_api_key = ${{ github.event.inputs.hangar_token }}" >> "$HOME/.gradle/gradle.properties"
-        echo "modrinth_api_token = ${{ github.event.inputs.modrinth_token }}" >> "$HOME/.gradle/gradle.properties"
-        echo "curseforge_token = ${{ github.event.inputs.curseforge_token }}" >> "$HOME/.gradle/gradle.properties"
+        echo "hangar_api_key = ${{ inputs.hangar_token }}" >> "$HOME/.gradle/gradle.properties"
+        echo "modrinth_api_token = ${{ inputs.modrinth_token }}" >> "$HOME/.gradle/gradle.properties"
+        echo "curseforge_token = ${{ inputs.curseforge_token }}" >> "$HOME/.gradle/gradle.properties"
       shell: bash
