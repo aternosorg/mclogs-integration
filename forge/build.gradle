@@ -87,7 +87,7 @@ sourceSets.each {
 modrinth {
     token = findProperty('modrinth_api_token') as String ?: ''
     projectId = modrinth_project_id
-    uploadFile = tasks.jarJar.archiveFile
+    uploadFile = jarJar
     gameVersions = minecraft_version_list
     loaders = ["forge"]
     changelog = rootProject.changelog

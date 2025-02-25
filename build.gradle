@@ -11,6 +11,7 @@ def changelogMd = file('CHANGELOG.md')
 ext {
     changelog = changelogMd.exists() ? changelogMd.text : ''
     minecraft_version_list = minecraft_versions.split(",").toList()
+    velocity_version_list = velocity_versions.split(",").toList()
 }
 
 def copyShadowJar = it -> {
@@ -62,11 +63,11 @@ hangarPublish {
             }
             waterfall {
                 jar = project(":bungeecord").tasks.named("shadowJar").get().outputs.files.singleFile
-                platformVersions = minecraft_version_list
+                platformVersions = List.of("1.21") // TODO: Check if 1.22 will be selectable on hangar since waterfall won't be updated
             }
             velocity {
                 jar = project(":velocity").tasks.named("shadowJar").get().outputs.files.singleFile
-                platformVersions = minecraft_version_list
+                platformVersions = velocity_version_list
             }
         }
     }
