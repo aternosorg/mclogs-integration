@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div align="center">
     <a href="https://mclo.gs">
         <img src="https://mclo.gs/img/logo.png" alt="Logo" width="350" height="120">
     </a>
