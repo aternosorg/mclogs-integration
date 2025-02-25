@@ -36,6 +36,7 @@ modrinth {
     token = findProperty('modrinth_api_token') as String ?: ''
     projectId = modrinth_project_id
     uploadFile = shadowJar
+    gameVersions = minecraft_version_list
     loaders = ["velocity"]
     changelog = rootProject.changelog
 }
