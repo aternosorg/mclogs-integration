@@ -26,8 +26,8 @@ runs:
 
     - name: Configure publishing secrets
       run: |
-        mkdir -p "~/.gradle"
-        echo "hangar_api_key = ${{ github.event.inputs.hangar_token }}" >> "~/.gradle/gradle.properties"
-        echo "modrinth_api_token = ${{ github.event.inputs.modrinth_token }}" >> "~/.gradle/gradle.properties"
-        echo "curseforge_token = ${{ github.event.inputs.curseforge_token }}" >> "~/.gradle/gradle.properties"
+        mkdir -p "$HOME/.gradle"
+        echo "hangar_api_key = ${{ github.event.inputs.hangar_token }}" >> "$HOME/.gradle/gradle.properties"
+        echo "modrinth_api_token = ${{ github.event.inputs.modrinth_token }}" >> "$HOME/.gradle/gradle.properties"
+        echo "curseforge_token = ${{ github.event.inputs.curseforge_token }}" >> "$HOME/.gradle/gradle.properties"
       shell: bash
