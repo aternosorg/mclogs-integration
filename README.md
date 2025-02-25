@@ -40,10 +40,11 @@ The Plugin/Mod contains the following commands:
 
 For special cases, the following commands are available:
 
-| Scenario                          | Command                   | Behavior           |
-|-----------------------------------|---------------------------|--------------------|
-| Mod installed client-side         | `/mclogsc`                | Handle client logs |
-| Mod installed on a velocity proxy | `/mclogsp` and `/mclogsv` | Handle proxy logs  |
+| Scenario                               | Command                   | Behavior           |
+|----------------------------------------|---------------------------|--------------------|
+| Mod installed client-side              | `/mclogsc`                | Handle client logs |
+| Plugin installed on a Velocity proxy   | `/mclogsp` and `/mclogsv` | Handle proxy logs  |
+| Plugin installed on a BungeeCord proxy | `/mclogsp` and `/mclogsb` | Handle proxy logs  |
 
 ### Permissions
 
