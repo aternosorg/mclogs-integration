@@ -15,6 +15,7 @@ import gs.mclo.platform.Services;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class MclogsCommon {
     protected MclogsClient apiClient;
@@ -41,12 +42,17 @@ public class MclogsCommon {
     }
 
     protected void migrateOldConfigFields() {
-        if (configFile.get("viewLogsUrl") == null) {
-            configFile.set("viewLogsUrl", configFile.get("view-logs-url"));
-        }
+        for (Map.Entry<String, String> entry : Map.of(
+                "view-logs-url", "viewLogsUrl",
+                "api-base-url", "apiBaseUrl"
+        ).entrySet()) {
+            String oldKey = entry.getKey();
+            String newKey = entry.getValue();
 
-        if (configFile.get("apiBaseUrl") == null) {
-            configFile.set("apiBaseUrl", configFile.get("api-base-url"));
+            if (configFile.get(newKey) == null) {
+                configFile.set(newKey, configFile.get(oldKey));
+                configFile.remove(oldKey);
+            }
         }
     }
 
