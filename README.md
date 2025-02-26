@@ -68,7 +68,7 @@ viewLogsUrl = "https://mclo.gs"
 ```
 
 ## Contributing
-This project is licenses as MIT. Contributions are welcome but if you plan some larger changes please
+This project is licensed as MIT. Contributions are welcome but if you plan some larger changes please
 create an issue for discussion first, to avoid wasting time on something that might not be merged.
 
 ### Setting up the Development Environment
