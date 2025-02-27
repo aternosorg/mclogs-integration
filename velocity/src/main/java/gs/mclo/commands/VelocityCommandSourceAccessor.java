@@ -1,14 +1,14 @@
 package gs.mclo.commands;
 
 import com.velocitypowered.api.command.CommandSource;
-import gs.mclo.components.AdventureComponent;
-import net.kyori.adventure.text.format.NamedTextColor;
+import gs.mclo.command.AdventureCommandSourceAccessor;
+import net.kyori.adventure.audience.Audience;
 
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
 
-public class VelocityCommandSourceAccessor implements ICommandSourceAccessor<AdventureComponent> {
+public class VelocityCommandSourceAccessor extends AdventureCommandSourceAccessor {
     /**
      * The original velocity command source
      */
@@ -41,12 +41,7 @@ public class VelocityCommandSourceAccessor implements ICommandSourceAccessor<Adv
     }
 
     @Override
-    public void sendFailure(AdventureComponent message) {
-        source.sendMessage(message.getBoxed().color(NamedTextColor.RED));
-    }
-
-    @Override
-    public void sendSuccess(AdventureComponent message, boolean allowLogging) {
-        source.sendMessage(message.getBoxed());
+    protected Audience getAudience() {
+        return source;
     }
 }
