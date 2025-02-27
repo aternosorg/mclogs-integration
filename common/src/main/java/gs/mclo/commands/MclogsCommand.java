@@ -31,8 +31,7 @@ public class MclogsCommand<
         return builder.executes(context -> execute(context, buildContext));
     }
 
-    @Override
-    public <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext) {
+    protected <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext) {
         ICommandSourceAccessor<?> source = buildContext.mapSource(context.getSource());
         return share(context, buildContext, source.getCurrentLogFileName());
     }

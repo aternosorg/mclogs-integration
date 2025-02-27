@@ -3,14 +3,12 @@ package gs.mclo.commands;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
-import gs.mclo.api.Log;
 import gs.mclo.api.MclogsClient;
 import gs.mclo.components.ClickEventAction;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
 import gs.mclo.components.IStyle;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -59,16 +57,6 @@ public abstract class Command<
             BuildContext<T, ComponentType> buildContext,
             LiteralArgumentBuilder<T> builder
     );
-
-    /**
-     * Execute the command
-     *
-     * @param context      the command context
-     * @param buildContext Contains the environment and various methods to execute the command.
-     * @param <T>          the command source type
-     * @return the result of the command
-     */
-    public abstract <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext);
 
     /**
      * Share a log or crash report

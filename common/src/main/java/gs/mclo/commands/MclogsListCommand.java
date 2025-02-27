@@ -38,8 +38,7 @@ public class MclogsListCommand<
         return builder.then(list);
     }
 
-    @Override
-    public <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext) {
+    protected <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext) {
         var source = buildContext.mapSource(context.getSource());
         try {
             int total = 0;

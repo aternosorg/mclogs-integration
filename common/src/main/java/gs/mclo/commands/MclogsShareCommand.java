@@ -71,8 +71,7 @@ public class MclogsShareCommand<
         }
     }
 
-    @Override
-    public <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext) {
+    protected <T> int execute(CommandContext<T> context, BuildContext<T, ComponentType> buildContext) {
         return share(context, buildContext, context.getArgument(ARGUMENT_NAME, String.class));
     }
 }
