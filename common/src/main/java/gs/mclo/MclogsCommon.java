@@ -50,8 +50,11 @@ public class MclogsCommon {
             String newKey = entry.getValue();
 
             if (configFile.get(newKey) == null) {
-                configFile.set(newKey, configFile.get(oldKey));
-                configFile.remove(oldKey);
+                Object value = configFile.get(oldKey);
+                if (value != null) {
+                    configFile.set(newKey, configFile.get(oldKey));
+                    configFile.remove(oldKey);
+                }
             }
         }
     }

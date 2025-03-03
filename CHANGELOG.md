@@ -1,2 +1,2 @@
-## v3.0.4
-- Remove old fields from the config during migration
+## v3.0.5
+- Prevent issues while migrating old config fields
