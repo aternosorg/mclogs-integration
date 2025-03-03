@@ -51,7 +51,7 @@ jobs:
         if: steps.diff.outputs.changes != ''
         run: |
           git add gradle.properties
-          git commit -m "Bump version to $next_version"
+          git commit -m "Bump version"
           git push
 
   publish-projects:
