@@ -11,7 +11,6 @@ dependencies {
         exclude group: 'com.google.code.gson', module: 'gson'
     }
     implementation(libs.slf4j.api)
-    implementation(libs.slf4j.jdk14)
     implementation(libs.nightconfig.toml)
     implementation(libs.brigadier)
     implementation(libs.adventure.api)
@@ -24,7 +23,6 @@ tasks {
     }
 
     shadowJar {
-        relocate("org.slf4j", "gs.mclo.slf4j")
         relocate("com.electronwill.nightconfig", "gs.mclo.nightconfig")
         dependsOn("javadocJar", "sourcesJar")
     }
