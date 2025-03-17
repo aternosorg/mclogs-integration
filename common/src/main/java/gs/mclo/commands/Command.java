@@ -3,7 +3,7 @@ package gs.mclo.commands;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
-import gs.mclo.api.MclogsClient;
+import gs.mclo.MclogsCommon;
 import gs.mclo.components.ClickEventAction;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
@@ -26,7 +26,7 @@ public abstract class Command<
     /**
      * The Mclogs API client
      */
-    protected final MclogsClient apiClient;
+    protected final MclogsCommon common;
     /**
      * A component factory
      */
@@ -34,14 +34,14 @@ public abstract class Command<
 
     /**
      * Create a new command
-     * @param apiClient The Mclogs API client
+     * @param common Common mod/plugin instance
      * @param componentFactory A component factory
      */
     public Command(
-            MclogsClient apiClient,
+            MclogsCommon common,
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
-        this.apiClient = apiClient;
+        this.common = common;
         this.componentFactory = componentFactory;
     }
 
@@ -86,7 +86,7 @@ public abstract class Command<
 
         Constants.LOG.info("Sharing {}", source.getRootDirectory().relativize(path));
 
-        apiClient.uploadLog(path).thenAccept(response -> {
+        common.getApiClient().uploadLog(path).thenAccept(response -> {
             if (response.isSuccess()) {
                 var link = componentFactory.literal(response.getUrl()).style(openUrlStyle(response.getUrl()));
                 var message = componentFactory.literal("Your log has been uploaded: ").append(link);

@@ -17,13 +17,13 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "gs.mclo.MclogsFabric"
+            "gs.mclo.FabricInitializer"
         ],
         "server": [
-            "gs.mclo.MclogsFabric"
+            "gs.mclo.FabricServerInitializer"
         ],
         "client": [
-            "gs.mclo.MclogsFabric"
+            "gs.mclo.FabricClientInitializer"
         ]
     },
     "depends": {

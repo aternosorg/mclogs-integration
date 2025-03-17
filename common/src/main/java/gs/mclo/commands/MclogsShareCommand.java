@@ -7,7 +7,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import gs.mclo.Constants;
-import gs.mclo.api.MclogsClient;
+import gs.mclo.MclogsCommon;
 import gs.mclo.api.Util;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
@@ -23,10 +23,10 @@ public class MclogsShareCommand<
     private static final String ARGUMENT_NAME = "filename";
 
     public MclogsShareCommand(
-            MclogsClient apiClient,
+            MclogsCommon common,
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
-        super(apiClient, componentFactory);
+        super(common, componentFactory);
     }
 
     @Override

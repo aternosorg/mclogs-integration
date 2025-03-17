@@ -20,6 +20,7 @@ dependencies {
     include(libs.mclogs.api)
     implementation(libs.nightconfig.toml)
     include(libs.nightconfig.toml)
+    include(libs.nightconfig.core)
 }
 
 loom {

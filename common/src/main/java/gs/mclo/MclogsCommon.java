@@ -81,9 +81,9 @@ public class MclogsCommon {
             IComponentFactory<ComponentType, StyleType, ClickEventType> componentFactory
     ) {
         return List.of(
-                new MclogsCommand<>(apiClient, componentFactory),
-                new MclogsListCommand<>(apiClient, componentFactory),
-                new MclogsShareCommand<>(apiClient, componentFactory)
+                new MclogsCommand<>(this, componentFactory),
+                new MclogsListCommand<>(this, componentFactory),
+                new MclogsShareCommand<>(this, componentFactory)
         );
     }
 
@@ -103,5 +103,9 @@ public class MclogsCommon {
         for (var command : getCommands(componentFactory)) {
             dispatcher.register(command.build(context, builder));
         }
+    }
+
+    public MclogsClient getApiClient() {
+        return apiClient;
     }
 }
