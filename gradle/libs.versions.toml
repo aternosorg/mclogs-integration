@@ -30,7 +30,6 @@ mclogs-api = { module = "gs.mclo:api", version.ref = "mclogs" }
 nightconfig-core = { module = "com.electronwill.night-config:core", version.ref = "night-config" }
 nightconfig-toml = { module = "com.electronwill.night-config:toml", version.ref = "night-config" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
-slf4j-jdk14 = { module = "org.slf4j:slf4j-jdk14", version.ref = "slf4j" }
 velocity-api = { module = "com.velocitypowered:velocity-api", version.ref = "velocity-api" }
 
 [plugins]
