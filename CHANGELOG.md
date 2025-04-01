@@ -1,4 +1,2 @@
-## v3.0.6
-- Fix logging on bukkit and bungeecord
-- Fix error with night config on fabric
-- Fix loading problems on fabric
+## v3.0.7
+- Update to 1.21.5

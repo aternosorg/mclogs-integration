@@ -4,7 +4,7 @@ adventure-platforms = "4.3.4"
 brigadier = "1.0.18"
 curseforge-gradle = "1.1.15"
 # see https://fabricmc.net/develop/ for new versions
-fabric-loom = "1.9-SNAPSHOT"
+fabric-loom = "1.10-SNAPSHOT"
 forge-gradle = "[6.0.24,6.2)"
 gson = "2.12.1"
 hangar = "0.1.2"
