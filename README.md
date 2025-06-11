@@ -67,6 +67,9 @@ apiBaseUrl = "https://api.mclo.gs"
 viewLogsUrl = "https://mclo.gs"
 ```
 
+## Requirements
+This project requires Java 11 or higher to run, even on Minecraft versions that run on Java 8.
+
 ## Contributing
 This project is licensed as MIT. Contributions are welcome but if you plan some larger changes please
 create an issue for discussion first, to avoid wasting time on something that might not be merged.
