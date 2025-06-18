@@ -29,9 +29,14 @@ minecraft {
     }
 
     runs {
+        configureEach {
+            ideaModule "${rootProject.name}.${project.name}.main"
+
+            property 'eventbus.api.strictRuntimeChecks', 'true'
+        }
+
         client {
             workingDirectory file('runs/client')
-            ideaModule "${rootProject.name}.${project.name}.main"
             taskName 'Client'
             mods {
                 modClientRun {
@@ -42,13 +47,13 @@ minecraft {
 
         server {
             workingDirectory file('runs/server')
-            ideaModule "${rootProject.name}.${project.name}.main"
             taskName 'Server'
             mods {
                 modServerRun {
                     source sourceSets.main
                 }
             }
+            args '--nogui'
         }
     }
 }
@@ -63,6 +68,7 @@ tasks.named('jarJar') {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    annotationProcessor 'net.minecraftforge:eventbus-validator:7.0-beta.7'
 
     // Forge's hack fix
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }

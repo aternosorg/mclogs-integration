@@ -18,7 +18,7 @@ public class FabricClientCommandSourceAccessor implements ICommandSourceAccessor
 
     @Override
     public boolean hasPermission(Permission permission) {
-        return source.hasPermission(permission.level());
+        return source.getPlayer().hasPermissions(permission.level());
     }
 
     @Override
