@@ -58,6 +58,6 @@ modrinth {
     projectId = modrinth_project_id
     uploadFile = shadowJar
     gameVersions = minecraft_version_list
-    loaders = ["bungeecord", "waterfall"]
+    loaders = ["bungeecord"]
     changelog = rootProject.changelog
 }
