@@ -16,7 +16,7 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public String getMinecraftVersion() {
-        return FMLLoader.versionInfo().mcVersion();
+        return FMLLoader.getCurrent().getVersionInfo().mcVersion();
     }
 
     @Override
@@ -26,7 +26,7 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public GenericBuilder<Config, FileConfig> getConfig() {
-        var configFile = FMLLoader.getGamePath().resolve("config")
+        var configFile = FMLLoader.getCurrent().getGameDir().resolve("config")
                 .resolve(Constants.MOD_ID + ".toml");
 
         return FileConfig.builder(configFile);

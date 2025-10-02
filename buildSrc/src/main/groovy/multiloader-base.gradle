@@ -64,10 +64,6 @@ repositories {
         }
     }
     maven {
-        name = 'Sonatype OSS Snapshots'
-        url = uri('https://oss.sonatype.org/content/repositories/snapshots/')
-    }
-    maven {
         name = "Minecraft Libraries"
         url = uri("https://libraries.minecraft.net")
     }
