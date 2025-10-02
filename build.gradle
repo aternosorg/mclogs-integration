@@ -6,10 +6,31 @@ plugins {
     alias(libs.plugins.hangar)
 }
 
+String getChangeLog() {
+    def input = file('CHANGELOG.md').text.readLines()
+    def output = []
+    def foundHeader = false
+    for (line in input) {
+        if (!foundHeader && line.startsWith('# ')) {
+            foundHeader = true
+            continue
+        }
+        if (foundHeader) {
+            if (line.startsWith('---')) break
+            output << line
+        }
+    }
+    return output.join('\n').trim()
+}
 
-def changelogMd = file('CHANGELOG.md')
+tasks.register('generateReleaseBody') {
+    doLast {
+        file('release-body.md').text = getChangeLog()
+    }
+}
+
 ext {
-    changelog = changelogMd.exists() ? changelogMd.text : ''
+    changelog = getChangeLog()
     minecraft_version_list = minecraft_versions.split(",").toList()
     velocity_version_list = velocity_versions.split(",").toList()
 }
