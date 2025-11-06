@@ -36,8 +36,9 @@ jobs:
         with:
           files: ./result/*.jar
           body_path: "${{ github.workspace }}/release-body.md"
-          name: v${{ github.event.inputs.version }}
-          tag_name: ${{ github.event.inputs.version }}
+          name: ${{ github.ref_name }}/v${{ github.event.inputs.version }}
+          tag_name: ${{ github.ref_name }}/${{ github.event.inputs.version }}
+          target_commitish: ${{ github.ref }}
 
       - name: Calculate next version
         id: next_version
