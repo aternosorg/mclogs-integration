@@ -22,13 +22,9 @@ def copyShadowJar = it -> {
 }
 
 tasks.register('buildAll', Copy) {
-    dependsOn(':bukkit:shadowJar', ':velocity:shadowJar', ':bungeecord:shadowJar',
-            ':forge:jarJar', ':fabric:build', ':neoforge:build')
+    dependsOn(':forge:jarJar', ':fabric:build', ':neoforge:build')
 
     from('fabric/build/libs', 'neoforge/build/libs')
-    from('bukkit/build/libs', copyShadowJar)
-    from('bungeecord/build/libs', copyShadowJar)
-    from('velocity/build/libs', copyShadowJar)
     from('forge/build/libs', copyShadowJar)
 
     it.rename { String fileName ->
@@ -40,39 +36,4 @@ tasks.register('buildAll', Copy) {
 
 tasks.register('clean', Delete) {
     delete 'result'
-}
-
-hangarPublish {
-    evaluationDependsOn(":bukkit")
-    evaluationDependsOn(":bungeecord")
-    evaluationDependsOn(":velocity")
-
-    publications.register('plugin') {
-        version = project.version
-        id = hangar_project_id
-        channel = 'Release'
-        changelog = project.changelog
-
-        apiKey = findProperty('hangar_api_key') as String ?: ''
-
-        // register platforms
-        platforms {
-            paper {
-                jar = project(":bukkit").tasks.named("shadowJar").get().outputs.files.singleFile
-                platformVersions = minecraft_version_list
-            }
-            waterfall {
-                jar = project(":bungeecord").tasks.named("shadowJar").get().outputs.files.singleFile
-                platformVersions = List.of("1.21") // TODO: Check if 1.22 will be selectable on hangar since waterfall won't be updated
-            }
-            velocity {
-                jar = project(":velocity").tasks.named("shadowJar").get().outputs.files.singleFile
-                platformVersions = velocity_version_list
-            }
-        }
-    }
-}
-
-tasks.withType(HangarPublishTask).configureEach {
-    dependsOn(':bukkit:shadowJar', ':velocity:shadowJar', ':bungeecord:shadowJar')
 }
