@@ -1,15 +1,5 @@
 # 3.0.9
-- Update to 1.21.9
-
----
-
-# 3.0.8
-- Update to 1.21.6/1.21.7/1.21.8
-
----
-
-# 3.0.7
-- Update to 1.21.5
+- Fix 1.21.1 support on NeoForge
 
 ---
 
