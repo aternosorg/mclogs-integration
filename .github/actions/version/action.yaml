@@ -1,0 +1,42 @@
+name: 'Setup Build Environment for Release'
+description: 'Setup Java, Gradle, and git for releasing'
+inputs:
+  version:
+    description: 'Version to release'
+    required: true
+  suffix:
+    description: 'Suffix to append to version'
+    required: false
+runs:
+  using: composite
+  steps:
+    - name: Get branch name
+      id: get_branch
+      run: echo "branch_name=$(git rev-parse --abbrev-ref HEAD)" | tee -a $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Build version string
+      id: version
+      run: |
+        branch_name="${{ steps.get_branch.outputs.branch_name }}"
+        version_string="${{ inputs.version }}"
+        if [[ "${branch_name}" != "master" ]]; then
+            mc_version=$(echo "${branch_name}" | cut -d '/' -f 2)
+            if [[ -z "${mc_version}" ]]; then
+                echo "Error: Unable to extract Minecraft version from branch name '${branch_name}'" >&2
+                exit 1
+            fi
+            version_string="${version_string}-mc-${mc_version}"
+        fi
+        
+        if [[ -n "${{ inputs.suffix }}" ]]; then
+            version_string="${version_string}-${{ inputs.suffix }}"
+        fi
+        
+        echo "version_string=${version_string}" | tee -a $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Update version in gradle.properties
+      run: |
+        sed -i "s/^version=.*$/version=${{ steps.version.outputs.version_string }}/" gradle.properties
+      shell: bash

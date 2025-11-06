@@ -39,12 +39,18 @@ jobs:
           name: v${{ github.event.inputs.version }}
           tag_name: ${{ github.event.inputs.version }}
 
-      - name: Bump version in gradle.properties
+      - name: Calculate next version
+        id: next_version
         run: |
           IFS='.' read -r major minor patch <<< "${{ github.event.inputs.version }}"
           next_patch=$((patch + 1))
-          next_version="${major}.${minor}.${next_patch}-SNAPSHOT"
-          sed -i "s/^version=.*$/version=$next_version/" gradle.properties
+          echo "next_version=${major}.${minor}.${next_patch}" | tee -a $GITHUB_OUTPUT
+
+      - name: Set next version in gradle.properties
+        uses: ./.github/actions/version
+        with:
+          version: ${{ steps.next_version.outputs.next_version }}
+          suffix: SNAPSHOT
 
       - name: List changes to gradle.properties
         run: echo "changes=$(git diff -- gradle.properties | xargs)" | tee -a $GITHUB_OUTPUT

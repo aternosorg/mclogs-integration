@@ -19,10 +19,10 @@ runs:
     - name: Setup Build Environment
       uses: ./.github/actions/setup
 
-    - name: Update version in gradle.properties
-      run: |
-        sed -i "s/^version=.*$/version=${{ inputs.version }}/" gradle.properties
-      shell: bash
+    - name: Set version
+      uses: ./.github/actions/version
+      with:
+          version: ${{ inputs.version }}
 
     - name: Configure publishing secrets
       run: |
