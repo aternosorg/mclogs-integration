@@ -1,5 +1,6 @@
 # 3.0.10
 - Fix sharing client logs on Fabric clients
+- List 1.21.10 support
 
 ---
 
