@@ -86,14 +86,14 @@ public abstract class Command<
 
         Constants.LOG.info("Sharing {}", source.getRootDirectory().relativize(path));
 
-        common.getApiClient().uploadLog(path).thenAccept(response -> {
+        common.getApiClient().uploadLog(path).thenCompose(response -> {
             if (response.isSuccess()) {
                 var link = componentFactory.literal(response.getUrl()).style(openUrlStyle(response.getUrl()));
                 var message = componentFactory.literal("Your log has been uploaded: ").append(link);
-                source.sendSuccess(message, true);
+                return source.sendSuccess(message, true);
             } else {
                 Constants.LOG.error("An error occurred when uploading your log: {}", response.getError());
-                source.sendFailure(genericErrorMessage());
+                return source.sendFailure(genericErrorMessage());
             }
         }).exceptionally(e -> {
             Constants.LOG.error("An error occurred when uploading your log", e);

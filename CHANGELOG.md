@@ -1,3 +1,8 @@
+# 3.0.10
+- Fix sharing client logs on Fabric clients
+
+---
+
 # 3.0.9
 - Update to 1.21.9
 
