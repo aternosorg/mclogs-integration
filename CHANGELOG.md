@@ -1,3 +1,9 @@
+# 3.0.11
+
+Forge is currently not supported as the forge gradle plugin does not support gradle 9 yet.
+
+---
+
 # 3.0.10
 - Fix sharing client logs on Fabric clients
 - List 1.21.10 support
