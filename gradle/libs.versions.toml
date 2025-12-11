@@ -34,7 +34,7 @@ velocity-api = { module = "com.velocitypowered:velocity-api", version.ref = "vel
 
 [plugins]
 curseforge-gradle = { id = "net.darkhax.curseforgegradle", version.ref = "curseforge-gradle" }
-fabric-loom = { id = "fabric-loom", version.ref = "fabric-loom" }
+fabric-loom = { id = "net.fabricmc.fabric-loom-remap", version.ref = "fabric-loom" }
 forge-gradle = { id = "net.minecraftforge.gradle", version.ref = "forge-gradle" }
 hangar = { id = "io.papermc.hangar-publish-plugin", version.ref = "hangar" }
 minotaur = { id = "com.modrinth.minotaur", version.ref = "minotaur" }

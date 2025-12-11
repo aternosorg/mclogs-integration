@@ -2,6 +2,9 @@ package gs.mclo.commands;
 
 import gs.mclo.components.MinecraftComponent;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.permissions.Permission.HasCommandLevel;
+import net.minecraft.server.permissions.PermissionLevel;
 
 import java.nio.file.Path;
 import java.util.Collection;
@@ -16,7 +19,8 @@ public class CommandSourceStackAccessor implements ICommandSourceAccessor<Minecr
 
     @Override
     public boolean hasPermission(Permission permission) {
-        return source.hasPermission(permission.level());
+        return source.permissions().hasPermission(new HasCommandLevel(PermissionLevel.byId(permission.level())))
+                || source.permissions().hasPermission(new net.minecraft.server.permissions.Permission.Atom(Identifier.fromNamespaceAndPath("mclogs", permission.node())));
     }
 
     @Override

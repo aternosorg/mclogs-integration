@@ -6,6 +6,8 @@ import gs.mclo.commands.Permission;
 import gs.mclo.components.MinecraftComponent;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.Minecraft;
+import net.minecraft.server.permissions.Permission.HasCommandLevel;
+import net.minecraft.server.permissions.PermissionLevel;
 
 import java.nio.file.Path;
 import java.util.Collection;
@@ -20,7 +22,7 @@ public class FabricClientCommandSourceAccessor implements ICommandSourceAccessor
 
     @Override
     public boolean hasPermission(Permission permission) {
-        return source.getPlayer().hasPermissions(permission.level());
+        return source.permissions().hasPermission(new HasCommandLevel(PermissionLevel.byId(permission.level())));
     }
 
     @Override
