@@ -18,8 +18,6 @@ minecraft {
 
     runs {
         configureEach {
-            // ideaModule "${rootProject.name}.${project.name}.main"
-
             systemProperty 'eventbus.api.strictRuntimeChecks', 'true'
         }
 
