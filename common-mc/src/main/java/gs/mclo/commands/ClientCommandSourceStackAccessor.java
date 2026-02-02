@@ -1,5 +1,6 @@
 package gs.mclo.commands;
 
+import gs.mclo.components.MinecraftComponent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.commands.CommandSourceStack;
 
@@ -13,5 +14,15 @@ public class ClientCommandSourceStackAccessor extends CommandSourceStackAccessor
     @Override
     public Path getRootDirectory() {
         return Minecraft.getInstance().gameDirectory.toPath();
+    }
+
+    @Override
+    public void sendFailure(MinecraftComponent message) {
+        Minecraft.getInstance().submit(() -> super.sendFailure(message));
+    }
+
+    @Override
+    public void sendSuccess(MinecraftComponent message, boolean allowLogging) {
+        Minecraft.getInstance().submit(() -> super.sendSuccess(message, allowLogging));
     }
 }
