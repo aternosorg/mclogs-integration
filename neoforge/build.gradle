@@ -9,11 +9,7 @@ plugins {
 
 neoForge {
     version = neoforge_version
-    // Automatically enable neoforge AccessTransformers if the file exists
-    def at = project(':common-mc').file('src/main/resources/META-INF/accesstransformer.cfg')
-    if (at.exists()) {
-        accessTransformers.add(at.absolutePath)
-    }
+
     if (enable_parchment) {
         parchment {
             minecraftVersion = parchment_minecraft
