@@ -42,10 +42,6 @@ tasks.named('jarJar') {
     dependsOn("javadocJar", "sourcesJar")
 }
 
-repositories {
-    maven minecraft.mavenizer
-}
-
 dependencies {
     implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     annotationProcessor(libs.eventbus.validator)
