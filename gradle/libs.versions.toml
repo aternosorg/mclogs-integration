@@ -5,7 +5,8 @@ brigadier = "1.0.18"
 curseforge-gradle = "1.1.15"
 # see https://fabricmc.net/develop/ for new versions
 fabric-loom = "1.14-SNAPSHOT"
-forge-gradle = "[6.0.46,7)"
+forge-gradle = "[7,8)"
+forge-jarjar = "[0.2.3,0.3)"
 gson = "2.12.1"
 hangar = "0.1.3"
 jetbrains-annotations = "26.0.2"
@@ -36,6 +37,7 @@ velocity-api = { module = "com.velocitypowered:velocity-api", version.ref = "vel
 curseforge-gradle = { id = "net.darkhax.curseforgegradle", version.ref = "curseforge-gradle" }
 fabric-loom = { id = "net.fabricmc.fabric-loom-remap", version.ref = "fabric-loom" }
 forge-gradle = { id = "net.minecraftforge.gradle", version.ref = "forge-gradle" }
+forge-jarjar = { id = "net.minecraftforge.jarjar", version.ref = "forge-jarjar" }
 hangar = { id = "io.papermc.hangar-publish-plugin", version.ref = "hangar" }
 minotaur = { id = "com.modrinth.minotaur", version.ref = "minotaur" }
 neoforge-moddev = { id = "net.neoforged.moddev", version.ref = "neoforge-moddev" }
