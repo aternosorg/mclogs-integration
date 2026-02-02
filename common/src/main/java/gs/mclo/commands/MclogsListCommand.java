@@ -4,7 +4,6 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
 import gs.mclo.MclogsCommon;
-import gs.mclo.api.Util;
 import gs.mclo.components.ClickEventAction;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
@@ -46,7 +45,7 @@ public class MclogsListCommand<
 
             boolean first = true;
             for (var logDir : source.getLogDirectories()) {
-                var files = Util.listFilesInDirectory(logDir.path());
+                var files = common.getApiClient().listFilesInDirectory(logDir.path());
 
                 if (files.length > 0) {
                     if (!first) {

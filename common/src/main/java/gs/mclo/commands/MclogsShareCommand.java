@@ -8,7 +8,6 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import gs.mclo.Constants;
 import gs.mclo.MclogsCommon;
-import gs.mclo.api.Util;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
 import gs.mclo.components.IStyle;
@@ -57,7 +56,7 @@ public class MclogsShareCommand<
 
         try {
             for (LogDirectory dir : source.getLogDirectories()) {
-                for (String file : Util.listFilesInDirectory(dir.path())) {
+                for (String file : common.getApiClient().listFilesInDirectory(dir.path())) {
                     if (file.startsWith(input)) {
                         builder.suggest(file);
                     }

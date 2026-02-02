@@ -43,7 +43,6 @@ public class MclogsCommon {
 
     protected void migrateOldConfigFields() {
         for (Map.Entry<String, String> entry : Map.of(
-                "view-logs-url", "viewLogsUrl",
                 "api-base-url", "apiBaseUrl"
         ).entrySet()) {
             String oldKey = entry.getKey();
@@ -65,7 +64,7 @@ public class MclogsCommon {
 
     protected void onConfigLoaded(boolean log) {
         ObjectDeserializer.standard().deserializeFields(configFile, config);
-        var instance = new Instance(config.apiBaseUrl, config.viewLogsUrl);
+        var instance = new Instance(config.apiBaseUrl);
         apiClient.setInstance(instance);
 
         if (log) {

@@ -11,7 +11,6 @@ import net.minecraft.server.permissions.PermissionLevel;
 
 import java.nio.file.Path;
 import java.util.Collection;
-import java.util.concurrent.CompletableFuture;
 
 public class FabricClientCommandSourceAccessor implements ICommandSourceAccessor<MinecraftComponent> {
     private final FabricClientCommandSource source;
@@ -36,15 +35,15 @@ public class FabricClientCommandSourceAccessor implements ICommandSourceAccessor
     }
 
     @Override
-    public CompletableFuture<Void> sendFailure(MinecraftComponent message) {
-        return Minecraft.getInstance().submit(() -> {
+    public void sendFailure(MinecraftComponent message) {
+        Minecraft.getInstance().submit(() -> {
             source.sendError(message.getBoxed());
         });
     }
 
     @Override
-    public CompletableFuture<Void> sendSuccess(MinecraftComponent message, boolean allowLogging) {
-        return Minecraft.getInstance().submit(() -> {
+    public void sendSuccess(MinecraftComponent message, boolean allowLogging) {
+        Minecraft.getInstance().submit(() -> {
             source.sendFeedback(message.getBoxed());
         });
     }

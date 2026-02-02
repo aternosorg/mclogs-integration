@@ -1,11 +1,9 @@
 package gs.mclo.commands;
 
 import gs.mclo.components.IComponent;
-import org.jetbrains.annotations.CheckReturnValue;
 
 import java.nio.file.Path;
 import java.util.Collection;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * An interface for platform-agnostic command source access.
@@ -34,19 +32,19 @@ public interface ICommandSourceAccessor<Component extends IComponent<Component, 
     /**
      * Sends an error message to the source.
      * Error messages are typically red.
+     *
      * @param message The message to send.
      */
-    @CheckReturnValue
-    CompletableFuture<Void> sendFailure(Component message);
+    void sendFailure(Component message);
 
     /**
      * Sends a success message to the source.
-     * The color of these messages should not be modified.
-     * @param message The message to send.
+     * The colour of these messages should not be modified.
+     *
+     * @param message      The message to send.
      * @param allowLogging Whether the message should be broadcasted to other admin.
      */
-    @CheckReturnValue
-    CompletableFuture<Void> sendSuccess(Component message, boolean allowLogging);
+    void sendSuccess(Component message, boolean allowLogging);
 
     /**
      * Get the file name of the current log file

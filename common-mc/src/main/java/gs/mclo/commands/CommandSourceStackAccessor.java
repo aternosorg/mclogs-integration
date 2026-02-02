@@ -8,7 +8,6 @@ import net.minecraft.server.permissions.PermissionLevel;
 
 import java.nio.file.Path;
 import java.util.Collection;
-import java.util.concurrent.CompletableFuture;
 
 public class CommandSourceStackAccessor implements ICommandSourceAccessor<MinecraftComponent> {
     private final CommandSourceStack source;
@@ -34,14 +33,12 @@ public class CommandSourceStackAccessor implements ICommandSourceAccessor<Minecr
     }
 
     @Override
-    public CompletableFuture<Void> sendFailure(MinecraftComponent message) {
+    public void sendFailure(MinecraftComponent message) {
         source.sendFailure(message.getBoxed());
-        return CompletableFuture.completedFuture(null);
     }
 
     @Override
-    public CompletableFuture<Void> sendSuccess(MinecraftComponent message, boolean allowLogging) {
+    public void sendSuccess(MinecraftComponent message, boolean allowLogging) {
         source.sendSuccess(message::getBoxed, allowLogging);
-        return CompletableFuture.completedFuture(null);
     }
 }

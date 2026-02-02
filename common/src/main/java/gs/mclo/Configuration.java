@@ -11,13 +11,4 @@ public class Configuration {
             SerdeSkipDeserializingIf.SkipDeIf.IS_EMPTY
     })
     String apiBaseUrl = "https://api.mclo.gs";
-
-    @SerdeComment(" URL to view logs on the web")
-    @SerdeComment(" A trailing slash and the log ID will be appended to this URL")
-    @SerdeSkipDeserializingIf({
-            SerdeSkipDeserializingIf.SkipDeIf.IS_MISSING,
-            SerdeSkipDeserializingIf.SkipDeIf.IS_NULL,
-            SerdeSkipDeserializingIf.SkipDeIf.IS_EMPTY
-    })
-    String viewLogsUrl = "https://mclo.gs";
 }
