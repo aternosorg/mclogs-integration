@@ -32,11 +32,12 @@
 
 The Plugin/Mod contains the following commands:
 
-| Command      | Arguments     | Description                                                   | Permission Level | Permission Node |
-|--------------|---------------|---------------------------------------------------------------|------------------|-----------------|
-| mclogs       |               | Share the current server log                                  | 2                | mclogs          |
-| mclogs list  |               | List server logs, crash- and network protocol error reports   | 2                | mclogs.list     |
-| mclogs share | \<file-name\> | Share a specific log, crash- or network protocol error report | 2                | mclogs.share    |
+| Command       | Arguments     | Description                                                   | Permission Level | Permission Node |
+|---------------|---------------|---------------------------------------------------------------|------------------|-----------------|
+| mclogs        |               | Share the current server log                                  | 2                | mclogs          |
+| mclogs list   |               | List server logs, crash- and network protocol error reports   | 2                | mclogs.list     |
+| mclogs share  | \<file-name\> | Share a specific log, crash- or network protocol error report | 2                | mclogs.share    |
+| mclogs delete | \<log-id\>    | Delete a log that was shared from the server                  | 2                | mclogs.delete   |
 
 For special cases, the following commands are available:
 

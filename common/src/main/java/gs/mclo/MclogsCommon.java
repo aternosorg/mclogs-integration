@@ -7,6 +7,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import gs.mclo.api.Instance;
 import gs.mclo.api.MclogsClient;
+import gs.mclo.api.response.UploadLogResponse;
 import gs.mclo.commands.*;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
@@ -14,6 +15,7 @@ import gs.mclo.components.IStyle;
 import gs.mclo.platform.Services;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +23,8 @@ public class MclogsCommon {
     protected MclogsClient apiClient;
     protected FileConfig configFile;
     protected Configuration config = new Configuration();
+
+    protected final Map<String, UploadLogResponse> sharedLogs = new HashMap<>();
 
     public void init() {
         apiClient = new MclogsClient(
@@ -82,7 +86,8 @@ public class MclogsCommon {
         return List.of(
                 new MclogsCommand<>(this, componentFactory),
                 new MclogsListCommand<>(this, componentFactory),
-                new MclogsShareCommand<>(this, componentFactory)
+                new MclogsShareCommand<>(this, componentFactory),
+                new MclogsDeleteCommand<>(this, componentFactory)
         );
     }
 
@@ -106,5 +111,9 @@ public class MclogsCommon {
 
     public MclogsClient getApiClient() {
         return apiClient;
+    }
+
+    public Map<String, UploadLogResponse> getSharedLogs() {
+        return sharedLogs;
     }
 }

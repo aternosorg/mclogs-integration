@@ -4,6 +4,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
 import gs.mclo.MclogsCommon;
+import gs.mclo.api.response.UploadLogResponse;
 import gs.mclo.components.ClickEventAction;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
@@ -11,6 +12,8 @@ import gs.mclo.components.IStyle;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A platform-agnostic command
@@ -87,8 +90,13 @@ public abstract class Command<
         Constants.LOG.info("Sharing {}", source.getRootDirectory().relativize(path));
 
         common.getApiClient().uploadLog(path).thenAccept(response -> {
+            common.getSharedLogs().put(response.getId(), response);
             var link = componentFactory.literal(response.getUrl()).style(openUrlStyle(response.getUrl()));
-            var message = componentFactory.literal("Your log has been uploaded: ").append(link);
+            var delete = componentFactory.literal("[DELETE]")
+                    .style(runCommandStyle(command(context, "delete", response.getId())));
+            var message = componentFactory.literal("Your log has been uploaded: ").append(link)
+                    .append(" ")
+                    .append(delete);
             source.sendSuccess(message, true);
         }).exceptionally(e -> {
             Constants.LOG.error("An error occurred when uploading your log", e);

@@ -4,6 +4,7 @@ public enum Permission {
     BASE(2, "mclogs"),
     SHARE_SPECIFIC(2, "mclogs.share"),
     LIST(2, "mclogs.list"),
+    DELETE(2, "mclogs.delete"),
     ;
 
     private final int level;
