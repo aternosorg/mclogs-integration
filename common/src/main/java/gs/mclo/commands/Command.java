@@ -4,7 +4,6 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import gs.mclo.Constants;
 import gs.mclo.MclogsCommon;
-import gs.mclo.api.response.UploadLogResponse;
 import gs.mclo.components.ClickEventAction;
 import gs.mclo.components.IComponent;
 import gs.mclo.components.IComponentFactory;
@@ -12,13 +11,12 @@ import gs.mclo.components.IStyle;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A platform-agnostic command
- * @param <ComponentType> The type of components used on the platform
- * @param <StyleType> The type of styles used on the platform
+ *
+ * @param <ComponentType>  The type of components used on the platform
+ * @param <StyleType>      The type of styles used on the platform
  * @param <ClickEventType> The type of click events used on the platform
  */
 public abstract class Command<
@@ -37,7 +35,8 @@ public abstract class Command<
 
     /**
      * Create a new command
-     * @param common Common mod/plugin instance
+     *
+     * @param common           Common mod/plugin instance
      * @param componentFactory A component factory
      */
     public Command(
@@ -63,11 +62,12 @@ public abstract class Command<
 
     /**
      * Share a log or crash report
-     * @param context The command context
+     *
+     * @param context      The command context
      * @param buildContext The build context
-     * @param filename The filename of the log or crash report
+     * @param filename     The filename of the log or crash report
+     * @param <T>          The command source type
      * @return -1 if the input was invalid or an error occurred, 1 if the log was shared
-     * @param <T> The command source type
      */
     public <T> int share(CommandContext<T> context, BuildContext<T, ComponentType> buildContext, String filename) {
         var source = buildContext.mapSource(context.getSource());
@@ -92,7 +92,7 @@ public abstract class Command<
         common.getApiClient().uploadLog(path).thenAccept(response -> {
             common.getSharedLogs().put(response.getId(), response);
             var link = componentFactory.literal(response.getUrl()).style(openUrlStyle(response.getUrl()));
-            var delete = componentFactory.literal("[DELETE]")
+            var delete = componentFactory.literal("[delete]")
                     .style(runCommandStyle(command(context, "delete", response.getId())));
             var message = componentFactory.literal("Your log has been uploaded: ").append(link)
                     .append(" ")
@@ -109,8 +109,9 @@ public abstract class Command<
     /**
      * Build a command string the user would input.
      * Uses the same root command that was used when executing the command.
+     *
      * @param context The command context
-     * @param args The arguments to append to the command
+     * @param args    The arguments to append to the command
      * @return The command string
      */
     protected String command(CommandContext<?> context, String... args) {
@@ -125,8 +126,9 @@ public abstract class Command<
 
     /**
      * Create a message for when a file is not found
+     *
      * @param filename The filename that was not found
-     * @param context The command context
+     * @param context  The command context
      * @return A component with the error message
      */
     protected ComponentType fileNotFoundMessage(String filename, CommandContext<?> context) {
@@ -141,6 +143,7 @@ public abstract class Command<
 
     /**
      * Create a generic error message
+     *
      * @return A component with a generic error message
      */
     protected ComponentType genericErrorMessage() {
@@ -149,6 +152,7 @@ public abstract class Command<
 
     /**
      * Create a clickable style for running a command
+     *
      * @param command The command to run
      * @return The style
      */
@@ -158,6 +162,7 @@ public abstract class Command<
 
     /**
      * Create a clickable style for opening a URL
+     *
      * @param url The URL to open
      * @return The style
      */
@@ -167,6 +172,7 @@ public abstract class Command<
 
     /**
      * Create style with a click event
+     *
      * @param event The click event
      * @return The style
      */
