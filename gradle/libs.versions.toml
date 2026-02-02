@@ -3,6 +3,7 @@ adventure-api = "4.18.0"
 adventure-platforms = "4.3.4"
 brigadier = "1.0.18"
 curseforge-gradle = "1.1.15"
+eventbus-validator = "7.0.1"
 # see https://fabricmc.net/develop/ for new versions
 fabric-loom = "1.14-SNAPSHOT"
 forge-gradle = "[7,8)"
@@ -25,6 +26,7 @@ adventure-api = { module = "net.kyori:adventure-api", version.ref = "adventure-a
 adventure-bukkit = { module = "net.kyori:adventure-platform-bukkit", version.ref = "adventure-platforms" }
 adventure-bungeecord = { module = "net.kyori:adventure-platform-bungeecord", version.ref = "adventure-platforms" }
 brigadier = { module = "com.mojang:brigadier", version.ref = "brigadier" }
+eventbus-validator = { module = "net.minecraftforge:eventbus-validator", version.ref = "eventbus-validator" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
 mclogs-api = { module = "gs.mclo:api", version.ref = "mclogs" }
