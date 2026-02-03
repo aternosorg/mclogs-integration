@@ -7,6 +7,12 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
+repositories {
+    mavenCentral()
+    maven repos.centralSnapshots
+    maven repos.minecraftLibs
+}
+
 dependencies {
     implementation(libs.mclogs.api)
     implementation(libs.gson)

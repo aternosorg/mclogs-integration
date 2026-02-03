@@ -5,6 +5,13 @@ plugins {
     alias(libs.plugins.minotaur)
 }
 
+repositories {
+    mavenCentral()
+    maven repos.centralSnapshots
+    maven repos.minecraftLibs
+    maven repos.spigot
+}
+
 dependencies {
     compileOnly "org.spigotmc:spigot-api:${minor_minecraft_version}-R0.1-SNAPSHOT"
     implementation(libs.mclogs.api) {

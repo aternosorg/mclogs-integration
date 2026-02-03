@@ -1,6 +1,7 @@
 // Base plugin for all projects. Used by common and multiloader-common
 
 plugins {
+    id 'multiloader-repos'
     id 'java-library'
     id 'maven-publish'
 }
@@ -13,73 +14,6 @@ java {
     toolchain.languageVersion = JavaLanguageVersion.of(java_version)
     withSourcesJar()
     withJavadocJar()
-}
-
-repositories {
-    mavenCentral()
-    // https://docs.gradle.org/current/userguide/declaring_repositories.html#declaring_content_exclusively_found_in_one_repository
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = 'Sponge'
-                url = 'https://repo.spongepowered.org/repository/maven-public'
-            }
-        }
-        filter { includeGroupAndSubgroups('org.spongepowered') }
-    }
-    exclusiveContent {
-        forRepositories(
-                maven {
-                    name = 'ParchmentMC'
-                    url = 'https://maven.parchmentmc.org/'
-                },
-                maven {
-                    name = "NeoForge"
-                    url = 'https://maven.neoforged.net/releases'
-                }
-        )
-        filter { includeGroup('org.parchmentmc.data') }
-    }
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = 'Spigot'
-                url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots/')
-            }
-        }
-        filter {
-            includeGroupAndSubgroups('org.bukkit')
-            includeGroupAndSubgroups('org.spigotmc')
-        }
-    }
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = 'Paper'
-                url = uri('https://repo.papermc.io/repository/maven-public/')
-            }
-        }
-        filter {
-            includeGroupAndSubgroups('com.velocitypowered')
-        }
-    }
-    maven {
-        name = 'Forge'
-        url = uri('https://maven.minecraftforge.net')
-    }
-    maven {
-        name = "Minecraft Libraries"
-        url = uri("https://libraries.minecraft.net")
-    }
-    maven {
-        name = 'Central Portal Snapshots'
-        url = 'https://central.sonatype.com/repository/maven-snapshots/'
-
-        // Only search this repository for the specific dependency
-        content {
-            includeModule("gs.mclo", "api")
-        }
-    }
 }
 
 // Declare capabilities on the outgoing configurations.

@@ -10,6 +10,12 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
+repositories {
+    mavenCentral()
+    maven repos.centralSnapshots
+    maven repos.paper
+}
+
 dependencies {
     compileOnly(libs.velocity.api)
     annotationProcessor(libs.velocity.api)

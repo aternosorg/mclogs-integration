@@ -9,6 +9,13 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
+repositories {
+    mavenCentral()
+    maven repos.centralSnapshots
+    maven repos.spigot
+    maven repos.paper
+}
+
 dependencies {
     compileOnly "net.md-5:bungeecord-api:${minor_minecraft_version}-R0.4"
     implementation(libs.mclogs.api) {

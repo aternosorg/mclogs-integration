@@ -42,7 +42,13 @@ tasks.named('jarJar') {
     dependsOn("javadocJar", "sourcesJar")
 }
 
-minecraft.mavenizer(repositories)
+repositories {
+    maven minecraft.mavenizer
+    mavenCentral()
+    maven repos.centralSnapshots
+    maven repos.minecraftLibs
+    maven repos.forge
+}
 
 dependencies {
     implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
