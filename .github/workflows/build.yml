@@ -1,5 +1,17 @@
 name: Build
-on: [ push, pull_request ]
+on:
+  push:
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.png'
+      - 'LICENSE'
+    branches:
+      - '*'
+  pull_request:
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.png'
+      - 'LICENSE'
 jobs:
   build:
     name: Build for all platforms
