@@ -7,6 +7,11 @@ plugins {
     alias(libs.plugins.curseforge.gradle)
 }
 
+repositories {
+    mavenCentral()
+    maven repos.centralSnapshots
+}
+
 neoForge {
     version = neoforge_version
 

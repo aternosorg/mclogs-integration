@@ -7,6 +7,11 @@ plugins {
     alias(libs.plugins.curseforge.gradle)
 }
 
+repositories {
+    mavenCentral()
+    maven repos.centralSnapshots
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered {
