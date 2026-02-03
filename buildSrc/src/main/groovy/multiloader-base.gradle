@@ -64,10 +64,6 @@ repositories {
         }
     }
     maven {
-        name = 'Forge Gradle Mavenizer'
-        url = uri('build/minecraftforge/forgegradle/mavenizer/output')
-    }
-    maven {
         name = 'Forge'
         url = uri('https://maven.minecraftforge.net')
     }
