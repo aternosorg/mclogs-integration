@@ -13,7 +13,7 @@
         "issues": "${issues_url}"
     },
     "license": "${license}",
-    "icon": "assets/${mod_id}/logo.png",
+    "icon": "assets/${mod_id}/icon-dark.png",
     "environment": "*",
     "entrypoints": {
         "main": [

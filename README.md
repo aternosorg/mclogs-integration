@@ -1,6 +1,6 @@
 <div align="center">
     <a href="https://mclo.gs">
-        <img src="https://mclo.gs/img/logo.png" alt="Logo" width="350" height="120">
+        <img src="https://mclo.gs/img/logo.svg" alt="Logo" width="260">
     </a>
     <h3>Server Plugin/Mod</h3>
     <p>
