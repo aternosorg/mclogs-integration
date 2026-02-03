@@ -4,14 +4,7 @@
     </a>
     <h3>Server Plugin/Mod</h3>
     <p>
-        Upload your logs to <a href="https://mclo.gs" target="_blank">mclo.gs</a> with a single command to analyze or share them.
-        <br />
-        Critical information like IP addresses are automatically hidden to ensure safety and privacy.
-        <br />
-        It's also possible to export old server log files, e.g. after a crash.
-        <br />
-        <a href="https://modrinth.com/plugin/mclogs" target="_blank"><strong>« Download Plugin/Mod on Modrinth »</strong></a>
-        <br />
+        <a href="https://modrinth.com/plugin/mclogs" target="_blank"><strong>« Download on Modrinth »</strong></a>
         <br />
         <a href="https://www.spigotmc.org/resources/mclo-gs.47502/" target="_blank">SpigotMC</a>
         ·
@@ -27,6 +20,13 @@
 ## About mclo.gs
 
 <a href="https://mclo.gs" target="_blank">mclo.gs</a> allows you to quickly share and analyze logs for Minecraft servers and clients. It highlights different log levels, removes sensitive information like IP-Addresses and detects common problems as well as version information.
+
+## Features
+- Upload server logs with a single command
+- Share logs with a short url
+- Automatic on-device removal of sensitive information like IP addresses and system usernames
+- Uploading other logs and reports
+- Deleting uploaded logs
 
 ## Commands
 
