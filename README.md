@@ -63,9 +63,6 @@ The config file is located in `plugins/mclogs/config.toml` for plugin servers an
 ```toml
 # Base URL for the API used to upload logs
 apiBaseUrl = "https://api.mclo.gs"
-# URL to view logs on the web
-# A trailing slash and the log ID will be appended to this URL
-viewLogsUrl = "https://mclo.gs"
 ```
 
 ## Requirements
