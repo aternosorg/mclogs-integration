@@ -1,3 +1,13 @@
+# 3.1.0
+- Filter more sensitive information on-device
+- Allow deleting logs
+- Update forge to 1.21.11
+- Fix click events on Bukkit in modern Minecraft versions
+- Update to mclogs 2.0 design
+- Require custom instances to run at least mclogs 2.0 
+
+---
+
 # 3.0.11
 
 Forge is currently not supported as the forge gradle plugin does not support gradle 9 yet.
