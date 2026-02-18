@@ -1,3 +1,8 @@
+# 3.1.1.
+- Fix issues when filtering windows paths
+
+---
+
 # 3.1.0
 - Filter more sensitive information on-device
 - Allow deleting logs
