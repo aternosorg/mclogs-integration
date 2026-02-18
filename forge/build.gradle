@@ -43,12 +43,13 @@ tasks.named('jarJar') {
 }
 
 repositories {
-    maven minecraft.mavenizer
     mavenCentral()
     maven repos.centralSnapshots
     maven repos.minecraftLibs
     maven repos.forge
 }
+
+minecraft.mavenizer(repositories)
 
 dependencies {
     implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
