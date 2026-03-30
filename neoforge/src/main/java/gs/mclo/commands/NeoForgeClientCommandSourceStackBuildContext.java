@@ -12,9 +12,4 @@ public class NeoForgeClientCommandSourceStackBuildContext extends ClientCommandS
      */
     public NeoForgeClientCommandSourceStackBuildContext() {
     }
-
-    @Override
-    public boolean supportsClientCommandClickEvents() {
-        return true;
-    }
 }

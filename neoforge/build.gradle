@@ -15,12 +15,6 @@ repositories {
 neoForge {
     version = neoforge_version
 
-    if (enable_parchment) {
-        parchment {
-            minecraftVersion = parchment_minecraft
-            mappingsVersion = parchment_version
-        }
-    }
     runs {
         configureEach {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)

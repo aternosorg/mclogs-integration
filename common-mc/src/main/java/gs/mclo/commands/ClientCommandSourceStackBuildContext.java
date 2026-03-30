@@ -12,9 +12,4 @@ public class ClientCommandSourceStackBuildContext extends CommandSourceStackBuil
     public ICommandSourceAccessor<MinecraftComponent> mapSource(CommandSourceStack source) {
         return new ClientCommandSourceStackAccessor(source);
     }
-
-    @Override
-    public boolean supportsClientCommandClickEvents() {
-        return false;
-    }
 }

@@ -21,7 +21,7 @@ public class ForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public String getModVersion() {
-        return ModList.get().getModFileById(Constants.MOD_ID).versionString();
+        return ModList.getModFileById(Constants.MOD_ID).versionString();
     }
 
     @Override

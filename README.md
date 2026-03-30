@@ -112,6 +112,6 @@ For other platforms or other IDEs run their respective gradle tasks:
 | Bukkit     |                                 | `./gradlew :bukkit:runServer`         |
 | BungeeCord |                                 | `./gradlew :bungeecord:runBungeeCord` |
 | Velocity   |                                 | `./gradlew :velocity:runVelocity`     |
-| Forge      | `./gradlew :forge:Client`       | `./gradlew :forge:Server`             |
+| Forge      | `./gradlew :forge:runClient`    | `./gradlew :forge:runServer`          |
 | Fabric     | `./gradlew :fabric:runClient`   | `./gradlew :fabric:runServer`         |
 | NeoForge   | `./gradlew :neoforge:runClient` | `./gradlew :neoforge:runServer`       |

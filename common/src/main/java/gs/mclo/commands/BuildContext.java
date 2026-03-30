@@ -31,7 +31,7 @@ public abstract class BuildContext<T, ComponentType extends IComponent<Component
 
     /**
      * Are click events with client commands supported in this context?
-     * Forge (and older NeoForge versions) do not support this.
+     * older Forge and NeoForge versions did not support this.
      * @return True if click events are supported, false otherwise.
      */
     public boolean supportsClientCommandClickEvents() {

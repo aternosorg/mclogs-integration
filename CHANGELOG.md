@@ -1,4 +1,9 @@
-# 3.1.1.
+# 3.2.0
+- Update to 26.1
+
+---
+
+# 3.1.1
 - Fix issues when filtering windows paths
 
 ---

@@ -21,7 +21,6 @@ dependencies {
     implementation(libs.brigadier)
     compileOnly(libs.jetbrains.annotations)
 }
-
 configurations {
     commonJava {
         canBeResolved = false

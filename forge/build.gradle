@@ -21,11 +21,12 @@ minecraft {
             systemProperty 'eventbus.api.strictRuntimeChecks', 'true'
         }
 
-        client {
+        register('client') {
             workingDir.convention layout.projectDirectory.dir('runs/Client')
+            jvmArgs '-XstartOnFirstThread'
         }
 
-        server {
+        register('server') {
             workingDir.convention layout.projectDirectory.dir('runs/Server')
             args '--nogui'
         }
