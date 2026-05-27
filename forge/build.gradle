@@ -79,6 +79,8 @@ tasks.register('curseforge', TaskPublishCurseForge) {
     mainFile.releaseType = "release"
     mainFile.changelog = changelog
     mainFile.changelogType = "markdown"
+    mainFile.addEnvironment("Client")
+    mainFile.addEnvironment("Server")
 
     for (String version in minecraft_version_list) {
         mainFile.addGameVersion(version)

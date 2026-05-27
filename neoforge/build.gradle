@@ -65,6 +65,8 @@ tasks.register('curseforge', TaskPublishCurseForge) {
     mainFile.changelog = changelog
     mainFile.changelogType = "markdown"
     mainFile.addModLoader("NeoForge")
+    mainFile.addEnvironment("Client")
+    mainFile.addEnvironment("Server")
 
     for (String version in minecraft_version_list) {
         mainFile.addGameVersion(version)
