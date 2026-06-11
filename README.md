@@ -8,7 +8,7 @@
         <br />
         <a href="https://www.spigotmc.org/resources/mclo-gs.47502/" target="_blank">SpigotMC</a>
         ·
-        <a href="https://www.curseforge.com/minecraft/bukkit-plugins/mclo-gs" target="_blank">CurseForge (Plugin)</a>
+        <a href="https://www.curseforge.com/minecraft/bukkit-plugins/mclogs" target="_blank">CurseForge (Plugin)</a>
         ·
         <a href="https://www.curseforge.com/minecraft/mc-mods/mclo-gs" target="_blank">CurseForge (Mod)</a>
         ·
