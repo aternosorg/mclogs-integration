@@ -1,7 +1,6 @@
 plugins {
     id 'multiloader-adventure'
     alias(libs.plugins.shadow)
-    alias(libs.plugins.minotaur)
 }
 
 java {
@@ -60,13 +59,4 @@ tasks.register("runBungeeCord", JavaExec) {
 
     classpath = files(bungeeCordJar)
     workingDir(runDir)
-}
-
-modrinth {
-    token = findProperty('modrinth_api_token') as String ?: ''
-    projectId = modrinth_project_id
-    uploadFile = shadowJar
-    gameVersions = minecraft_version_list
-    loaders = ["bungeecord"]
-    changelog = rootProject.changelog
 }

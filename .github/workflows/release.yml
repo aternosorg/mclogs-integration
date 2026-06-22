@@ -39,6 +39,9 @@ jobs:
           name: v${{ github.event.inputs.version }}
           tag_name: ${{ github.event.inputs.version }}
 
+      - name: Publish mods/plugins to Modrinth/CurseForge
+        run: ./gradlew publishMods
+
       - name: Bump version in gradle.properties
         run: |
           IFS='.' read -r major minor patch <<< "${{ github.event.inputs.version }}"
@@ -56,36 +59,6 @@ jobs:
           git add gradle.properties
           git commit -m "Bump version"
           git push
-
-  publish-projects:
-    name: Publish ${{ matrix.project }} (${{ matrix.task }})
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        task: [curseforge, modrinth]
-        project: [fabric, forge, neoforge]
-        include:
-          - task: modrinth
-            project: bukkit # TODO: Move up when cf bukkit publishing works
-          - task: modrinth
-            project: bungee
-          - task: modrinth
-            project: velocity
-    steps:
-      - name: Checkout Sources
-        uses: actions/checkout@v4
-
-      - name: Setup Build Environment
-        uses: ./.github/actions/setup-release
-        with:
-          version: ${{ github.event.inputs.version }}
-          hangar_token: ${{ secrets.HANGAR_TOKEN }}
-          modrinth_token: ${{ secrets.MODRINTH_TOKEN }}
-          curseforge_token: ${{ secrets.CURSEFORGE_TOKEN }}
-
-      - name: Publish ${{ matrix.project }} with ${{ matrix.task }}
-        run: ./gradlew ":${{ matrix.project }}:${{ matrix.task }}"
 
   publish-hangar:
     name: Publish plugins to hangar

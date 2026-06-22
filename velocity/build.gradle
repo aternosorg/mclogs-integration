@@ -2,7 +2,6 @@ plugins {
     id 'multiloader-adventure'
     alias(libs.plugins.shadow)
     alias(libs.plugins.run.velocity)
-    alias(libs.plugins.minotaur)
 }
 
 java {
@@ -23,8 +22,6 @@ dependencies {
         exclude group: 'com.google.code.gson', module: 'gson'
     }
     implementation(libs.nightconfig.toml)
-    // implementation(libs.brigadier)
-    // implementation(libs.adventure.api)
 }
 
 tasks {
@@ -33,17 +30,7 @@ tasks {
     }
 
     shadowJar {
-        // relocate("org.slf4j", "gs.mclo.slf4j")
         relocate("com.electronwill.nightconfig", "gs.mclo.nightconfig")
         dependsOn("javadocJar", "sourcesJar")
     }
-}
-
-modrinth {
-    token = findProperty('modrinth_api_token') as String ?: ''
-    projectId = modrinth_project_id
-    uploadFile = shadowJar
-    gameVersions = minecraft_version_list
-    loaders = ["velocity"]
-    changelog = rootProject.changelog
 }

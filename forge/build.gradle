@@ -1,12 +1,7 @@
-import com.modrinth.minotaur.TaskModrinthUpload
-import net.darkhax.curseforgegradle.TaskPublishCurseForge
-
 plugins {
     id 'multiloader-loader'
     alias(libs.plugins.forge.gradle)
     alias(libs.plugins.forge.jarjar)
-    alias(libs.plugins.minotaur)
-    alias(libs.plugins.curseforge.gradle)
 }
 
 base {
@@ -58,31 +53,4 @@ dependencies {
 
     implementation(libs.mclogs.api)
     jarJar(libs.mclogs.api)
-}
-
-modrinth {
-    token = findProperty('modrinth_api_token') as String ?: ''
-    projectId = modrinth_project_id
-    uploadFile = tasks.jarJar.archiveFile
-    gameVersions = minecraft_version_list
-    loaders = ["forge"]
-    changelog = rootProject.changelog
-}
-
-tasks.withType(TaskModrinthUpload).configureEach {
-    dependsOn('jarJar')
-}
-
-tasks.register('curseforge', TaskPublishCurseForge) {
-    apiToken = findProperty('curseforge_token') as String ?: ''
-    def mainFile = upload(curseforge_project_id_mod, tasks.jarJar.archiveFile)
-    mainFile.releaseType = "release"
-    mainFile.changelog = changelog
-    mainFile.changelogType = "markdown"
-    mainFile.addEnvironment("Client")
-    mainFile.addEnvironment("Server")
-
-    for (String version in minecraft_version_list) {
-        mainFile.addGameVersion(version)
-    }
 }

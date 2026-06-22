@@ -2,7 +2,6 @@ plugins {
     id 'multiloader-adventure'
     alias(libs.plugins.shadow)
     alias(libs.plugins.run.paper)
-    alias(libs.plugins.minotaur)
 }
 
 repositories {
@@ -33,13 +32,4 @@ tasks {
         relocate("com.electronwill.nightconfig", "gs.mclo.nightconfig")
         dependsOn("javadocJar", "sourcesJar")
     }
-}
-
-modrinth {
-    token = findProperty('modrinth_api_token') as String ?: ''
-    projectId = modrinth_project_id
-    uploadFile = shadowJar
-    gameVersions = minecraft_version_list
-    loaders = ["spigot", "paper", "purpur"]
-    changelog = rootProject.changelog
 }

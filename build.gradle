@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.fabric.loom) apply false
     alias(libs.plugins.neoforge.moddev) apply false
     alias(libs.plugins.hangar)
+    alias(libs.plugins.mod.publish)
 }
 
 String getChangeLog() {
@@ -60,6 +61,107 @@ tasks.register('buildAll', Copy) {
 
 tasks.register('clean', Delete) {
     delete 'result'
+}
+
+publishMods {
+    evaluationDependsOn(":bukkit")
+    evaluationDependsOn(":bungeecord")
+    evaluationDependsOn(":velocity")
+    evaluationDependsOn(":fabric")
+    evaluationDependsOn(":forge")
+    evaluationDependsOn(":neoforge")
+
+    changelog = rootProject.changelog
+    type = STABLE
+
+    def cfModOptions = curseforgeOptions {
+        accessToken = findProperty('curseforge_token') as String ?: ''
+        projectId = curseforge_project_id_mod
+        minecraftVersions = minecraft_version_list
+        client = true
+        server = true
+    }
+
+    def cfPluginOptions = curseforgeOptions {
+        accessToken = findProperty('curseforge_token') as String ?: ''
+        projectId = curseforge_project_id_plugin
+        minecraftVersions = minecraft_version_list
+        server = true
+    }
+
+    def mrOptions = modrinthOptions {
+        accessToken = findProperty('modrinth_api_token') as String ?: ''
+        projectId = modrinth_project_id
+        minecraftVersions = minecraft_version_list
+    }
+
+    // Plugins:
+    modrinth("modrinth-bukkit") {
+        from mrOptions
+        file = project(":bukkit").tasks.named("shadowJar").get().archiveFile
+        modLoaders = ["spigot", "paper", "purpur"]
+    }
+
+    modrinth("modrinth-bungee") {
+        from mrOptions
+        file = project(":bungeecord").tasks.named("shadowJar").get().archiveFile
+        modLoaders = ["bungeecord"]
+    }
+
+    modrinth("modrinth-velocity") {
+        from mrOptions
+        file = project(":velocity").tasks.named("shadowJar").get().archiveFile
+        modLoaders = ["velocity"]
+    }
+
+    curseforge("curseforge-bukkit") {
+        from cfPluginOptions
+        file = project(":bukkit").tasks.named("shadowJar").get().archiveFile
+        modLoaders = ["bukkit"]
+    }
+
+    // Mods:
+    modrinth("modrinth-fabric") {
+        from mrOptions
+        file = project(":fabric").tasks.named("jar").get().archiveFile
+        modLoaders = ["fabric"]
+        requires {
+            slug = "fabric-api"
+        }
+    }
+
+    modrinth("modrinth-forge") {
+        from mrOptions
+        file = project(":forge").tasks.named("jarJar").get().archiveFile
+        modLoaders = ["forge"]
+    }
+
+    modrinth("modrinth-neoforge") {
+        from mrOptions
+        file = project(":neoforge").tasks.named("jar").get().archiveFile
+        modLoaders = ["neoforge"]
+    }
+
+    curseforge("curseforge-fabric") {
+        from cfModOptions
+        file = project(":fabric").tasks.named("jar").get().archiveFile
+        modLoaders = ["fabric"]
+        requires {
+            slug = "fabric-api"
+        }
+    }
+
+    curseforge("curseforge-forge") {
+        from cfModOptions
+        file = project(":forge").tasks.named("jarJar").get().archiveFile
+        modLoaders = ["forge"]
+    }
+
+    curseforge("curseforge-neoforge") {
+        from cfModOptions
+        file = project(":neoforge").tasks.named("jar").get().archiveFile
+        modLoaders = ["neoforge"]
+    }
 }
 
 hangarPublish {
