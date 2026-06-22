@@ -117,7 +117,6 @@ publishMods {
     curseforge("curseforge-bukkit") {
         from cfPluginOptions
         file = project(":bukkit").tasks.named("shadowJar").get().archiveFile
-        modLoaders = ["bukkit"]
     }
 
     // Mods:
