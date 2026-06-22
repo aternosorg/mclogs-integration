@@ -74,18 +74,11 @@ publishMods {
     changelog = rootProject.changelog
     type = STABLE
 
-    def cfModOptions = curseforgeOptions {
+    def cfOptions = curseforgeOptions {
         accessToken = findProperty('curseforge_token') as String ?: ''
         projectId = curseforge_project_id_mod
         minecraftVersions = minecraft_version_list
         client = true
-        server = true
-    }
-
-    def cfPluginOptions = curseforgeOptions {
-        accessToken = findProperty('curseforge_token') as String ?: ''
-        projectId = curseforge_project_id_plugin
-        minecraftVersions = minecraft_version_list
         server = true
     }
 
@@ -114,11 +107,6 @@ publishMods {
         modLoaders = ["velocity"]
     }
 
-    curseforge("curseforge-bukkit") {
-        from cfPluginOptions
-        file = project(":bukkit").tasks.named("shadowJar").get().archiveFile
-    }
-
     // Mods:
     modrinth("modrinth-fabric") {
         from mrOptions
@@ -142,7 +130,7 @@ publishMods {
     }
 
     curseforge("curseforge-fabric") {
-        from cfModOptions
+        from cfOptions
         file = project(":fabric").tasks.named("jar").get().archiveFile
         modLoaders = ["fabric"]
         requires {
@@ -151,13 +139,13 @@ publishMods {
     }
 
     curseforge("curseforge-forge") {
-        from cfModOptions
+        from cfOptions
         file = project(":forge").tasks.named("jarJar").get().archiveFile
         modLoaders = ["forge"]
     }
 
     curseforge("curseforge-neoforge") {
-        from cfModOptions
+        from cfOptions
         file = project(":neoforge").tasks.named("jar").get().archiveFile
         modLoaders = ["neoforge"]
     }
