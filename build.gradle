@@ -115,18 +115,21 @@ publishMods {
         requires {
             slug = "fabric-api"
         }
+        environment = CLIENT_OR_SERVER_PREFERS_BOTH
     }
 
     modrinth("modrinth-forge") {
         from mrOptions
         file = project(":forge").tasks.named("jarJar").get().archiveFile
         modLoaders = ["forge"]
+        environment = CLIENT_OR_SERVER_PREFERS_BOTH
     }
 
     modrinth("modrinth-neoforge") {
         from mrOptions
         file = project(":neoforge").tasks.named("jar").get().archiveFile
         modLoaders = ["neoforge"]
+        environment = CLIENT_OR_SERVER_PREFERS_BOTH
     }
 
     curseforge("curseforge-fabric") {
