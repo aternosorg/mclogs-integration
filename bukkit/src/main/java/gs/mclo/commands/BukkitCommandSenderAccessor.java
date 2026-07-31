@@ -35,6 +35,10 @@ public class BukkitCommandSenderAccessor extends AdventureCommandSourceAccessor 
 
     @Override
     protected Audience getAudience() {
+        if (commandSender instanceof Audience audience) {
+            return audience;
+        }
+
         return plugin.audience(commandSender);
     }
 }

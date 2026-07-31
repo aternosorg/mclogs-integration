@@ -1,3 +1,8 @@
+# 3.3.1
+- Fix the uploaded log link not being displayed on Paper 26.2
+
+---
+
 # 3.3.0
 - Update to 26.2
 
