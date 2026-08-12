@@ -6,6 +6,7 @@ import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
+import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import gs.mclo.commands.CommandEnvironment;
@@ -34,6 +35,11 @@ public class MclogsVelocityPlugin extends MclogsCommon {
         init();
 
         registerCommands();
+    }
+
+    @Subscribe
+    public void onProxyShutdown(ProxyShutdownEvent event) {
+        shutdown();
     }
 
     protected void registerCommands() {

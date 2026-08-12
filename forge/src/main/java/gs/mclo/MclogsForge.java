@@ -2,6 +2,7 @@ package gs.mclo;
 
 import gs.mclo.commands.ClientCommandSourceStackBuildContext;
 import net.minecraftforge.client.event.RegisterClientCommandsEvent;
+import net.minecraftforge.event.GameShuttingDownEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -12,6 +13,7 @@ public class MclogsForge extends MclogsCommonMc {
         this.init();
         RegisterClientCommandsEvent.BUS.addListener(this::registerClientCommands);
         RegisterCommandsEvent.BUS.addListener(this::registerCommands);
+        GameShuttingDownEvent.BUS.addListener(this::onGameShuttingDown);
     }
 
     public void registerClientCommands(RegisterClientCommandsEvent event) {
@@ -20,5 +22,9 @@ public class MclogsForge extends MclogsCommonMc {
 
     public void registerCommands(RegisterCommandsEvent event) {
         registerCommandsOnDedicatedServer(event.getDispatcher());
+    }
+
+    public void onGameShuttingDown(GameShuttingDownEvent event) {
+        shutdown();
     }
 }
