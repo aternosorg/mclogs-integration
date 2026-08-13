@@ -33,6 +33,7 @@ public class MclogsBungeePlugin extends Plugin {
             adventure.close();
             adventure = null;
         }
+        mclogsCommon.shutdown();
     }
 
     private BungeeAudiences adventure() {

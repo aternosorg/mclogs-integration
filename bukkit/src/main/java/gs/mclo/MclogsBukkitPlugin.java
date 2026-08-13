@@ -33,6 +33,7 @@ public class MclogsBukkitPlugin extends JavaPlugin {
             adventure.close();
             adventure = null;
         }
+        mclogsCommon.shutdown();
     }
 
     private BukkitAudiences adventure() {

@@ -1,6 +1,7 @@
 package gs.mclo;
 
 import com.electronwill.nightconfig.core.file.FileConfig;
+import com.electronwill.nightconfig.core.file.FileWatcher;
 import com.electronwill.nightconfig.core.serde.ObjectDeserializer;
 import com.electronwill.nightconfig.core.serde.ObjectSerializer;
 import com.mojang.brigadier.CommandDispatcher;
@@ -115,5 +116,9 @@ public class MclogsCommon {
 
     public Map<String, UploadLogResponse> getSharedLogs() {
         return sharedLogs;
+    }
+
+    public void shutdown() {
+        FileWatcher.defaultInstance().stop();
     }
 }
