@@ -1,3 +1,8 @@
+# 3.3.2
+- Fix config file watch thread not being stopped on shutdown
+
+---
+
 # 3.3.1
 - Fix the uploaded log link not being displayed on Paper 26.2
 
