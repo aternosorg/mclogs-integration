@@ -1,3 +1,7 @@
+# 3.3.3
+- Fix crash on fabric servers
+
+---
 # 3.3.2
 - Fix config file watch thread not being stopped on shutdown
 
