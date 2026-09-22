@@ -1,3 +1,8 @@
+# 3.3.4
+- List 26.3 support
+
+---
+
 # 3.3.3
 - Fix crash on fabric servers
 
